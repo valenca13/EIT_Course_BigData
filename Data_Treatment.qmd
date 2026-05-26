@@ -1,0 +1,191 @@
+---
+title: "EIT_Course_BigData"
+author: "Gabriel Valença"
+format: html
+editor: visual
+---
+
+## About the Data
+
+Hourly pedestrian counts from automatic sensors in our local area.
+
+Data is openly available at: <https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count>
+
+This dataset contains **hourly pedestrian** counts by location in Sydney, Australia.
+
+**Automated counters** were placed in busy areas of the CBD to assess performance.
+
+Data collection began in _February 2020_ and ended in _June 2025_.
+
+## Import Dataset
+
+The dataset can be downloaded in many formats. 
+
+You can also import the data in many formats. Choose the one you prefer
+
+* CSV file
+```{r}
+data_csv <- read.csv("Data/Automatic_Hourly_Pedestrian_Count.csv")
+```
+
+* Shapefile
+
+First Unzip file and place them into the ´Data´ file.
+```{r}
+#Unzip file
+
+unzip("Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip", junkpaths = TRUE)
+```
+
+```{r}
+library(sf)
+ 
+data_shapefile <- read_sf("Automatic_Hourly_Pedestrian_Count.shp")
+```
+
+  
+
+## Convert dataset into _dataframe_
+
+It is good practice to: 
+* convert the database into dataframe, as many packages only work with dataframes.
+* To not work on the raw dataset. 
+
+```{r}
+df <- data.frame(data_csv)
+```
+
+## Check the dataset
+
+Structure of the dataset
+
+```{r}
+str(df)
+```
+
+Summary
+
+```{r}
+summary(df)
+```
+
+Check how many automatic counters there are: 
+
+```{r}
+unique(df$Location_code)
+```
+```{r}
+unique(df$Location_Name)
+```
+The location exact location of the automatic counters is not given in the dataset. 
+
+We need at least an approximation, to perform spatial analysis. 
+
+Check the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/ 
+
+Go to Google Maps and retrieve the locations: 
+
+* A001: -33.863518, 151.209968
+* A002: -33.871667, 151.210080
+* A003: -33.870783, 151.206607
+* A004: -33.873041, 151.207565
+
+## Create variable with latitude and longitude of dataset
+
+```{r}
+
+df$Latitude[df$Location_code == "A001"] <- -33.863518
+df$Longitude[df$Location_code == "A001"] <- 151.209968
+
+df$Latitude[df$Location_code == "A002"] <- -33.871667
+df$Longitude[df$Location_code == "A002"] <- 151.210080
+
+df$Latitude[df$Location_code == "A003"] <- -33.870783
+df$Longitude[df$Location_code == "A003"] <- 151.206607
+
+df$Latitude[df$Location_code == "A004"] <- -33.873041
+df$Longitude[df$Location_code == "A004"] <- 151.207565
+```
+
+## Create an _Geometry_ variable
+
+```{r}
+df_sf <- st_as_sf(
+  df,
+  coords = c("Longitude", "Latitude"),
+  crs = 4326
+)
+```
+
+> **Note:** Google Maps uses _WGS84_, which corresponds to EPSG = 4326
+
+Create an interative map
+
+```{r}
+library(mapview)
+
+mapview(df_sf, xcol="Latitude",ycol="Longitude")
+```
+
+## Have date and time in separate variables
+
+Parse date-times with **y**ear, **m**onth, and **d**ay, **h**our, **m**inute, and **s**econd components. 
+
+```{r}
+library(lubridate)
+
+df_sf$Date <- ymd_hms(df_sf$Date, tz = "UTC")
+```
+
+Create new variables
+
+```{r}
+df_sf$Date_only <- as.Date(df_sf$Date)
+df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
+```
+
+```{r}
+class(df$Date)
+
+class(df_sf$Date)
+```
+
+# plot counts per day and counter
+
+```{r}
+library(ggplot2)
+
+ggplot(df_sf, aes(x = Date, y = TotalCount, color = Location_code)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  labs(
+    title = "Total Count per Location Over Time",
+    x = "Time",
+    y = "Total Count",
+    color = "Location"
+  ) +
+  theme_minimal()
+```
+
+
+
+
+
+
+
+## Import land use data and integrate with existing data
+
+https://data.cityofsydney.nsw.gov.au/pages/open-data#Categories 
+
+
+
+
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
