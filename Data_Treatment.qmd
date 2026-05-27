@@ -68,6 +68,13 @@ Summary
 ```{r}
 summary(df)
 ```
+Convert the variable "Day" into a factor.
+
+```{r}
+df$Day <- factor(df$Day, labels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"), ordered = TRUE)
+
+str(df$Day)
+```
 
 Check how many automatic counters there are:
 
@@ -123,7 +130,7 @@ df_sf <- st_as_sf(
 
 > **Note:** Google Maps uses *WGS84*, which corresponds to EPSG = 4326
 
-Create an interative map
+Create an iterative map
 
 ```{r}
 library(mapview)
@@ -154,22 +161,16 @@ class(df$Date)
 class(df_sf$Date)
 ```
 
-Criar uma variavel de juntar por dia semana e por ano.
-
-mutate e um groupby e summarize para fazer a soma de total counts.
-
-grafico para os 5 dias da semana.
-
-# plot counts per day and counter
+## plot counts per day and counter
 
 x - datas , y contagens (cada um dos counters)
 
 ```{r}
 library(ggplot2)
 
-ggplot(df_sf, aes(x = Date, y = TotalCount, color = Location_code)) +
+ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   geom_line(linewidth = 1) +
-  geom_point(size = 2) +
+  geom_point(size = 1) +
   labs(
     title = "Total Count per Location Over Time",
     x = "Time",
@@ -178,6 +179,28 @@ ggplot(df_sf, aes(x = Date, y = TotalCount, color = Location_code)) +
   ) +
   theme_minimal()
 ```
+```{r}
+ggplot(df_sf, aes(x = Date, y = TotalCount)) +
+  geom_path(linewidth = 1) +
+  # geom_point(size = 1) +
+  labs(
+    title = "Total Count per Location Over Time",
+    x = "Time",
+    y = "Total Count",
+    color = "Location"
+  ) +
+  theme_minimal()
+```
+
+
+
+Criar uma variavel de juntar por dia semana e por ano.
+
+mutate e um groupby e summarize para fazer a soma de total counts.
+
+grafico para os 5 dias da semana.
+
+
 
 ## Import land use data and integrate with existing data
 

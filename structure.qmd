@@ -16,23 +16,25 @@ The primary objective of this course is to equip doctoral candidates with the co
 
 ## Contents
 
-<!-- ### Day 1 -->
+### Day 1
 
-<!-- #### Morning {.unnumbered} -->
+#### Morning {.unnumbered}
 
-<!-- We will start by a brief introduction to this course, followed by an introduction to programming techniques and data structures. -->
+* **Introduction to the course (30 min):** This introductory session presents the course objectives, structure, and expected learning outcomes. 
 
-<!-- Then, we will install R and RStudio, and and the required R packages for this course, as in [Software](software.qmd) section. -->
+* **Lecture: Introduction to Big Data Technologies for Active Mobility (90 minutes):** An introductory lecture will be given presenting the concept, characteristics and challenges of using big data. The lecture will also demonstrate the many applications in real-world practice and research of using big data in transportation including: i) sensors and video analytics; social-media; and iii) mobile phone and floating car data, among others. 
 
-<!-- After having everything setup, we will start with the [R basics](r-basics.qmd), with examples and exercises. -->
+> **Materials:** The PowerPoints of these theorectical lectures will be shared to participants by email. 
 
-<!-- #### Afternoon {.unnumbered} -->
+* **Break (20 min)**
 
-<!-- In the afternoon, we will focus on [data manipulation](data-manipulation.qmd), using the dplyr package to select, filter, left-join, group and summarize datasets. -->
+* **Interactive lecture \ workshop: Understanding Passive Mobility Big Data in Practice (60 min):** The session introduces participants to a real passive‑mobility dataset—such as Bluetooth sensor data tracking pedestrian movement—and guides them through the early stages of working with unfamiliar mobility big data. The focus is on understanding the dataset’s spatial and temporal structure, identifying general behavioural patterns, and critically evaluating its limitations and potential biases. Participants will discuss key data‑processing decisions, including what information to keep or filter depending on research or planning goals, and how to avoid losing valuable insights through overly aggressive data cleaning. They will also explore which research questions the dataset can answer and what complementary data sources might be needed for planning‑relevant interpretations.
 
-<!-- Then, we will [introduce GIS and spatial data](spatial-data.qmd), learning how to importing and visualize vector data. -->
+> **Materials:** The PowerPoint of this theorectical/practical lecture will be shared to participants by email. 
 
-<!-- Finally, we will learn how to create cool [interactive maps](interactive-maps.qmd) using mapview and R markdown. -->
+#### Afternoon {.unnumbered}
+
+* **Hands-on workshop in R (90 min):** The basics of R will be taught in this workshop, including how to import datasets, perform descriptive statistics and treatment (e.g., deal with missing data, outliers, etc). All the steps described in the previous session, will be reproduced and taught in this session using the R. The same dataset will be used in order for participants to understand and better relate the learnings from the previous session.
 
 <!-- ### Day 2 -->
 
