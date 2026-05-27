@@ -3,6 +3,8 @@ title: "EIT_Course_BigData"
 author: "Gabriel Valença"
 format: html
 editor: visual
+execute: 
+  cache: true
 ---
 
 ## About the Data
@@ -26,20 +28,20 @@ You can also import the data in many formats. Choose the one you prefer
 -   CSV file
 
 ```{r}
-data_csv <- read.csv("Data/Automatic_Hourly_Pedestrian_Count.csv")
+data_csv <- read.csv("https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv")
 ```
 
 -   Shapefile
 
 First Unzip file and place them into the ´Data´ file.
 
-```{r}
+```{r, eval = FALSE}
 #Unzip file
 
 unzip("Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip", junkpaths = TRUE)
 ```
 
-```{r}
+```{r, eval= FALSE}
 library(sf)
  
 data_shapefile <- read_sf("Automatic_Hourly_Pedestrian_Count.shp")
@@ -110,6 +112,8 @@ df$Longitude[df$Location_code == "A004"] <- 151.207565
 ## Create an *Geometry* variable
 
 ```{r}
+library(sf)
+
 df_sf <- st_as_sf(
   df,
   coords = c("Longitude", "Latitude"),
@@ -150,7 +154,15 @@ class(df$Date)
 class(df_sf$Date)
 ```
 
+Criar uma variavel de juntar por dia semana e por ano.
+
+mutate e um groupby e summarize para fazer a soma de total counts.
+
+grafico para os 5 dias da semana.
+
 # plot counts per day and counter
+
+x - datas , y contagens (cada um dos counters)
 
 ```{r}
 library(ggplot2)

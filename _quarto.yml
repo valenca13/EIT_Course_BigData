@@ -1,0 +1,71 @@
+project:
+  type: book
+
+execute:
+  freeze: auto
+  
+  
+book:
+  title: "Get your dataset ready!"
+  output-file: "GetYourDatasetReady2024"
+  subtitle: "Using R and GIS"
+  author: 
+    - name: "Rosa Félix"
+      email: rosamfelix@tecnico.pt
+      url: http://www.rosafelix.bike
+      orcid: 0000-0002-5642-6006
+      affiliation: "Instituto Superior Técnico - University of Lisbon"
+    - name: "Gabriel Valença"
+      email: gabrielvalenca@tecnico.pt
+      url: https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/
+      orcid: 0000-0002-3684-3005
+      affiliation: "Instituto Superior Técnico - University of Lisbon"
+    - name: "Rafael Pereira"
+      email: rafael.pereira@ipea.gov.br
+      url: https://www.urbandemographics.org
+      orcid: 0000-0003-2125-7465
+      affiliation: "Institute of Applied Economic Research, Brazil"
+  date: today
+  # date-modified: today
+  chapters:
+    - index.qmd
+    - structure.qmd
+    # - part: "**Day 1**"
+      # chapters:
+  
+  repo-url: https://github.com/U-Shift/EITcourse
+  favicon: /images/favicon.png
+  sidebar:
+    tools:
+      - icon: download
+        href: https://github.com/U-Shift/EITcourse/releases/download/2024.09/EITcourse_GetYourDatasetReady2024.pdf
+        text: "Download PDF"
+        target: _blank
+  page-footer:
+    left: "R Félix, G Valença"
+    center: "EIT course"
+    right: "September 2024"
+    
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: superhero
+    code-fold: show
+    code-tools: true
+    number-depth: 3
+    toc-expand: 3
+  pdf:
+    documentclass: scrreprt
+    # engine: knitr
+    toc: true
+    number-depth: 3
+    toc-depth: 3
+    # cover-image: images/cover.png # not working
+    output-ext:  "pdf"
+# prefer-html: true
+    
+editor: visual
+
+google-scholar: true
