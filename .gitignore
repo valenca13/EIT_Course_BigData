@@ -66,3 +66,4 @@ EITcourse_GetYourDatasetReady2024.pdf
 
 *_cache
 *_files
+**/*.quarto_ipynb
