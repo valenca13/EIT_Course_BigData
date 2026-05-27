@@ -3,47 +3,9 @@ number-depth: 2
 format: html
 ---
 
-## Contents
+## Schedule 
 
-### Day 1
-
-#### Morning {.unnumbered}
-
-* **Introduction to the course (30 min):** This introductory session presents the course objectives, structure, and expected learning outcomes. 
-
-* **Lecture: Introduction to Big Data Technologies for Active Mobility (90 minutes):** An introductory lecture will be given presenting the concept, characteristics and challenges of using big data. The lecture will also demonstrate the many applications in real-world practice and research of using big data in transportation including: i) sensors and video analytics; social-media; and iii) mobile phone and floating car data, among others. 
-
-> **Materials:** The PowerPoints of these theorectical lectures will be shared to participants by email. 
-
-* **Break (20 min)**
-
-* **Interactive lecture \ workshop: Understanding Passive Mobility Big Data in Practice (60 min):** The session introduces participants to a real passive‑mobility dataset—such as Bluetooth sensor data tracking pedestrian movement—and guides them through the early stages of working with unfamiliar mobility big data. The focus is on understanding the dataset’s spatial and temporal structure, identifying general behavioural patterns, and critically evaluating its limitations and potential biases. Participants will discuss key data‑processing decisions, including what information to keep or filter depending on research or planning goals, and how to avoid losing valuable insights through overly aggressive data cleaning. They will also explore which research questions the dataset can answer and what complementary data sources might be needed for planning‑relevant interpretations.
-
-> **Materials:** The PowerPoint of this theorectical/practical lecture will be shared to participants by email. 
-
-#### Afternoon {.unnumbered}
-
-* **Hands-on workshop in R (90 min):** The basics of R will be taught in this workshop, including how to import datasets, perform descriptive statistics and treatment (e.g., deal with missing data, outliers, etc). All the steps described in the previous session, will be reproduced and taught in this session using the R. The same dataset will be used in order for participants to understand and better relate the learnings from the previous session.
-
-<!-- ### Day 2 -->
-
-<!-- #### Morning {.unnumbered} -->
-
-<!-- We will start the day by estimating the different types of [centroids of transport zones](centroids.qmd). -->
-
-<!-- After this, the natural next step is to create [desire lines](desire-lines.qmd) from orgins and destinations of the transport zones. -->
-
-<!-- We will then learn how to estimate [euclidean and routing distances](distances.qmd) for the desire-lines, using transport networks. -->
-
-<!-- #### Afternoon {.unnumbered} -->
-
-<!-- In the second afternoon, we will briefly learn where to find and extract [open transportation data](open-data.qmd), such as OpenStreetMap and GTFS. -->
-
-<!-- Then, we will learn how to perform [accessibility analysis](r5r.qmd), using the r5r package. -->
-
-<!-- And finally, to wrap up all this topics, we will have a group exercise using other complex datasets, where you will apply the knowledge learned during the course. -->
-
-## Detailed schedule
+## Detailed Schedule
 
 | Day 1 |                                                                                                                 |
 |---------|----------------------------------------------------------|
@@ -52,8 +14,9 @@ format: html
 | 11.00 | *Coffee break*                                                                                                  |
 | 11.20 | Interactive lecture: Understanding Passive Mobility Big Data in Practice |
 
+
 | 12.30 | *Lunch break*                |
-|       |                                                                                   
+                                                                                  
 | 13.30 | Data manipulation: examples and exercises (select, filter, left-join, group and summarize, using dplyr package) |
 | 15.30 | *Coffee break*                                                                                                  |
 | 15.45 | Introduction to GIS and spatial data: import create vector data                                                 |
@@ -79,15 +42,15 @@ format: html
 
 ## Location
 
-The course will take place at Campus Sterre, Building S8, room 2.4.
+The course will take place at **UTartu’s Delta Centre**.
 
 ```{r}
 #| fig-format: png
-Campus_S8_coord = c(3.7105372, 51.0241258)
-Campus_S8 = sf::st_sfc(sf::st_point(Campus_S8_coord)) # create point
-Campus_S8 = sf::st_as_sf(Campus_S8, crs = 4326) # assign crs
+Campus_coord = c(26.72478888402994, 58.38545231500616)
+Campus = sf::st_sfc(sf::st_point(Campus_coord)) # create point
+Campus = sf::st_as_sf(Campus, crs = 4326) # assign crs
 
-mapview::mapview(Campus_S8, map.types = "OpenStreetMap") # quick map view
+mapview::mapview(Campus, map.types = "OpenStreetMap") # quick map view
 ```
 
 ## Resources
@@ -95,3 +58,47 @@ mapview::mapview(Campus_S8, map.types = "OpenStreetMap") # quick map view
 -   You laptop, with any OS
 
 -   Github repository with all the materials (data, code and guidelines)
+
+## Contents
+
+### Day 1
+
+#### Morning {.unnumbered}
+
+* **Introduction to the course (30 min):** This introductory session presents the course objectives, structure, and expected learning outcomes. 
+
+* **Lecture: Introduction to Big Data Technologies for Active Mobility (90 minutes):** An introductory lecture will be given presenting the concept, characteristics and challenges of using big data. The lecture will also demonstrate the many applications in real-world practice and research of using big data in transportation including: i) sensors and video analytics; social-media; and iii) mobile phone and floating car data, among others. 
+
+* **Break (20 min)**
+
+* **Interactive lecture \ workshop: Understanding Passive Mobility Big Data in Practice (60 min):** The session introduces participants to a real passive‑mobility dataset. Based on a dataset of pedestrian movement counts from _Bluetooth sensors_. Participants will discuss key data‑processing decisions, including what information to keep or filter depending on research or planning goals, and how to avoid losing valuable insights through overly aggressive data cleaning. They will also explore which research questions the dataset can answer and what complementary data sources might be needed for planning‑relevant interpretations.
+
+#### Afternoon {.unnumbered}
+
+* **Installation and workshop on using _R_ programming (90 min):** The basics of R will be taught in this workshop, including how to import datasets, perform descriptive statistics and treatment. 
+
+* **Break (20 min)**
+
+* **Group work:** Participants are assigned to multidisciplinary groups, ensuring a mix of skills and backgrounds. Each group will receive a different dataset (generated by a different monitoring technology) to work with and will apply the techniques learned in the hand-on workshop to treat the dataset. The final objective is for the groups to treat the dataset and propose valuable research questions for future analysis.
+
+### Day 2
+
+#### Morning {.unnumbered}
+
+* **Lecture: Analytical Techniques for Active Mobility Big Data (90 min):** This lecture introduces key analytical techniques used to structure and interpret mobility big data in the context of active mobility planning. Participants will gain an overview of spatial network-based approaches such as space syntax (graph theory), the use of OpenStreetMap data for representing urban infrastructure, accessibility analysis tools, and basic spatial-temporal analysis methods. The session will focus on how these techniques can support the integration of behavioral datasets with the built environment, and how they may be applied to explore relationships between movement patterns and infrastructure performance in walking and cycling networks.
+
+* **Break**
+
+* **Workshop - Group work with instructors' guidance (90 min):** finalizing the research question and working on the methodological structure.
+
+* **Lecture - Interpreting Active Mobility Big Data for Planning (60 min):** This lecture addresses the challenge of translating behavioural indicators derived from mobility big data into planning-relevant insights. It introduces participants to the limitations of commonly used metrics such as pedestrian counts, trajectories, or cycling volumes, and discusses what these indicators do—and do not—reveal about infrastructure performance and accessibility. Through conceptual examples, the session highlights how similar data patterns may support different planning interpretations, and explores how behavioural datasets can be critically evaluated in relation to specifi c planning questions, such as infrastructure investment or street space reallocation. The lecture aims to support participants in linking data-derived indicators to evidence-based planning decisions in active mobility contexts.
+
+#### Afternoon {.unnumbered}
+
+* **Group work on fi nal presentations (2.5 h)**
+
+* **Group presentations and discussion (4 groups ~ 90 min)**
+
+* **closing and students’ feedback (30 min)**
+
+
