@@ -25,8 +25,9 @@ book:
   chapters:
     - index.qmd
     - structure.qmd
-    # - part: "**Day 1**"
-      # chapters:
+    - part: "**Day 1**"
+      chapters:
+      - software.qmd
     - about.qmd
   
   repo-url: https://github.com/valenca13/EIT_Course_BigData

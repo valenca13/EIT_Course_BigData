@@ -161,9 +161,11 @@ class(df$Date)
 class(df_sf$Date)
 ```
 
-## plot counts per day and counter
+## Make some initial plots 
 
 x - datas , y contagens (cada um dos counters)
+
+* Total pedestrian counts over time 
 
 ```{r}
 library(ggplot2)
@@ -179,6 +181,9 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   ) +
   theme_minimal()
 ```
+
+* Total pedestrian counts per counter over time
+
 ```{r}
 ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   geom_path(linewidth = 1) +
@@ -191,6 +196,10 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   ) +
   theme_minimal()
 ```
+
+
+
+
 
 
 
