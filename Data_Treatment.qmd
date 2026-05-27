@@ -152,6 +152,7 @@ Create new variables
 
 ```{r}
 df_sf$Date_only <- as.Date(df_sf$Date)
+df_sf$Year <- format(df_sf$Date, "%Y")
 df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
 ```
 
@@ -163,21 +164,21 @@ class(df_sf$Date)
 
 ## Make some initial plots 
 
-x - datas , y contagens (cada um dos counters)
-
 * Total pedestrian counts over time 
 
 ```{r}
 library(ggplot2)
 
 ggplot(df_sf, aes(x = Date, y = TotalCount)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 1) +
+  geom_line(linewidth = 2) +
+    scale_x_date(
+    date_breaks = "1 year",
+    date_labels = "%Y"
+  ) +
   labs(
-    title = "Total Count per Location Over Time",
+    title = "Total Nº of Pedestrians Over Time",
     x = "Time",
-    y = "Total Count",
-    color = "Location"
+    y = "Total Nº of Pedestrians"
   ) +
   theme_minimal()
 ```
@@ -185,18 +186,67 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
 * Total pedestrian counts per counter over time
 
 ```{r}
-ggplot(df_sf, aes(x = Date, y = TotalCount)) +
-  geom_path(linewidth = 1) +
-  # geom_point(size = 1) +
-  labs(
-    title = "Total Count per Location Over Time",
-    x = "Time",
-    y = "Total Count",
-    color = "Location"
+ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
+  geom_line() +
+  facet_wrap(~ Location_code) + # insert "scales = "free_y" to adapt the maximum of Y in each plot
+  theme_gray() +
+  theme(axis.text.x = element_text(angle = 90, size = 6)) +
+  scale_x_date(
+    date_breaks = "1 year",
+    date_labels = "%Y"
   ) +
-  theme_minimal()
+  labs(
+    title = "Total Nº of Pedestrians by Automatic Counter Over Time",
+    x = "Time",
+    y = "Total Nº of Pedestrians"
+  )
+```
+_Facet_wrap_ divides the plots per automatic counter. 
+
+* Tendency of total pedestrian counts per counter aggregated by year
+
+```{r}
+ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
+  geom_line(linewidth = 8) +
+  facet_wrap(~ Location_code) + # insert "scales = "free_y" to adapt the maximum of Y in each plot
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 7)) +
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
 ```
 
+Try changing the _themes_ for different appearances.  
+
+> **Note:** Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/
+
+
+## Create a combined variables to analyze: 
+
+* Day of Week + Year
+
+```{r}
+library(dplyr)
+
+
+
+df_sf <- df_sf %>%
+  mutate(
+    Year = format(Date, "%Y"),
+    DayYear = paste(Day, Year, sep = "_"),
+    DayYear = factor(DayYear, levels = unique(DayYear))  # preserve order
+  )
+```
+
+Plot
+
+```{r}
+ggplot(df_sf, aes(x = DayYear, y = TotalCount, colour = Day)) +
+  geom_line(size =3) +
+  # geom_point(size = 2) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 90, size = 7)
+  )
+```
 
 
 
