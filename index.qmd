@@ -4,23 +4,20 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Course intro {.unnumbered}
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in Tartu, Estonia (refer to https://annualforum.ut.ee/).
 
-## Running Code
+## Objectives {.unnumbered}
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+The primary objective of this course is to equip **doctoral candidates** with the **conceptual and methodological competencies** required to critically engage with **large-scale passive mobility datasets** and utilize them in **support of planning** and decision-making related to **active urban mobility** (walking and cycling). 
 
-```{r}
-1 + 1
-```
+## Format and materials {.unnumbered}
 
-You can add options to executable code like this
+The course will be delivered in three main formats: i) **theoretical** lectures, **practical** lectures with basic lessons of **R programming** for data treatment and analysis, as well as **group work**.
 
-```{r}
-#| echo: false
-2 * 2
-```
+This webpage contains all the materials for the **practical** and **group work**. 
 
-The `echo: false` option disables the printing of code (only output is displayed).
+The PDFs of the theorectical lectures may be shared with the course participants if requested. 
+
+## Structure of webpage {.unnumbered}

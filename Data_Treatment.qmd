@@ -4,7 +4,7 @@ author: "Gabriel Valença"
 format: html
 editor: visual
 execute: 
-  cache: true
+  cache: false
 ---
 
 ## About the Data

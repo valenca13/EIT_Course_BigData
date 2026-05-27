@@ -3,17 +3,6 @@ number-depth: 2
 format: html
 ---
 
-# Course Structure
-
-The course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026**.
-
-The first day will focus on learning the basics of R programming and how to treat and explore datasets.
-The second day will focus on analyzing spatial datasets, and routing origins to destinations.
-
-## Objectives
-
-The primary objective of this course is to equip doctoral candidates with the conceptual and methodological competencies required to critically engage with large-scale passive mobility datasets and utilize them in support of planning and decision-making related to active mobility. 
-
 ## Contents
 
 ### Day 1
