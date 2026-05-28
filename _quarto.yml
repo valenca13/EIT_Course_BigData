@@ -34,10 +34,10 @@ book:
   favicon: /images/favicon.png
   sidebar:
     tools:
-      - icon: download
-        # href: https://github.com/U-Shift/EITcourse/releases/download/2024.09/EITcourse_GetYourDatasetReady2024.pdf
-        # text: "Download PDF"
-        target: _blank
+      # - icon: download
+      #   # href: https://github.com/U-Shift/EITcourse/releases/download/2024.09/EITcourse_GetYourDatasetReady2024.pdf
+      #   # text: "Download PDF"
+      #   target: _blank
   page-footer:
     left: "G Valença, A Angel"
     center: "From Data to Design: Using Big Data for Active Mobility Research"
@@ -53,14 +53,14 @@ format:
     code-tools: true
     number-depth: 3
     toc-expand: 3
-  pdf:
-    documentclass: scrreprt
-    # engine: knitr
-    toc: true
-    number-depth: 3
-    toc-depth: 3
-    # cover-image: images/cover.png # not working
-    output-ext:  "pdf"
+  # pdf:
+  #   documentclass: scrreprt
+  #   # engine: knitr
+  #   toc: true
+  #   number-depth: 3
+  #   toc-depth: 3
+  #   # cover-image: images/cover.png # not working
+  #   output-ext:  "pdf"
 # prefer-html: true
     
 editor: visual
