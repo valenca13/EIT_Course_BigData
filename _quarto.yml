@@ -32,8 +32,8 @@ book:
   
   repo-url: https://github.com/valenca13/EIT_Course_BigData
   favicon: /images/favicon.png
-  sidebar:
-    tools:
+  # sidebar:
+    # tools:
       # - icon: download
       #   # href: https://github.com/U-Shift/EITcourse/releases/download/2024.09/EITcourse_GetYourDatasetReady2024.pdf
       #   # text: "Download PDF"
