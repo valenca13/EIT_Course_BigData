@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Index"
 format: html
 editor: visual
 ---
@@ -11,6 +11,12 @@ This course consists of an in-person 2-day course, taking place during the EIT D
 ## Objectives {.unnumbered}
 
 The primary objective of this course is to equip **doctoral candidates** with the **conceptual and methodological competencies** required to critically engage with **large-scale passive mobility datasets** and utilize them in **support of planning** and decision-making related to **active urban mobility** (walking and cycling). 
+
+## Audience {.unnumbered}
+
+This course is designed for PhD candidates enrolled in the **DTN EIT Urban Mobility program**. 
+
+The course was designed for PhD students with diverse background and competencies, not necessarily having any programming knowledge. 
 
 ## Format and materials {.unnumbered}
 
