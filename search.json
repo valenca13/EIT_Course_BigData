@@ -179,111 +179,111 @@
   {
     "objectID": "Data_Treatment.html",
     "href": "Data_Treatment.html",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "",
     "text": "4.1 About the Data\nHourly pedestrian counts from automatic sensors in our local area.\nData is openly available at: https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count\nThis dataset contains hourly pedestrian counts by location in Sydney, Australia.\nAutomated counters were placed in busy areas of the CBD to assess performance.\nData collection began in February 2020 and ended in June 2025.",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#import-dataset",
     "href": "Data_Treatment.html#import-dataset",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.2 Import Dataset",
     "text": "4.2 Import Dataset\nThe dataset can be downloaded in many formats.\nYou can also import the data in many formats. Choose the one you prefer\n\nCSV file\n\n\n\nCode\ndata_csv &lt;- read.csv(\"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv\")\n\n\n\nShapefile\n\nFirst Unzip file and place them into the ´Data´ file.\n\n\nCode\n#Unzip file\n\nunzip(\"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip\", junkpaths = TRUE)\n\n\n\n\nCode\nlibrary(sf)\n \ndata_shapefile &lt;- read_sf(\"Automatic_Hourly_Pedestrian_Count.shp\")",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#convert-dataset-into-dataframe",
     "href": "Data_Treatment.html#convert-dataset-into-dataframe",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.3 Convert dataset into dataframe",
     "text": "4.3 Convert dataset into dataframe\nIt is good practice to: * convert the database into dataframe, as many packages only work with dataframes. * To not work on the raw dataset.\n\n\nCode\nlibrary(tidyverse)\ndf &lt;- data.frame(data_csv)",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#check-the-dataset",
     "href": "Data_Treatment.html#check-the-dataset",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.4 Check the dataset",
     "text": "4.4 Check the dataset\nStructure of the dataset\n\n\nCode\nstr(df)\n\n\n'data.frame':   188720 obs. of  13 variables:\n $ Location_code       : chr  \"A004\" \"A003\" \"A002\" \"A001\" ...\n $ Location_Name       : chr  \"Park Street\" \"Market Street\" \"Elizabeth Street\" \"Bridge Street\" ...\n $ Date                : chr  \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" ...\n $ TotalCount          : int  3234 2454 596 870 3943 3161 978 1382 2887 1954 ...\n $ Hour                : int  13 13 13 13 12 12 12 12 11 11 ...\n $ Day                 : chr  \"Friday\" \"Friday\" \"Friday\" \"Friday\" ...\n $ DayNo               : int  5 5 5 5 5 5 5 5 5 5 ...\n $ Week                : num  2025 2025 2025 2025 2025 ...\n $ LastWeek            : int  4241 2788 785 990 3559 2967 732 1266 2823 1976 ...\n $ Previous4DayTimeAvg : int  3906 2676 725 954 3643 2930 822 1242 2777 1859 ...\n $ ObjectId            : int  1 2 3 4 5 6 7 8 9 10 ...\n $ LastYear            : int  3242 2679 800 1035 3100 2796 792 1295 2337 1850 ...\n $ Previous52DayTimeAvg: int  3735 2622 800 940 3423 2698 812 1119 2705 1830 ...\n\n\nSummary\n\n\nCode\nsummary(df)\n\n\n Location_code      Location_Name          Date             TotalCount    \n Length:188720      Length:188720      Length:188720      Min.   :   0.0  \n Class :character   Class :character   Class :character   1st Qu.:  85.0  \n Mode  :character   Mode  :character   Mode  :character   Median : 374.0  \n                                                          Mean   : 731.5  \n                                                          3rd Qu.:1005.0  \n                                                          Max.   :8230.0  \n                                                                          \n      Hour          Day                DayNo            Week     \n Min.   : 0.0   Length:188720      Min.   :0.000   Min.   :2020  \n 1st Qu.: 6.0   Class :character   1st Qu.:1.000   1st Qu.:2021  \n Median :11.0   Mode  :character   Median :3.000   Median :2022  \n Mean   :11.5                      Mean   :3.001   Mean   :2023  \n 3rd Qu.:17.0                      3rd Qu.:5.000   3rd Qu.:2024  \n Max.   :23.0                      Max.   :6.000   Max.   :2025  \n                                                                 \n    LastWeek      Previous4DayTimeAvg    ObjectId         LastYear     \n Min.   :   0.0   Min.   :   0.0      Min.   :     1   Min.   :   0.0  \n 1st Qu.:  86.0   1st Qu.:  94.0      1st Qu.: 47181   1st Qu.:  83.0  \n Median : 374.0   Median : 388.0      Median : 94361   Median : 348.0  \n Mean   : 731.7   Mean   : 728.5      Mean   : 94361   Mean   : 676.3  \n 3rd Qu.:1005.0   3rd Qu.:1008.0      3rd Qu.:141540   3rd Qu.: 938.0  \n Max.   :8230.0   Max.   :6271.0      Max.   :188720   Max.   :7129.0  \n NA's   :848      NA's   :2016                         NA's   :36052   \n Previous52DayTimeAvg\n Min.   :   1.0      \n 1st Qu.: 118.0      \n Median : 418.0      \n Mean   : 729.7      \n 3rd Qu.:1048.0      \n Max.   :5325.0      \n NA's   :34272       \n\n\nConvert the variable “Day” into a factor.\n\n\nCode\ndf$Day &lt;- factor(df$Day, labels = c(\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"), ordered = TRUE)\n\nstr(df$Day)\n\n\n Ord.factor w/ 7 levels \"Sunday\"&lt;\"Monday\"&lt;..: 1 1 1 1 1 1 1 1 1 1 ...\n\n\nCheck how many automatic counters there are:\n\n\nCode\nunique(df$Location_code)\n\n\n[1] \"A004\" \"A003\" \"A002\" \"A001\"\n\n\n\n\nCode\nunique(df$Location_Name)\n\n\n[1] \"Park Street\"      \"Market Street\"    \"Elizabeth Street\" \"Bridge Street\"   \n\n\nThe location exact location of the automatic counters is not given in the dataset.\nWe need at least an approximation, to perform spatial analysis.\nCheck the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/\nGo to Google Maps and retrieve the locations:\n\nA001: -33.863518, 151.209968\nA002: -33.871667, 151.210080\nA003: -33.870783, 151.206607\nA004: -33.873041, 151.207565",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#create-variable-with-latitude-and-longitude-of-dataset",
     "href": "Data_Treatment.html#create-variable-with-latitude-and-longitude-of-dataset",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.5 Create variable with latitude and longitude of dataset",
     "text": "4.5 Create variable with latitude and longitude of dataset\n\n\nCode\ndf$Latitude[df$Location_code == \"A001\"] &lt;- -33.863518\ndf$Longitude[df$Location_code == \"A001\"] &lt;- 151.209968\n\ndf$Latitude[df$Location_code == \"A002\"] &lt;- -33.871667\ndf$Longitude[df$Location_code == \"A002\"] &lt;- 151.210080\n\ndf$Latitude[df$Location_code == \"A003\"] &lt;- -33.870783\ndf$Longitude[df$Location_code == \"A003\"] &lt;- 151.206607\n\ndf$Latitude[df$Location_code == \"A004\"] &lt;- -33.873041\ndf$Longitude[df$Location_code == \"A004\"] &lt;- 151.207565",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#create-an-geometry-variable",
     "href": "Data_Treatment.html#create-an-geometry-variable",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.6 Create an Geometry variable",
     "text": "4.6 Create an Geometry variable\n\n\nCode\nlibrary(sf)\n\n\nLinking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE\n\n\nCode\ndf_sf &lt;- st_as_sf(\n  df,\n  coords = c(\"Longitude\", \"Latitude\"),\n  crs = 4326\n)\n\n\n\nNote: Google Maps uses WGS84, which corresponds to EPSG = 4326\n\nCreate an iterative map\n\n\nCode\nlibrary(mapview)\n\ndf_map &lt;- unique(df_sf$geometry)\nmapview(df_map)",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#have-date-and-time-in-separate-variables",
     "href": "Data_Treatment.html#have-date-and-time-in-separate-variables",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.7 Have date and time in separate variables",
     "text": "4.7 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCreate new variables\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")\n\n\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\"",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#make-some-initial-plots",
     "href": "Data_Treatment.html#make-some-initial-plots",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.8 Make some initial plots",
     "text": "4.8 Make some initial plots\n\nTotal pedestrian counts over time\n\n\n\nCode\nlibrary(ggplot2)\n\nggplot(df_sf, aes(x = Date, y = TotalCount)) +\n  geom_line(linewidth = 2) +\n    scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nTotal pedestrian counts per counter over time\n\n\n\nCode\nggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +\n  geom_line() +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_gray() +\n  theme(axis.text.x = element_text(angle = 90, size = 6)) +\n  scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians by Automatic Counter Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\nFacet_wrap divides the plots per automatic counter.\n\nTendency of total pedestrian counts per counter aggregated by year\n\n\n\nCode\nggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 8) +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 7)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))\n\n\n\n\n\n\n\n\n\nTry changing the themes for different appearances.\n\nNote: Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#create-a-combined-variables-to-analyze",
     "href": "Data_Treatment.html#create-a-combined-variables-to-analyze",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.9 Create a combined variables to analyze:",
     "text": "4.9 Create a combined variables to analyze:\n\nDay of Week + Year\n\n\n\nCode\nlibrary(dplyr)\n\n\n\ndf_sf &lt;- df_sf %&gt;%\n  mutate(\n    Year = format(Date, \"%Y\"),\n    DayYear = paste(Day, Year, sep = \"_\"),\n    DayYear = factor(DayYear, levels = unique(DayYear))  # preserve order\n  )\n\n\nPlot\n\n\nCode\nggplot(df_sf, aes(x = DayYear, y = TotalCount, colour = Day)) +\n  geom_line(size =3) +\n  # geom_point(size = 2) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(angle = 90, size = 7)\n  )\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\nCriar uma variavel de juntar por dia semana e por ano.\nmutate e um groupby e summarize para fazer a soma de total counts.\ngrafico para os 5 dias da semana.",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#import-land-use-data-and-integrate-with-existing-data",
     "href": "Data_Treatment.html#import-land-use-data-and-integrate-with-existing-data",
-    "title": "4  EIT_Course_BigData",
+    "title": "4  Data treatment",
     "section": "4.10 Import land use data and integrate with existing data",
     "text": "4.10 Import land use data and integrate with existing data\nhttps://data.cityofsydney.nsw.gov.au/pages/open-data#Categories\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed).",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>EIT_Course_BigData</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
