@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gabriel Valença">
+
+<title>4&nbsp; EIT_Course_BigData – From Data to Design</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./about.html" rel="next">
+<link href="./software.html" rel="prev">
+<link href=".//images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-18279696052386181f2d5e2642aac360.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
+
+<script src="site_libs/leaflet-providers-3.0.0/leaflet-providers.js"></script>
+
+<script src="site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+
+<script src="site_libs/HomeButton-0.0.1/home-button.js"></script>
+
+<script src="site_libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+
+<link href="site_libs/df_map-CSS-0.0.1/df_map_home-button.css" rel="stylesheet">
+
+<script src="site_libs/clipboard-0.0.1/setClipboardText.js"></script>
+
+<link href="site_libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet">
+
+<link href="site_libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet">
+
+
+
+<meta name="citation_title" content="[4]{.chapter-number}&nbsp; [EIT_Course_BigData]{.chapter-title}">
+<meta name="citation_author" content="Gabriel Valença">
+<meta name="citation_language" content="en">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./software.html"><strong>Day 1</strong></a></li><li class="breadcrumb-item"><a href="./Data_Treatment.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">EIT_Course_BigData</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">From Data to Design</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/valenca13/EIT_Course_BigData" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Index</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schedule</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Day 1</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Software</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data_Treatment.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">EIT_Course_BigData</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the instructors</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link active" data-scroll-target="#about-the-data"><span class="header-section-number">4.1</span> About the Data</a></li>
+  <li><a href="#import-dataset" id="toc-import-dataset" class="nav-link" data-scroll-target="#import-dataset"><span class="header-section-number">4.2</span> Import Dataset</a></li>
+  <li><a href="#convert-dataset-into-dataframe" id="toc-convert-dataset-into-dataframe" class="nav-link" data-scroll-target="#convert-dataset-into-dataframe"><span class="header-section-number">4.3</span> Convert dataset into <em>dataframe</em></a></li>
+  <li><a href="#check-the-dataset" id="toc-check-the-dataset" class="nav-link" data-scroll-target="#check-the-dataset"><span class="header-section-number">4.4</span> Check the dataset</a></li>
+  <li><a href="#create-variable-with-latitude-and-longitude-of-dataset" id="toc-create-variable-with-latitude-and-longitude-of-dataset" class="nav-link" data-scroll-target="#create-variable-with-latitude-and-longitude-of-dataset"><span class="header-section-number">4.5</span> Create variable with latitude and longitude of dataset</a></li>
+  <li><a href="#create-an-geometry-variable" id="toc-create-an-geometry-variable" class="nav-link" data-scroll-target="#create-an-geometry-variable"><span class="header-section-number">4.6</span> Create an <em>Geometry</em> variable</a></li>
+  <li><a href="#have-date-and-time-in-separate-variables" id="toc-have-date-and-time-in-separate-variables" class="nav-link" data-scroll-target="#have-date-and-time-in-separate-variables"><span class="header-section-number">4.7</span> Have date and time in separate variables</a></li>
+  <li><a href="#make-some-initial-plots" id="toc-make-some-initial-plots" class="nav-link" data-scroll-target="#make-some-initial-plots"><span class="header-section-number">4.8</span> Make some initial plots</a></li>
+  <li><a href="#create-a-combined-variables-to-analyze" id="toc-create-a-combined-variables-to-analyze" class="nav-link" data-scroll-target="#create-a-combined-variables-to-analyze"><span class="header-section-number">4.9</span> Create a combined variables to analyze:</a></li>
+  <li><a href="#import-land-use-data-and-integrate-with-existing-data" id="toc-import-land-use-data-and-integrate-with-existing-data" class="nav-link" data-scroll-target="#import-land-use-data-and-integrate-with-existing-data"><span class="header-section-number">4.10</span> Import land use data and integrate with existing data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./software.html"><strong>Day 1</strong></a></li><li class="breadcrumb-item"><a href="./Data_Treatment.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">EIT_Course_BigData</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">EIT_Course_BigData</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gabriel Valença </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="about-the-data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="about-the-data"><span class="header-section-number">4.1</span> About the Data</h2>
+<p>Hourly pedestrian counts from automatic sensors in our local area.</p>
+<p>Data is openly available at: <a href="https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count" class="uri">https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count</a></p>
+<p>This dataset contains <strong>hourly pedestrian</strong> counts by location in Sydney, Australia.</p>
+<p><strong>Automated counters</strong> were placed in busy areas of the CBD to assess performance.</p>
+<p>Data collection began in <em>February 2020</em> and ended in <em>June 2025</em>.</p>
+</section>
+<section id="import-dataset" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="import-dataset"><span class="header-section-number">4.2</span> Import Dataset</h2>
+<p>The dataset can be downloaded in many formats.</p>
+<p>You can also import the data in many formats. Choose the one you prefer</p>
+<ul>
+<li>CSV file</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li>Shapefile</li>
+</ul>
+<p>First Unzip file and place them into the ´Data´ file.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Unzip file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="st">"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip"</span>, <span class="at">junkpaths =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_shapefile <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"Automatic_Hourly_Pedestrian_Count.shp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="convert-dataset-into-dataframe" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="convert-dataset-into-dataframe"><span class="header-section-number">4.3</span> Convert dataset into <em>dataframe</em></h2>
+<p>It is good practice to: * convert the database into dataframe, as many packages only work with dataframes. * To not work on the raw dataset.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(data_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="check-the-dataset" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="check-the-dataset"><span class="header-section-number">4.4</span> Check the dataset</h2>
+<p>Structure of the dataset</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   188720 obs. of  13 variables:
+ $ Location_code       : chr  "A004" "A003" "A002" "A001" ...
+ $ Location_Name       : chr  "Park Street" "Market Street" "Elizabeth Street" "Bridge Street" ...
+ $ Date                : chr  "2025/07/04 13:00:00+00" "2025/07/04 13:00:00+00" "2025/07/04 13:00:00+00" "2025/07/04 13:00:00+00" ...
+ $ TotalCount          : int  3234 2454 596 870 3943 3161 978 1382 2887 1954 ...
+ $ Hour                : int  13 13 13 13 12 12 12 12 11 11 ...
+ $ Day                 : chr  "Friday" "Friday" "Friday" "Friday" ...
+ $ DayNo               : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Week                : num  2025 2025 2025 2025 2025 ...
+ $ LastWeek            : int  4241 2788 785 990 3559 2967 732 1266 2823 1976 ...
+ $ Previous4DayTimeAvg : int  3906 2676 725 954 3643 2930 822 1242 2777 1859 ...
+ $ ObjectId            : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ LastYear            : int  3242 2679 800 1035 3100 2796 792 1295 2337 1850 ...
+ $ Previous52DayTimeAvg: int  3735 2622 800 940 3423 2698 812 1119 2705 1830 ...</code></pre>
+</div>
+</div>
+<p>Summary</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> Location_code      Location_Name          Date             TotalCount    
+ Length:188720      Length:188720      Length:188720      Min.   :   0.0  
+ Class :character   Class :character   Class :character   1st Qu.:  85.0  
+ Mode  :character   Mode  :character   Mode  :character   Median : 374.0  
+                                                          Mean   : 731.5  
+                                                          3rd Qu.:1005.0  
+                                                          Max.   :8230.0  
+                                                                          
+      Hour          Day                DayNo            Week     
+ Min.   : 0.0   Length:188720      Min.   :0.000   Min.   :2020  
+ 1st Qu.: 6.0   Class :character   1st Qu.:1.000   1st Qu.:2021  
+ Median :11.0   Mode  :character   Median :3.000   Median :2022  
+ Mean   :11.5                      Mean   :3.001   Mean   :2023  
+ 3rd Qu.:17.0                      3rd Qu.:5.000   3rd Qu.:2024  
+ Max.   :23.0                      Max.   :6.000   Max.   :2025  
+                                                                 
+    LastWeek      Previous4DayTimeAvg    ObjectId         LastYear     
+ Min.   :   0.0   Min.   :   0.0      Min.   :     1   Min.   :   0.0  
+ 1st Qu.:  86.0   1st Qu.:  94.0      1st Qu.: 47181   1st Qu.:  83.0  
+ Median : 374.0   Median : 388.0      Median : 94361   Median : 348.0  
+ Mean   : 731.7   Mean   : 728.5      Mean   : 94361   Mean   : 676.3  
+ 3rd Qu.:1005.0   3rd Qu.:1008.0      3rd Qu.:141540   3rd Qu.: 938.0  
+ Max.   :8230.0   Max.   :6271.0      Max.   :188720   Max.   :7129.0  
+ NA's   :848      NA's   :2016                         NA's   :36052   
+ Previous52DayTimeAvg
+ Min.   :   1.0      
+ 1st Qu.: 118.0      
+ Median : 418.0      
+ Mean   : 729.7      
+ 3rd Qu.:1048.0      
+ Max.   :5325.0      
+ NA's   :34272       </code></pre>
+</div>
+</div>
+<p>Convert the variable “Day” into a factor.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>Day)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> Ord.factor w/ 7 levels "Sunday"&lt;"Monday"&lt;..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<p>Check how many automatic counters there are:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Location_code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A004" "A003" "A002" "A001"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Location_Name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Park Street"      "Market Street"    "Elizabeth Street" "Bridge Street"   </code></pre>
+</div>
+</div>
+<p>The location exact location of the automatic counters is not given in the dataset.</p>
+<p>We need at least an approximation, to perform spatial analysis.</p>
+<p>Check the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/</p>
+<p>Go to Google Maps and retrieve the locations:</p>
+<ul>
+<li>A001: -33.863518, 151.209968</li>
+<li>A002: -33.871667, 151.210080</li>
+<li>A003: -33.870783, 151.206607</li>
+<li>A004: -33.873041, 151.207565</li>
+</ul>
+</section>
+<section id="create-variable-with-latitude-and-longitude-of-dataset" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="create-variable-with-latitude-and-longitude-of-dataset"><span class="header-section-number">4.5</span> Create variable with latitude and longitude of dataset</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A001"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.863518</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A001"</span>] <span class="ot">&lt;-</span> <span class="fl">151.209968</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A002"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.871667</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A002"</span>] <span class="ot">&lt;-</span> <span class="fl">151.210080</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A003"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.870783</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A003"</span>] <span class="ot">&lt;-</span> <span class="fl">151.206607</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A004"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.873041</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A004"</span>] <span class="ot">&lt;-</span> <span class="fl">151.207565</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="create-an-geometry-variable" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="create-an-geometry-variable"><span class="header-section-number">4.6</span> Create an <em>Geometry</em> variable</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  df,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Google Maps uses <em>WGS84</em>, which corresponds to EPSG = 4326</p>
+</blockquote>
+<p>Create an iterative map</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_map <span class="ot">&lt;-</span> <span class="fu">unique</span>(df_sf<span class="sc">$</span>geometry)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mapview</span>(df_map)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-81dad0d0ca4abbffb8ee" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-81dad0d0ca4abbffb8ee">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[[-33.873041,-33.870783,-33.871667,-33.863518],[151.207565,151.206607,151.21008,151.209968],6,null,"df_map",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666ff","fillOpacity":0.6},null,null,null,{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},["1","2","3","4"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[151.206607,-33.873041,151.21008,-33.863518,true,"df_map","Zoom to df_map","<strong> df_map <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"df_map",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[-33.873041,-33.863518],"lng":[151.206607,151.21008]},"fitBounds":[-33.873041,151.206607,-33.863518,151.21008,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</section>
+<section id="have-date-and-time-in-separate-variables" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="have-date-and-time-in-separate-variables"><span class="header-section-number">4.7</span> Have date and time in separate variables</h2>
+<p>Parse date-times with <strong>y</strong>ear, <strong>m</strong>onth, and <strong>d</strong>ay, <strong>h</strong>our, <strong>m</strong>inute, and <strong>s</strong>econd components.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Date <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(df_sf<span class="sc">$</span>Date, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Create new variables</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Date_only <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df_sf<span class="sc">$</span>Date)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">format</span>(df_sf<span class="sc">$</span>Date, <span class="st">"%Y"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Time_only <span class="ot">&lt;-</span> <span class="fu">format</span>(df_sf<span class="sc">$</span>Date, <span class="st">"%H:%M:%S"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>Date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_sf<span class="sc">$</span>Date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+</section>
+<section id="make-some-initial-plots" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="make-some-initial-plots"><span class="header-section-number">4.8</span> Make some initial plots</h2>
+<ul>
+<li>Total pedestrian counts over time</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> TotalCount)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"1 year"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Nº of Pedestrians Over Time"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Nº of Pedestrians"</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data_Treatment_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Total pedestrian counts per counter over time</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Location_Name)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location_code) <span class="sc">+</span> <span class="co"># insert "scales = "free_y" to adapt the maximum of Y in each plot</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"1 year"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Nº of Pedestrians by Automatic Counter Over Time"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Nº of Pedestrians"</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data_Treatment_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Facet_wrap</em> divides the plots per automatic counter.</p>
+<ul>
+<li>Tendency of total pedestrian counts per counter aggregated by year</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Location_Name)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location_code) <span class="sc">+</span> <span class="co"># insert "scales = "free_y" to adapt the maximum of Y in each plot</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(df_sf<span class="sc">$</span>TotalCount) <span class="sc">*</span> <span class="fl">1.2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data_Treatment_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Try changing the <em>themes</em> for different appearances.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/</p>
+</blockquote>
+</section>
+<section id="create-a-combined-variables-to-analyze" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="create-a-combined-variables-to-analyze"><span class="header-section-number">4.9</span> Create a combined variables to analyze:</h2>
+<ul>
+<li>Day of Week + Year</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>df_sf <span class="ot">&lt;-</span> df_sf <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">format</span>(Date, <span class="st">"%Y"</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">DayYear =</span> <span class="fu">paste</span>(Day, Year, <span class="at">sep =</span> <span class="st">"_"</span>),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">DayYear =</span> <span class="fu">factor</span>(DayYear, <span class="at">levels =</span> <span class="fu">unique</span>(DayYear))  <span class="co"># preserve order</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Plot</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> DayYear, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Day)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(size = 2) +</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Data_Treatment_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Criar uma variavel de juntar por dia semana e por ano.</p>
+<p>mutate e um groupby e summarize para fazer a soma de total counts.</p>
+<p>grafico para os 5 dias da semana.</p>
+</section>
+<section id="import-land-use-data-and-integrate-with-existing-data" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="import-land-use-data-and-integrate-with-existing-data"><span class="header-section-number">4.10</span> Import land use data and integrate with existing data</h2>
+<p>https://data.cityofsydney.nsw.gov.au/pages/open-data#Categories</p>
+<p>You can add options to executable code like this</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Software</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./about.html" class="pagination-link" aria-label="About the instructors">
+        <span class="nav-page-text">About the instructors</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "EIT_Course_BigData"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Gabriel Valença"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">  cache: false</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the Data</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>Hourly pedestrian counts from automatic sensors in our local area.</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>Data is openly available at: <span class="ot">&lt;https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count&gt;</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>This dataset contains **hourly pedestrian** counts by location in Sydney, Australia.</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>**Automated counters** were placed in busy areas of the CBD to assess performance.</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>Data collection began in *February 2020* and ended in *June 2025*.</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import Dataset</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>The dataset can be downloaded in many formats.</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>You can also import the data in many formats. Choose the one you prefer</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>CSV file</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>data_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv"</span>)</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Shapefile</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>First Unzip file and place them into the ´Data´ file.</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Unzip file</span></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="st">"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip"</span>, <span class="at">junkpaths =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval= FALSE}</span></span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>data_shapefile <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"Automatic_Hourly_Pedestrian_Count.shp"</span>)</span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convert dataset into *dataframe*</span></span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>It is good practice to: <span class="sc">\*</span> convert the database into dataframe, as many packages only work with dataframes. <span class="sc">\*</span> To not work on the raw dataset.</span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(data_csv)</span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Check the dataset</span></span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a>Structure of the dataset</span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a>Summary</span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a>Convert the variable "Day" into a factor.</span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a>Check how many automatic counters there are:</span>
+<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-96"><a href="#cb33-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-97"><a href="#cb33-97" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Location_code)</span>
+<span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Location_Name)</span>
+<span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a>The location exact location of the automatic counters is not given in the dataset.</span>
+<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-108"><a href="#cb33-108" aria-hidden="true" tabindex="-1"></a>We need at least an approximation, to perform spatial analysis.</span>
+<span id="cb33-109"><a href="#cb33-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-110"><a href="#cb33-110" aria-hidden="true" tabindex="-1"></a>Check the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/</span>
+<span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-112"><a href="#cb33-112" aria-hidden="true" tabindex="-1"></a>Go to Google Maps and retrieve the locations:</span>
+<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>A001: -33.863518, 151.209968</span>
+<span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>A002: -33.871667, 151.210080</span>
+<span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>A003: -33.870783, 151.206607</span>
+<span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>A004: -33.873041, 151.207565</span>
+<span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create variable with latitude and longitude of dataset</span></span>
+<span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A001"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.863518</span></span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A001"</span>] <span class="ot">&lt;-</span> <span class="fl">151.209968</span></span>
+<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A002"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.871667</span></span>
+<span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A002"</span>] <span class="ot">&lt;-</span> <span class="fl">151.210080</span></span>
+<span id="cb33-129"><a href="#cb33-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-130"><a href="#cb33-130" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A003"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.870783</span></span>
+<span id="cb33-131"><a href="#cb33-131" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A003"</span>] <span class="ot">&lt;-</span> <span class="fl">151.206607</span></span>
+<span id="cb33-132"><a href="#cb33-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Latitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A004"</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">33.873041</span></span>
+<span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Longitude[df<span class="sc">$</span>Location_code <span class="sc">==</span> <span class="st">"A004"</span>] <span class="ot">&lt;-</span> <span class="fl">151.207565</span></span>
+<span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-137"><a href="#cb33-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create an *Geometry* variable</span></span>
+<span id="cb33-138"><a href="#cb33-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-142"><a href="#cb33-142" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb33-143"><a href="#cb33-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-144"><a href="#cb33-144" aria-hidden="true" tabindex="-1"></a>df_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(</span>
+<span id="cb33-145"><a href="#cb33-145" aria-hidden="true" tabindex="-1"></a>  df,</span>
+<span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>),</span>
+<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a>  <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** Google Maps uses *WGS84*, which corresponds to EPSG = 4326</span></span>
+<span id="cb33-152"><a href="#cb33-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a>Create an iterative map</span>
+<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapview)</span>
+<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a>df_map <span class="ot">&lt;-</span> <span class="fu">unique</span>(df_sf<span class="sc">$</span>geometry)</span>
+<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a><span class="fu">mapview</span>(df_map)</span>
+<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a><span class="fu">## Have date and time in separate variables</span></span>
+<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-166"><a href="#cb33-166" aria-hidden="true" tabindex="-1"></a>Parse date-times with **y**ear, **m**onth, and **d**ay, **h**our, **m**inute, and **s**econd components.</span>
+<span id="cb33-167"><a href="#cb33-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Date <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(df_sf<span class="sc">$</span>Date, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
+<span id="cb33-174"><a href="#cb33-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-175"><a href="#cb33-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a>Create new variables</span>
+<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Date_only <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df_sf<span class="sc">$</span>Date)</span>
+<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">format</span>(df_sf<span class="sc">$</span>Date, <span class="st">"%Y"</span>)</span>
+<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a>df_sf<span class="sc">$</span>Time_only <span class="ot">&lt;-</span> <span class="fu">format</span>(df_sf<span class="sc">$</span>Date, <span class="st">"%H:%M:%S"</span>)</span>
+<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>Date)</span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_sf<span class="sc">$</span>Date)</span>
+<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a><span class="fu">## Make some initial plots</span></span>
+<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Total pedestrian counts over time</span>
+<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> TotalCount)) <span class="sc">+</span></span>
+<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(</span>
+<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"1 year"</span>,</span>
+<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Nº of Pedestrians Over Time"</span>,</span>
+<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Nº of Pedestrians"</span></span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Total pedestrian counts per counter over time</span>
+<span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Location_Name)) <span class="sc">+</span></span>
+<span id="cb33-223"><a href="#cb33-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb33-224"><a href="#cb33-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location_code) <span class="sc">+</span> <span class="co"># insert "scales = "free_y" to adapt the maximum of Y in each plot</span></span>
+<span id="cb33-225"><a href="#cb33-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>() <span class="sc">+</span></span>
+<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb33-227"><a href="#cb33-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"1 year"</span>,</span>
+<span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb33-230"><a href="#cb33-230" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-231"><a href="#cb33-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Nº of Pedestrians by Automatic Counter Over Time"</span>,</span>
+<span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time"</span>,</span>
+<span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Nº of Pedestrians"</span></span>
+<span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-236"><a href="#cb33-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-237"><a href="#cb33-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-238"><a href="#cb33-238" aria-hidden="true" tabindex="-1"></a>*Facet_wrap* divides the plots per automatic counter.</span>
+<span id="cb33-239"><a href="#cb33-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-240"><a href="#cb33-240" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tendency of total pedestrian counts per counter aggregated by year</span>
+<span id="cb33-241"><a href="#cb33-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-244"><a href="#cb33-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-245"><a href="#cb33-245" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Location_Name)) <span class="sc">+</span></span>
+<span id="cb33-246"><a href="#cb33-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb33-247"><a href="#cb33-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Location_code) <span class="sc">+</span> <span class="co"># insert "scales = "free_y" to adapt the maximum of Y in each plot</span></span>
+<span id="cb33-248"><a href="#cb33-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb33-249"><a href="#cb33-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb33-250"><a href="#cb33-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(df_sf<span class="sc">$</span>TotalCount) <span class="sc">*</span> <span class="fl">1.2</span>))</span>
+<span id="cb33-251"><a href="#cb33-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-252"><a href="#cb33-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-253"><a href="#cb33-253" aria-hidden="true" tabindex="-1"></a>Try changing the *themes* for different appearances.</span>
+<span id="cb33-254"><a href="#cb33-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-255"><a href="#cb33-255" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/</span></span>
+<span id="cb33-256"><a href="#cb33-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-257"><a href="#cb33-257" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a combined variables to analyze:</span></span>
+<span id="cb33-258"><a href="#cb33-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-259"><a href="#cb33-259" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Day of Week + Year</span>
+<span id="cb33-260"><a href="#cb33-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-263"><a href="#cb33-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-264"><a href="#cb33-264" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-265"><a href="#cb33-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-266"><a href="#cb33-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-267"><a href="#cb33-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-268"><a href="#cb33-268" aria-hidden="true" tabindex="-1"></a>df_sf <span class="ot">&lt;-</span> df_sf <span class="sc">%&gt;%</span></span>
+<span id="cb33-269"><a href="#cb33-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-270"><a href="#cb33-270" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">format</span>(Date, <span class="st">"%Y"</span>),</span>
+<span id="cb33-271"><a href="#cb33-271" aria-hidden="true" tabindex="-1"></a>    <span class="at">DayYear =</span> <span class="fu">paste</span>(Day, Year, <span class="at">sep =</span> <span class="st">"_"</span>),</span>
+<span id="cb33-272"><a href="#cb33-272" aria-hidden="true" tabindex="-1"></a>    <span class="at">DayYear =</span> <span class="fu">factor</span>(DayYear, <span class="at">levels =</span> <span class="fu">unique</span>(DayYear))  <span class="co"># preserve order</span></span>
+<span id="cb33-273"><a href="#cb33-273" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-274"><a href="#cb33-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-275"><a href="#cb33-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-276"><a href="#cb33-276" aria-hidden="true" tabindex="-1"></a>Plot</span>
+<span id="cb33-277"><a href="#cb33-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-280"><a href="#cb33-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_sf, <span class="fu">aes</span>(<span class="at">x =</span> DayYear, <span class="at">y =</span> TotalCount, <span class="at">colour =</span> Day)) <span class="sc">+</span></span>
+<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_point(size = 2) +</span></span>
+<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">7</span>)</span>
+<span id="cb33-287"><a href="#cb33-287" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-289"><a href="#cb33-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-290"><a href="#cb33-290" aria-hidden="true" tabindex="-1"></a>Criar uma variavel de juntar por dia semana e por ano.</span>
+<span id="cb33-291"><a href="#cb33-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-292"><a href="#cb33-292" aria-hidden="true" tabindex="-1"></a>mutate e um groupby e summarize para fazer a soma de total counts.</span>
+<span id="cb33-293"><a href="#cb33-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a>grafico para os 5 dias da semana.</span>
+<span id="cb33-295"><a href="#cb33-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-296"><a href="#cb33-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import land use data and integrate with existing data</span></span>
+<span id="cb33-297"><a href="#cb33-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a>https://data.cityofsydney.nsw.gov.au/pages/open-data#Categories</span>
+<span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a>You can add options to executable code like this</span>
+<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-304"><a href="#cb33-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-305"><a href="#cb33-305" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb33-306"><a href="#cb33-306" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb33-307"><a href="#cb33-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-308"><a href="#cb33-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-309"><a href="#cb33-309" aria-hidden="true" tabindex="-1"></a>The <span class="in">`echo: false`</span> option disables the printing of code (only output is displayed).</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>G Valença, A Angel</p>
+</div>   
+    <div class="nav-footer-center">
+<p>From Data to Design: Using Big Data for Active Mobility Research</p>
+</div>
+    <div class="nav-footer-right">
+<p>June 2026</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
