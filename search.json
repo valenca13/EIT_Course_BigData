@@ -1,0 +1,199 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "From Data to Design",
+    "section": "",
+    "text": "Course intro\nThis course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the 14th and 15th June 2026 in Tartu, Estonia (refer to https://annualforum.ut.ee/).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#objectives",
+    "href": "index.html#objectives",
+    "title": "From Data to Design",
+    "section": "Objectives",
+    "text": "Objectives\nThe primary objective of this course is to equip doctoral candidates with the conceptual and methodological competencies required to critically engage with large-scale passive mobility datasets and utilize them in support of planning and decision-making related to active urban mobility (walking and cycling).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#audience",
+    "href": "index.html#audience",
+    "title": "From Data to Design",
+    "section": "Audience",
+    "text": "Audience\nThis course is designed for PhD candidates enrolled in the DTN EIT Urban Mobility program.\nThe course was designed for PhD students with diverse background and competencies, not necessarily having any programming knowledge.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#format-and-materials",
+    "href": "index.html#format-and-materials",
+    "title": "From Data to Design",
+    "section": "Format and materials",
+    "text": "Format and materials\nThe course will be delivered in three main formats: i) theoretical lectures, practical lectures with basic lessons of R programming for data treatment and analysis, as well as group work.\nThis webpage contains all the materials for the practical and group work.\nThe PDFs of the theorectical lectures may be shared with the course participants if requested.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#structure-of-webpage",
+    "href": "index.html#structure-of-webpage",
+    "title": "From Data to Design",
+    "section": "Structure of webpage",
+    "text": "Structure of webpage",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "structure.html",
+    "href": "structure.html",
+    "title": "2  Schedule",
+    "section": "",
+    "text": "2.1 Detailed Schedule",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "structure.html#detailed-schedule",
+    "href": "structure.html#detailed-schedule",
+    "title": "2  Schedule",
+    "section": "",
+    "text": "Day 1\n\n\n\n\n\n9.00\nIntroduction to the course\n\n\n9.30\nIntroduction to Big Data Technologies for Active Mobility\n\n\n11.00\nCoffee break\n\n\n11.20\nInteractive lecture: Understanding Passive Mobility Big Data in Practice\n\n\n12.30\nLunch break\n\n\n14.00\nInstallation and workshop on using R programming\n\n\n15.30\nCoffee break\n\n\n15.50\nGroup work using other passive mobility datasets\n\n\n17.00\nEnd of day 1\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n9.00\nLecture: Analytical Techniques for Active Mobility Big Data\n\n\n10.00\nCoffee break\n\n\n10.20\nWorkshop - Group work with instructors’ guidance\n\n\n\n\n\n\n12.00\nLunch break\n\n\n\n\n\n\n14.00\n\n\n\n14.00\nAccessibility analysis with r5r\n\n\n16.00\nCoffee break\n\n\n16.15\nUsing you data: manipulation and spatial analysis methods and further applications\n\n\n16.45\nSurvey and feedback from participants\n\n\n17.00\nEnd of day 2",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "structure.html#location",
+    "href": "structure.html#location",
+    "title": "2  Schedule",
+    "section": "2.2 Location",
+    "text": "2.2 Location\nThe course will take place at UTartu’s Delta Centre.\n\n\nCode\nCampus_coord = c(26.72478888402994, 58.38545231500616)\nCampus = sf::st_sfc(sf::st_point(Campus_coord)) # create point\nCampus = sf::st_as_sf(Campus, crs = 4326) # assign crs\n\nmapview::mapview(Campus, map.types = \"OpenStreetMap\") # quick map view",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "structure.html#resources",
+    "href": "structure.html#resources",
+    "title": "2  Schedule",
+    "section": "2.3 Resources",
+    "text": "2.3 Resources\n\nYou laptop, with any OS\nGithub repository with all the materials (data, code and guidelines)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "structure.html#contents",
+    "href": "structure.html#contents",
+    "title": "2  Schedule",
+    "section": "2.4 Contents",
+    "text": "2.4 Contents\n\nDay 1\n\nMorning\n\nIntroduction to the course (30 min): This introductory session presents the course objectives, structure, and expected learning outcomes.\nLecture: Introduction to Big Data Technologies for Active Mobility (90 minutes): An introductory lecture will be given presenting the concept, characteristics and challenges of using big data. The lecture will also demonstrate the many applications in real-world practice and research of using big data in transportation including: i) sensors and video analytics; social-media; and iii) mobile phone and floating car data, among others.\nCoffee break (20 min)\nInteractive lecture  workshop: Understanding Passive Mobility Big Data in Practice (60 min): The session introduces participants to a real passive‑mobility dataset. Based on a dataset of pedestrian movement counts from Bluetooth sensors. Participants will discuss key data‑processing decisions, including what information to keep or filter depending on research or planning goals, and how to avoid losing valuable insights through overly aggressive data cleaning. They will also explore which research questions the dataset can answer and what complementary data sources might be needed for planning‑relevant interpretations.\n\n\n\nAfternoon\n\nInstallation and workshop on using R programming (90 min): The basics of R will be taught in this workshop, including how to import datasets, perform descriptive statistics and treatment.\nCoffee break (20 min)\nGroup work using other passive mobility datasets: Participants are assigned to multidisciplinary groups, ensuring a mix of skills and backgrounds. Each group will receive a different dataset (generated by a different monitoring technology) to work with and will apply the techniques learned in the hand-on workshop to treat the dataset. The final objective is for the groups to treat the dataset and propose valuable research questions for future analysis.\n\n\n\n\nDay 2\n\nMorning\n\nLecture: Analytical Techniques for Active Mobility Big Data (60 min): This lecture introduces key analytical techniques used to structure and interpret mobility big data in the context of active mobility planning. Participants will gain an overview of spatial network-based approaches such as space syntax (graph theory), the use of OpenStreetMap data for representing urban infrastructure, accessibility analysis tools, and basic spatial-temporal analysis methods. The session will focus on how these techniques can support the integration of behavioral datasets with the built environment, and how they may be applied to explore relationships between movement patterns and infrastructure performance in walking and cycling networks.\nCoffee break\nWorkshop - Group work with instructors’ guidance (90 min): finalizing the research question and working on the methodological structure.\nLecture - Interpreting Active Mobility Big Data for Planning (60 min): This lecture addresses the challenge of translating behavioural indicators derived from mobility big data into planning-relevant insights. It introduces participants to the limitations of commonly used metrics such as pedestrian counts, trajectories, or cycling volumes, and discusses what these indicators do—and do not—reveal about infrastructure performance and accessibility. Through conceptual examples, the session highlights how similar data patterns may support different planning interpretations, and explores how behavioural datasets can be critically evaluated in relation to specifi c planning questions, such as infrastructure investment or street space reallocation. The lecture aims to support participants in linking data-derived indicators to evidence-based planning decisions in active mobility contexts.\n\n\n\nAfternoon\n\nGroup work on final presentations (2.5 h)\nGroup presentations and discussion (4 groups ~ 90 min)\nclosing and students’ feedback (30 min)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
+    ]
+  },
+  {
+    "objectID": "software.html",
+    "href": "software.html",
+    "title": "3  Software",
+    "section": "",
+    "text": "3.1 R\nIn this chapter we will guide you through the installation of R, RStudio and the packages you will need for this course.\nR and RStudio1 are separate downloads.\nYou will need R installed on your computer. R stats (how it is also known) is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing.\nThe download links live at The Comprehensive R Archive Network (aka CRAN). The most recent version is 4.4.1, but you can use &gt;= 4.1.x if you already have it installed.\nAfter this installation, you don’t need to open R base. Please proceed to install RStudio.",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#r",
+    "href": "software.html#r",
+    "title": "3  Software",
+    "section": "",
+    "text": "WindowsMacUbuntu\n\n\nDownload R-4.4.1 for Windows and run the executable file.\n\n\n\n\n\n\nImportant\n\n\n\nYou will also need to install Rtools, which is a collection of tools necessary to build R packages in Windows.\n\n\n\n\nDownload R-4.4.1 for MacOX. You will have to choose between the arm64 or the x86-64 version.\nDownload the .pkg file and install it as usual.\n\n\n\nThese are instructions for Ubuntu. If you use other linux distribution, please follow the instructions on The Comprehensive R Archive Network - CRAN.\n\nYou can look for R in the Ubuntu Software Center or install it via the terminal:\n\n# sudo apt update && sudo apt upgrade -y\nsudo apt install r-base\n\nOr, if you prefer, you can install the latest version of R from CRAN:\n\n# update indices\nsudo apt update -qq\n# install two helper packages we need\nsudo apt install --no-install-recommends software-properties-common dirmngr\n# add the signing key (by Michael Rutter) for these repos\nwget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc\n# add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed\nsudo add-apt-repository \"deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/\"\n\nThen run:\n\nsudo apt install r-base r-base-core r-recommended r-base-dev\n\n[Optional] To keep up-to-date r version and packages, you can follow the instructions at r2u",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#rstudio",
+    "href": "software.html#rstudio",
+    "title": "3  Software",
+    "section": "3.2 RStudio",
+    "text": "3.2 RStudio\nRStudio Desktop is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.\nRStudio is available for free download from Posit RStudio.\n\nWindows 10/11MacOSUbuntu\n\n\nDownload RStudio 2024.04 and run the executable file.\n\n\nDownload RStudio 2024.04 and install it as usual.\n\n\n\nThese are instructions for Ubuntu 22 / Debian 12. If you use other linux distribution, please follow the instructions on Posit RStudio.\n\nInstall it via the terminal:\n\nsudo apt install libssl-dev libclang-dev\nwget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb\nsudo dpkg -i rstudio*\nrm -v rstudio*\n\nIf you already use Ubuntu 24, please check and replace the correct url from RStudio Dailies",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#r-packages",
+    "href": "software.html#r-packages",
+    "title": "3  Software",
+    "section": "3.3 R packages",
+    "text": "3.3 R packages\nYou will need to install some packages to work with the data and scripts in this course.\nYou can install them in RStudio by searching for them in the Packages tab:\n\nor by running the following code in the console:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\n\ninstall.packages(\"sf\")\ninstall.packages(\"mapview\")\ninstall.packages(\"rmarkdown\")\ninstall.packages(\"centr\")\ninstall.packages(\"od\")\n\ninstall.packages(c(\"remotes\", \"devtools\", \"usethis\")) # optional\ninstall.packages(\"osmextract\") # optional\ninstall.packages(\"stplanr\") # optional",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#r5r",
+    "href": "software.html#r5r",
+    "title": "3  Software",
+    "section": "3.4 r5r",
+    "text": "3.4 r5r\nThe workshop “A crash course on urban accessibility with R” uses a few R packages that need to be installed on your machine. The simplest way to do this is running the code below. This might take a few minutes if this is the first time you install these packages.\n\npkgs = c(\"r5r\", \"accessibility\", \"rJavaEnv\", \"h3jsr\", \"quantreg\")\n\ninstall.packages(pkgs)\n\n\n3.4.1 Java Development Kit\nTo use the {r5r} package (version v2.0 or higher), you will need to have Java Development Kit (JDK) 21 installed on your computer. There are numerous open-source JDK implementations. The easiest way to install JDK is using the new {rJavaEnv} package in R.\n\n# check version of Java currently installed (if any) \nrJavaEnv::java_check_version_rjava()\n\n## if this is the first time you use {rJavaEnv}, you might need to run this code\n## below to consent the installation of Java.\n# rJavaEnv::rje_consent(provided = TRUE)\n\n# install Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# check if Java was successfully installed\nrJavaEnv::java_check_version_rjava()\n\nAlternatively, you can manually download and install JDK 21.\n\nWindows and MacOSUbuntu\n\n\nGo to Java Development Kit 21, download the latest 21 build corresponding to your operating system and run the executable file.\n\n\nInstall it via the terminal:\n\nsudo apt install -y openjdk-21-jdk openjdk-21-jre\njava -version",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#tinytex",
+    "href": "software.html#tinytex",
+    "title": "3  Software",
+    "section": "3.5 tinytex",
+    "text": "3.5 tinytex\nTo be able to export your Rmakdown document to a pdf file, you will need a LaTeX processor. tinytex is a low weight R package with the most used features of LaTeX that you can use with R.\n\n# you need to run both lines\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()\n\nTo use some LaTeX packages, you also need to install tlmgr.\n\ntinytex::tlmgr_install()\ntinytex::tlmgr_update() # updates all latex pkgs",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "software.html#footnotes",
+    "href": "software.html#footnotes",
+    "title": "3  Software",
+    "section": "",
+    "text": "We will use RStudio, although if you already use other studio such as VScode, that’s also fine.↩︎",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About the instructors",
+    "section": "",
+    "text": "Gabriel Valença\nAssistant Professor\nCERIS, Instituto Superior Técnico - University of Lisbon\nGoogle Scholar | Linkedin\nShort bio\nGabriel Valença is an Assistant Professor at Instituto Superior Técnico, University of Lisbon (Técnico ULisboa).\nHe is a DTN Alumni from the 1st intake. He has completed his Ph.D. in Transportation Systems with Summa Cum Laude in the Department of Civil Engineering, Architecture and Environment at Técnico ULisboa (2023). He was a Visiting Ph.D. scholar at the Technical University of Denmark for six months (2022). He has graduated in Civil Engineering at the Federal University of Rio Grande do Norte (2017), Brazil, while studying part of his degree at the University of Toronto, Canada (2013/2014).\nHis work mainly focuses on the intersection between transportion engineering, urban design, and data‑driven mobility planning, with a strong emphasis on making cities more efficient, equitable, and sustainable.",
+    "crumbs": [
+      "About the instructors"
+    ]
+  },
+  {
+    "objectID": "about.html#avital-angel",
+    "href": "about.html#avital-angel",
+    "title": "About the instructors",
+    "section": "Avital Angel",
+    "text": "Avital Angel\nPost-doctoral researcher / Soon to be Assistant professor\nTechnical University of Munich, Germany\nGoogle Scholar | Linkedin\nShort bio\nDr. Avital Angel is a postdoctoral researcher at the Technical University of Munich (TUM), Chair of Urban Structure and Transport Planning, and will soon begin a position as Assistant Professor at The Hebrew University of Jerusalem.\nShe is a DTN Alumni from the 2nd intake. Avital completed her PhD in Urban and Regional Planning at the Department of Architecture and Town Planning, Technion – Israel Institute of Technology. She also holds a Master’s degree in Urban and Regional Planning and a Bachelor’s degree in Landscape Architecture. Avital brings practical experience working as a former landscape architect and urban planner.\nHer research focuses mainly on linking pedestrian movement to built environment characteristics and the use of big data to analyse movement patterns in urban environments.",
+    "crumbs": [
+      "About the instructors"
+    ]
+  }
+]
