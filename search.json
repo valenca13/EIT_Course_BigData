@@ -127,29 +127,7 @@
     "href": "software.html#r-packages",
     "title": "3  Software",
     "section": "3.3 R packages",
-    "text": "3.3 R packages\nYou will need to install some packages to work with the data and scripts in this course.\nYou can install them in RStudio by searching for them in the Packages tab:\n\nor by running the following code in the console:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\n\ninstall.packages(\"sf\")\ninstall.packages(\"mapview\")\ninstall.packages(\"rmarkdown\")\ninstall.packages(\"centr\")\ninstall.packages(\"od\")\n\ninstall.packages(c(\"remotes\", \"devtools\", \"usethis\")) # optional\ninstall.packages(\"osmextract\") # optional\ninstall.packages(\"stplanr\") # optional",
-    "crumbs": [
-      "**Day 1**",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
-    ]
-  },
-  {
-    "objectID": "software.html#r5r",
-    "href": "software.html#r5r",
-    "title": "3  Software",
-    "section": "3.4 r5r",
-    "text": "3.4 r5r\nThe workshop “A crash course on urban accessibility with R” uses a few R packages that need to be installed on your machine. The simplest way to do this is running the code below. This might take a few minutes if this is the first time you install these packages.\n\npkgs = c(\"r5r\", \"accessibility\", \"rJavaEnv\", \"h3jsr\", \"quantreg\")\n\ninstall.packages(pkgs)\n\n\n3.4.1 Java Development Kit\nTo use the {r5r} package (version v2.0 or higher), you will need to have Java Development Kit (JDK) 21 installed on your computer. There are numerous open-source JDK implementations. The easiest way to install JDK is using the new {rJavaEnv} package in R.\n\n# check version of Java currently installed (if any) \nrJavaEnv::java_check_version_rjava()\n\n## if this is the first time you use {rJavaEnv}, you might need to run this code\n## below to consent the installation of Java.\n# rJavaEnv::rje_consent(provided = TRUE)\n\n# install Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# check if Java was successfully installed\nrJavaEnv::java_check_version_rjava()\n\nAlternatively, you can manually download and install JDK 21.\n\nWindows and MacOSUbuntu\n\n\nGo to Java Development Kit 21, download the latest 21 build corresponding to your operating system and run the executable file.\n\n\nInstall it via the terminal:\n\nsudo apt install -y openjdk-21-jdk openjdk-21-jre\njava -version",
-    "crumbs": [
-      "**Day 1**",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
-    ]
-  },
-  {
-    "objectID": "software.html#tinytex",
-    "href": "software.html#tinytex",
-    "title": "3  Software",
-    "section": "3.5 tinytex",
-    "text": "3.5 tinytex\nTo be able to export your Rmakdown document to a pdf file, you will need a LaTeX processor. tinytex is a low weight R package with the most used features of LaTeX that you can use with R.\n\n# you need to run both lines\ninstall.packages(\"tinytex\")\ntinytex::install_tinytex()\n\nTo use some LaTeX packages, you also need to install tlmgr.\n\ntinytex::tlmgr_install()\ntinytex::tlmgr_update() # updates all latex pkgs",
+    "text": "3.3 R packages\nYou will need to install some packages to work with the data and scripts in this course.\nYou can install them in RStudio by searching for them in the Packages tab:\n\nor by running the following code in the console:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"readxl\")\n\ninstall.packages(\"sf\")\ninstall.packages(\"mapview\")\ninstall.packages(\"rmarkdown\")\ninstall.packages(\"centr\")\ninstall.packages(\"od\")\n\ninstall.packages(c(\"remotes\", \"devtools\", \"usethis\")) # optional\ninstall.packages(\"osmextract\") # optional\ninstall.packages(\"stplanr\") # optional\n\n\n3.3.1 Java Development Kit\nYou may need to have Java Development Kit (JDK) 21 installed on your computer to perform spatial analysis. There are numerous open-source JDK implementations. The easiest way to install JDK is using the new {rJavaEnv} package in R.\n\n# check version of Java currently installed (if any) \nrJavaEnv::java_check_version_rjava()\n\n## if this is the first time you use {rJavaEnv}, you might need to run this code\n## below to consent the installation of Java.\n# rJavaEnv::rje_consent(provided = TRUE)\n\n# install Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# check if Java was successfully installed\nrJavaEnv::java_check_version_rjava()\n\nAlternatively, you can manually download and install JDK 21.\n\nWindows and MacOSUbuntu\n\n\nGo to Java Development Kit 21, download the latest 21 build corresponding to your operating system and run the executable file.\n\n\nInstall it via the terminal:\n\nsudo apt install -y openjdk-21-jdk openjdk-21-jre\njava -version",
     "crumbs": [
       "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
@@ -237,7 +215,7 @@
     "href": "Data_Treatment.html#have-date-and-time-in-separate-variables",
     "title": "4  Data treatment",
     "section": "4.7 Have date and time in separate variables",
-    "text": "4.7 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCreate new variables\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")\n\n\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\"",
+    "text": "4.7 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCheck the class of the variable ´Date´\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\nCreate new variables separating Date, Year, and Time\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")",
     "crumbs": [
       "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
@@ -274,6 +252,36 @@
     "crumbs": [
       "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "5  References",
+    "section": "",
+    "text": "5.1 Reading materials",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#reading-materials",
+    "href": "references.html#reading-materials",
+    "title": "5  References",
+    "section": "",
+    "text": "xxxxx",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
+    ]
+  },
+  {
+    "objectID": "references.html#passive-urban-mobility-open-source-datasets",
+    "href": "references.html#passive-urban-mobility-open-source-datasets",
+    "title": "5  References",
+    "section": "5.2 Passive urban mobility open source datasets",
+    "text": "5.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
