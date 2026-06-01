@@ -71,6 +71,38 @@ library(skimr)
 skim(df)
 ```
 
+Check Missing data
+
+```{r}
+table(is.na(df))
+```
+Plot missing data
+
+```{r}
+library(DataExplorer)
+
+plot_missing(df, plotly = TRUE)
+```
+* **Listwise deletion**. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.
+    
+```{r}
+df_missingListwise = na.omit(df) #removes all rows with at least one NA in any variable
+```
+
+```{r}
+plot_missing(df_missingListwise)
+```
+
+* **Pairwise deletion**. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.
+    
+```{r}
+df_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable
+```
+
+For our case, which treatment would be better? 
+
+
+
 Convert the variable "Day" into a factor.
 
 ```{r}
@@ -93,7 +125,7 @@ The location exact location of the automatic counters is not given in the datase
 
 We need at least an approximation, to perform spatial analysis.
 
-Check the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/
+Check the description in the dashboard: <https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/>
 
 Go to Google Maps and retrieve the locations:
 
@@ -178,7 +210,7 @@ df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
 library(ggplot2)
 
 ggplot(df_sf, aes(x = Date, y = TotalCount)) +
-  geom_line(linewidth = 2) +
+  geom_line(linewidth = 1) +
     scale_x_date(
     date_breaks = "1 year",
     date_labels = "%Y"
@@ -216,10 +248,20 @@ ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
 
 ```{r}
 ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
-  geom_line(linewidth = 8) +
+  geom_line(linewidth = 4) +
   facet_wrap(~ Location_code) + # insert "scales = "free_y" to adapt the maximum of Y in each plot
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7)) +
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
+```
+* Total number of pedestrians per time
+
+```{r}
+ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Location_code, scales ="free_y") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +
   scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
 ```
 
