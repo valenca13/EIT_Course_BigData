@@ -123,13 +123,13 @@ sum(table_example$Trips)
 Filter trips only with origin from Home
 
 ```{r}
-data_Lisbon = table_example[table_example$Origin == "Home",]
+data_Lisbon = table_example[table_example$origin == "Home",]
 ```
 
 Filter trips with origin **different** from Home
 
 ```{r}
-data_out_Lisbon = data[data$Origin != "Home",]
+data_out_Lisbon = table_example[table_example$origin != "Home",]
 ```
 
 **Remove the first column**
