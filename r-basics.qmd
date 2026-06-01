@@ -135,7 +135,7 @@ data_out_Lisbon = table_example[table_example$origin != "Home",]
 **Remove the first column**
 
 ```{r}
-data = data[ ,-1] #first column
+data = table_example[ ,-1] #first column
 ```
 
 **Create a table only with origin, destination**
@@ -143,7 +143,7 @@ data = data[ ,-1] #first column
 There are many ways to do the same operation.
 
 ```{r}
-names(data)
+names(table_example)
 ```
 
 ```{r}
