@@ -4,26 +4,28 @@ format: html
 editor: visual
 ---
 
+[![](images/EIT_logo-EU1-horizontal_1.png){width="473"}](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
+
+![](images/CERIS.jpg){fig-align="center" width="200"} ![](images/IST_Logo.png){fig-align="center" width="200"} ![](images/tum-1.jpg){fig-align="center" width="200"}
+
 ## Course intro {.unnumbered}
 
-This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in Tartu, Estonia (refer to https://annualforum.ut.ee/).
+This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in **Tartu, Estonia** (refer to https://annualforum.ut.ee/).
+
+
 
 ## Objectives {.unnumbered}
 
-The primary objective of this course is to equip **doctoral candidates** with the **conceptual and methodological competencies** required to critically engage with **large-scale passive mobility datasets** and utilize them in **support of planning** and decision-making related to **active urban mobility** (walking and cycling). 
+The primary objective of this course is to equip **doctoral candidates** with the **conceptual and methodological competencies** required to critically engage with **large-scale passive mobility datasets** and utilize them in **support of planning** and decision-making related to **active urban mobility** (walking and cycling).
 
 ## Audience {.unnumbered}
 
-This course is designed for PhD candidates enrolled in the **DTN EIT Urban Mobility program**. 
+This course is designed for PhD candidates enrolled in the **DTN EIT Urban Mobility program**.
 
-The course was designed for PhD students with diverse background and competencies, not necessarily having any programming knowledge. 
+The course was designed for PhD students with diverse background and competencies, not necessarily having any programming knowledge.
 
 ## Format and materials {.unnumbered}
 
 The course will be delivered in three main formats: i) **theoretical** lectures, **practical** lectures with basic lessons of **R programming** for data treatment and analysis, as well as **group work**.
 
-This webpage contains all the materials for the **practical** and **group work**. 
-
-The PDFs of the theorectical lectures may be shared with the course participants if requested. 
-
-## Structure of webpage {.unnumbered}
+This webpage contains all the materials of the **practical** and **group work**.
