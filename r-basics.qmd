@@ -158,6 +158,6 @@ data_OD2 = table_example[ ,-c(1:2)] #Or use a comma.
 #| include: false
 #| eval: false
 # this coverts this quarto to a plain r script
-knitr::purl("r-basics.qmd", "code/r-basics.R", documentation = 2)
+knitr::purl("r-basics.qmd", "codes/r-basics.R", documentation = 2)
 
 ```

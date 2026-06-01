@@ -1,0 +1,22 @@
+---
+title: "Spatial Data Analysis"
+---
+
+Criar uma variavel de juntar por dia semana e por ano.
+
+mutate e um groupby e summarize para fazer a soma de total counts.
+
+grafico para os 5 dias da semana.
+
+## Import land use data and integrate with existing data
+
+https://data.cityofsydney.nsw.gov.au/pages/open-data#Categories
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
