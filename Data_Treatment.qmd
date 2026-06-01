@@ -147,23 +147,27 @@ mapview(df_map)
 Parse date-times with **y**ear, **m**onth, and **d**ay, **h**our, **m**inute, and **s**econd components.
 
 ```{r}
+#| warning: false
 library(lubridate)
 
 df_sf$Date <- ymd_hms(df_sf$Date, tz = "UTC")
 ```
 
-Create new variables
+Check the class of the variable ´Date´
+
+```{r}
+
+class(df$Date)
+
+class(df_sf$Date)
+```
+
+Create new variables separating Date, Year, and Time
 
 ```{r}
 df_sf$Date_only <- as.Date(df_sf$Date)
 df_sf$Year <- format(df_sf$Date, "%Y")
 df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
-```
-
-```{r}
-class(df$Date)
-
-class(df_sf$Date)
 ```
 
 ## Make some initial plots
