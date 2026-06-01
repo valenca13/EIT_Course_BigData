@@ -28,6 +28,7 @@ book:
     - part: "**Day 1**"
       chapters:
       - software.qmd
+      - r-basics.qmd
       - Data_Treatment.qmd
     - references.qmd
     - about.qmd
