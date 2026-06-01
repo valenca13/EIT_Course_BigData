@@ -118,13 +118,6 @@ Use `$` to select a variable of the data
 ```{r}
 sum(table_example$Trips)
 ```
-
-**Percentage of active mobility trips related to the total**
-
-```{r}
-(sum(data$Walk) + sum(data$Bike)) / sum(data$Total) * 100
-```
-
 **Filter by condition (create new tables)**
 
 Filter trips only with origin from Home
