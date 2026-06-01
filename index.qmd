@@ -6,7 +6,7 @@ editor: visual
 
 [![](images/EIT_logo-EU1-horizontal_1.png){width="473"}](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
 
-![](images/CERIS.jpg){fig-align="center" width="200"} ![](images/IST_Logo.png){fig-align="center" width="200"} ![](images/tum-1.jpg){fig-align="center" width="200"}
+![](images/CERIS.jpg){fig-align="center" width="200"} ![](images/IST_Logo.png){fig-align="center" width="200"} ![](images/tum-1.jpg){fig-align="center" width="250"}
 
 ## Course intro {.unnumbered}
 
