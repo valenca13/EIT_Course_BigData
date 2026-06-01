@@ -29,6 +29,7 @@ book:
       chapters:
       - software.qmd
       - Data_Treatment.qmd
+    - references.qmd
     - about.qmd
   
   repo-url: https://github.com/valenca13/EIT_Course_BigData

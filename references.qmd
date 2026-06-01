@@ -1,0 +1,23 @@
+---
+title: "References"
+---
+
+## Reading materials
+
+- xxxxx
+
+## Passive urban mobility open source datasets
+
+* Toulouse, France: Pedestrian counts (2006 / 2019). <https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/>
+
+* Sydney, Australia <https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore>
+
+* Melbourne, Australia <https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18>
+
+* New York, United States <https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf>
+
+* Somerville, United States <https://catalog.data.gov/dataset/bicycle-pedestrian-counts>
+
+* Zurich, Prague <https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich>
+
+* Dublin, Ireland <https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region>
