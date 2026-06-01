@@ -124,6 +124,7 @@ install.packages("mapview")
 install.packages("rmarkdown")
 install.packages("centr")
 install.packages("od")
+install.packages("skimr")
 
 install.packages(c("remotes", "devtools", "usethis")) # optional
 install.packages("osmextract") # optional

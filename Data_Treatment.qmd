@@ -1,6 +1,5 @@
 ---
 title: "Data treatment"
-author: "Gabriel Valença"
 format: html
 editor: visual
 execute: 
@@ -68,7 +67,8 @@ str(df)
 Summary
 
 ```{r}
-summary(df)
+library(skimr)
+skim(df)
 ```
 
 Convert the variable "Day" into a factor.
@@ -172,7 +172,7 @@ df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
 
 ## Make some initial plots
 
--   Total pedestrian counts over time
+* Total pedestrian counts over time
 
 ```{r}
 library(ggplot2)
@@ -191,7 +191,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   theme_minimal()
 ```
 
--   Total pedestrian counts per counter over time
+* Total pedestrian counts per counter over time
 
 ```{r}
 ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
@@ -212,7 +212,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
 
 *Facet_wrap* divides the plots per automatic counter.
 
--   Tendency of total pedestrian counts per counter aggregated by year
+* Tendency of total pedestrian counts per counter aggregated by year
 
 ```{r}
 ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
