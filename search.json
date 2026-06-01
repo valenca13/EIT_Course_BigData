@@ -145,143 +145,187 @@
     ]
   },
   {
-    "objectID": "Data_Treatment.html",
-    "href": "Data_Treatment.html",
-    "title": "4  Data treatment",
+    "objectID": "r-basics.html",
+    "href": "r-basics.html",
+    "title": "4  R basics",
     "section": "",
-    "text": "4.1 About the Data\nHourly pedestrian counts from automatic sensors in our local area.\nData is openly available at: https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count\nThis dataset contains hourly pedestrian counts by location in Sydney, Australia.\nAutomated counters were placed in busy areas of the CBD to assess performance.\nData collection began in February 2020 and ended in June 2025.",
+    "text": "4.1 Math operations\nIn this chapter we will introduce to the R basics and some exercises to get familiar to how R works.\nSum\n1+1\n\n[1] 2\nSubtraction\n5-2\n\n[1] 3\nMultiplication\n2*2\n\n[1] 4\nDivision\n8/2\n\n[1] 4\nRound the number\nround(3.14)\n\n[1] 3\n\nround(3.14, 1) # The \"1\" indicates to round it up to 1 decimal digit.\n\n[1] 3.1\nYou can use help ?round in the console to see the description of the function, and the default arguments.",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#basic-shortpaths",
+    "href": "r-basics.html#basic-shortpaths",
+    "title": "4  R basics",
+    "section": "4.2 Basic shortpaths",
+    "text": "4.2 Basic shortpaths\nPerform Combinations\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\nc(1:3) # The \":\" indicates a range between the first and second numbers. \n\n[1] 1 2 3\n\n\nCreate a comment with ctrl + shift + c \n\n# Comments help you organize your code. The software will not run the comment.",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#create-a-table",
+    "href": "r-basics.html#create-a-table",
+    "title": "4  R basics",
+    "section": "4.3 Create a table",
+    "text": "4.3 Create a table\nA simple table with the number of trips by car, PT, walking, and cycling in a hypothetical street segment at a certain period.\nDefine variables\n\n# Transport mode choice\nmodes &lt;- c(\"car\", \"PT\", \"walking\", \"cycling\") # you can use \"=\" or \"&lt;-\"\n\n# Number of trips\nTrips = c(200, 50, 300, 150) # Be careful with uppercase letters. \n\n# Trip Origin\norigin &lt;- c(\"Home\", \"Home\", \"School\", \"Grocery\")\n\n# Trip Destination\ndestination &lt;- c(\"Work\", \"University\", \"Park\", \"Home\")\n\nJoin the variables to create a table\n\ntable_example = data.frame(modes, Trips, origin, destination)\n\nTake a look at the table\nVisualize the table by clicking on the “table_example” in the “Environment” page or use:\n\nView(table_example)\n\nLook at the first row\n\ntable_example[1,] #rows and columns start from 1 in R, differently from Python which starts from 0.\n\n  modes Trips origin destination\n1   car   200   Home        Work\n\n\nLook at first row and column\n\ntable_example[1,1]\n\n[1] \"car\"\n\n\n\n\n\n\n\n\nAfter you type \" you can use tab to navigate between folders and files and enter to autocomplete.",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#explore-the-data",
+    "href": "r-basics.html#explore-the-data",
+    "title": "4  R basics",
+    "section": "4.4 Explore the data",
+    "text": "4.4 Explore the data\nCheck the total number of trips\nUse $ to select a variable of the data\n\nsum(table_example$Trips)\n\n[1] 700\n\n\nFilter by condition (create new tables)\nFilter trips only with origin from Home\n\ndata_Lisbon = table_example[table_example$origin == \"Home\",]\n\nFilter trips with origin different from Home\n\ndata_out_Lisbon = table_example[table_example$origin != \"Home\",]\n\nRemove the first column\n\ntable_example_2 = table_example[ ,-1] #first column\n\nCreate a table only with origin, destination\nThere are many ways to do the same operation.\n\nnames(table_example)\n\n[1] \"modes\"       \"Trips\"       \"origin\"      \"destination\"\n\n\n\ndata_OD = table_example[ ,c(3,4)]\n\n\ndata_OD2 = table_example[ ,-c(1:2)] #Or use a comma.",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
+    ]
+  },
+  {
+    "objectID": "Data_Treatment.html",
+    "href": "Data_Treatment.html",
+    "title": "5  Data treatment",
+    "section": "",
+    "text": "5.1 About the Data\nHourly pedestrian counts from automatic sensors in our local area.\nData is openly available at: https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count\nThis dataset contains hourly pedestrian counts by location in Sydney, Australia.\nAutomated counters were placed in busy areas of the CBD to assess performance.\nData collection began in February 2020 and ended in June 2025.",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#import-dataset",
     "href": "Data_Treatment.html#import-dataset",
-    "title": "4  Data treatment",
-    "section": "4.2 Import Dataset",
-    "text": "4.2 Import Dataset\nThe dataset can be downloaded in many formats.\nYou can also import the data in many formats. Choose the one you prefer\n\nCSV file\n\n\n\nCode\ndata_csv &lt;- read.csv(\"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv\")\n\n\n\nShapefile\n\nFirst Unzip file and place them into the ´Data´ file.\n\n\nCode\n#Unzip file\n\nunzip(\"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip\", junkpaths = TRUE)\n\n\n\n\nCode\nlibrary(sf)\n \ndata_shapefile &lt;- read_sf(\"Automatic_Hourly_Pedestrian_Count.shp\")",
+    "title": "5  Data treatment",
+    "section": "5.2 Import Dataset",
+    "text": "5.2 Import Dataset\nThe dataset can be downloaded in many formats.\nYou can also import the data in many formats. Choose the one you prefer\n\nCSV file\n\n\n\nCode\ndata_csv &lt;- read.csv(\"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv\")\n\n\n\nShapefile\n\nFirst Unzip file and place them into the ´Data´ file.\n\n\nCode\n#Unzip file\n\nunzip(\"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip\", junkpaths = TRUE)\n\n\n\n\nCode\nlibrary(sf)\n \ndata_shapefile &lt;- read_sf(\"Automatic_Hourly_Pedestrian_Count.shp\")",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#convert-dataset-into-dataframe",
     "href": "Data_Treatment.html#convert-dataset-into-dataframe",
-    "title": "4  Data treatment",
-    "section": "4.3 Convert dataset into dataframe",
-    "text": "4.3 Convert dataset into dataframe\nIt is good practice to: * convert the database into dataframe, as many packages only work with dataframes. * To not work on the raw dataset.\n\n\nCode\nlibrary(tidyverse)\ndf &lt;- data.frame(data_csv)",
+    "title": "5  Data treatment",
+    "section": "5.3 Convert dataset into dataframe",
+    "text": "5.3 Convert dataset into dataframe\nIt is good practice to: * convert the database into dataframe, as many packages only work with dataframes. * To not work on the raw dataset.\n\n\nCode\nlibrary(tidyverse)\ndf &lt;- data.frame(data_csv)",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#check-the-dataset",
     "href": "Data_Treatment.html#check-the-dataset",
-    "title": "4  Data treatment",
-    "section": "4.4 Check the dataset",
-    "text": "4.4 Check the dataset\nStructure of the dataset\n\n\nCode\nstr(df)\n\n\n'data.frame':   188720 obs. of  13 variables:\n $ Location_code       : chr  \"A004\" \"A003\" \"A002\" \"A001\" ...\n $ Location_Name       : chr  \"Park Street\" \"Market Street\" \"Elizabeth Street\" \"Bridge Street\" ...\n $ Date                : chr  \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" ...\n $ TotalCount          : int  3234 2454 596 870 3943 3161 978 1382 2887 1954 ...\n $ Hour                : int  13 13 13 13 12 12 12 12 11 11 ...\n $ Day                 : chr  \"Friday\" \"Friday\" \"Friday\" \"Friday\" ...\n $ DayNo               : int  5 5 5 5 5 5 5 5 5 5 ...\n $ Week                : num  2025 2025 2025 2025 2025 ...\n $ LastWeek            : int  4241 2788 785 990 3559 2967 732 1266 2823 1976 ...\n $ Previous4DayTimeAvg : int  3906 2676 725 954 3643 2930 822 1242 2777 1859 ...\n $ ObjectId            : int  1 2 3 4 5 6 7 8 9 10 ...\n $ LastYear            : int  3242 2679 800 1035 3100 2796 792 1295 2337 1850 ...\n $ Previous52DayTimeAvg: int  3735 2622 800 940 3423 2698 812 1119 2705 1830 ...\n\n\nSummary\n\n\nCode\nlibrary(skimr)\nskim(df)\n\n\n\nData summary\n\n\nName\ndf\n\n\nNumber of rows\n188720\n\n\nNumber of columns\n13\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n9\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nLocation_code\n0\n1\n4\n4\n0\n4\n0\n\n\nLocation_Name\n0\n1\n11\n16\n0\n4\n0\n\n\nDate\n0\n1\n22\n22\n0\n47221\n0\n\n\nDay\n0\n1\n6\n9\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nTotalCount\n0\n1.00\n731.49\n911.69\n0.00\n85.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nHour\n0\n1.00\n11.50\n6.92\n0.00\n6.00\n11.00\n17.00\n23.00\n▇▇▆▇▇\n\n\nDayNo\n0\n1.00\n3.00\n2.00\n0.00\n1.00\n3.00\n5.00\n6.00\n▇▅▃▅▇\n\n\nWeek\n0\n1.00\n2022.59\n1.56\n2020.07\n2021.25\n2022.44\n2024.09\n2025.27\n▇▇▇▇▇\n\n\nLastWeek\n848\n1.00\n731.71\n911.50\n0.00\n86.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nPrevious4DayTimeAvg\n2016\n0.99\n728.48\n885.02\n0.00\n94.00\n388.00\n1008.00\n6271.00\n▇▂▁▁▁\n\n\nObjectId\n0\n1.00\n94360.50\n54478.92\n1.00\n47180.75\n94360.50\n141540.25\n188720.00\n▇▇▇▇▇\n\n\nLastYear\n36052\n0.81\n676.33\n838.84\n0.00\n83.00\n348.00\n938.00\n7129.00\n▇▁▁▁▁\n\n\nPrevious52DayTimeAvg\n34272\n0.82\n729.73\n832.10\n1.00\n118.00\n418.00\n1048.00\n5325.00\n▇▂▁▁▁\n\n\n\n\n\nCheck Missing data\n\n\nCode\ntable(is.na(df))\n\n\n\n  FALSE    TRUE \n2380172   73188 \n\n\nPlot missing data\n\n\nCode\nlibrary(DataExplorer)\n\nplot_missing(df, plotly = TRUE)\n\n\n\n\n\n\n\nListwise deletion. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.\n\n\n\nCode\ndf_missingListwise = na.omit(df) #removes all rows with at least one NA in any variable\n\n\n\n\nCode\nplot_missing(df_missingListwise)\n\n\n\n\n\n\n\n\n\n\nPairwise deletion. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.\n\n\n\nCode\ndf_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable\n\n\nFor our case, which treatment would be better?\nConvert the variable “Day” into a factor.\n\n\nCode\ndf$Day &lt;- factor(df$Day, labels = c(\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"), ordered = TRUE)\n\nstr(df$Day)\n\n\n Ord.factor w/ 7 levels \"Sunday\"&lt;\"Monday\"&lt;..: 1 1 1 1 1 1 1 1 1 1 ...\n\n\nCheck how many automatic counters there are:\n\n\nCode\nunique(df$Location_code)\n\n\n[1] \"A004\" \"A003\" \"A002\" \"A001\"\n\n\n\n\nCode\nunique(df$Location_Name)\n\n\n[1] \"Park Street\"      \"Market Street\"    \"Elizabeth Street\" \"Bridge Street\"   \n\n\nThe location exact location of the automatic counters is not given in the dataset.\nWe need at least an approximation, to perform spatial analysis.\nCheck the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/\nGo to Google Maps and retrieve the locations:\n\nA001: -33.863518, 151.209968\nA002: -33.871667, 151.210080\nA003: -33.870783, 151.206607\nA004: -33.873041, 151.207565",
+    "title": "5  Data treatment",
+    "section": "5.4 Check the dataset",
+    "text": "5.4 Check the dataset\n\nStructure of the dataset\n\n\n\nCode\nstr(df)\n\n\n'data.frame':   188720 obs. of  13 variables:\n $ Location_code       : chr  \"A004\" \"A003\" \"A002\" \"A001\" ...\n $ Location_Name       : chr  \"Park Street\" \"Market Street\" \"Elizabeth Street\" \"Bridge Street\" ...\n $ Date                : chr  \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" ...\n $ TotalCount          : int  3234 2454 596 870 3943 3161 978 1382 2887 1954 ...\n $ Hour                : int  13 13 13 13 12 12 12 12 11 11 ...\n $ Day                 : chr  \"Friday\" \"Friday\" \"Friday\" \"Friday\" ...\n $ DayNo               : int  5 5 5 5 5 5 5 5 5 5 ...\n $ Week                : num  2025 2025 2025 2025 2025 ...\n $ LastWeek            : int  4241 2788 785 990 3559 2967 732 1266 2823 1976 ...\n $ Previous4DayTimeAvg : int  3906 2676 725 954 3643 2930 822 1242 2777 1859 ...\n $ ObjectId            : int  1 2 3 4 5 6 7 8 9 10 ...\n $ LastYear            : int  3242 2679 800 1035 3100 2796 792 1295 2337 1850 ...\n $ Previous52DayTimeAvg: int  3735 2622 800 940 3423 2698 812 1119 2705 1830 ...\n\n\n\nSummary of the dataset\n\n\n\nCode\nlibrary(skimr)\nskim(df)\n\n\n\nData summary\n\n\nName\ndf\n\n\nNumber of rows\n188720\n\n\nNumber of columns\n13\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n9\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nLocation_code\n0\n1\n4\n4\n0\n4\n0\n\n\nLocation_Name\n0\n1\n11\n16\n0\n4\n0\n\n\nDate\n0\n1\n22\n22\n0\n47221\n0\n\n\nDay\n0\n1\n6\n9\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nTotalCount\n0\n1.00\n731.49\n911.69\n0.00\n85.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nHour\n0\n1.00\n11.50\n6.92\n0.00\n6.00\n11.00\n17.00\n23.00\n▇▇▆▇▇\n\n\nDayNo\n0\n1.00\n3.00\n2.00\n0.00\n1.00\n3.00\n5.00\n6.00\n▇▅▃▅▇\n\n\nWeek\n0\n1.00\n2022.59\n1.56\n2020.07\n2021.25\n2022.44\n2024.09\n2025.27\n▇▇▇▇▇\n\n\nLastWeek\n848\n1.00\n731.71\n911.50\n0.00\n86.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nPrevious4DayTimeAvg\n2016\n0.99\n728.48\n885.02\n0.00\n94.00\n388.00\n1008.00\n6271.00\n▇▂▁▁▁\n\n\nObjectId\n0\n1.00\n94360.50\n54478.92\n1.00\n47180.75\n94360.50\n141540.25\n188720.00\n▇▇▇▇▇\n\n\nLastYear\n36052\n0.81\n676.33\n838.84\n0.00\n83.00\n348.00\n938.00\n7129.00\n▇▁▁▁▁\n\n\nPrevious52DayTimeAvg\n34272\n0.82\n729.73\n832.10\n1.00\n118.00\n418.00\n1048.00\n5325.00\n▇▂▁▁▁",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
+    ]
+  },
+  {
+    "objectID": "Data_Treatment.html#check-missing-data",
+    "href": "Data_Treatment.html#check-missing-data",
+    "title": "5  Data treatment",
+    "section": "5.5 Check Missing data",
+    "text": "5.5 Check Missing data\n\n\nCode\ntable(is.na(df))\n\n\n\n  FALSE    TRUE \n2380172   73188 \n\n\n\nPlot missing data\n\n\n\nCode\nlibrary(DataExplorer)\n\nplot_missing(df)\n\n\n\n\n\n\n\n\n\n\nListwise deletion. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.\n\n\n\nCode\ndf_missingListwise = na.omit(df) #removes all rows with at least one NA in any variable\n\n\n\n\nCode\nplot_missing(df_missingListwise)\n\n\n\n\n\n\n\n\n\n\nPairwise deletion. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.\n\n\n\nCode\ndf_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable\n\n\nFor our case, which treatment would be better?\n\nNote: There are many methods for treating missing data, such as replacing the values by the mean, median or using more complex imputation methods (e.g. k‑Nearest Neighbors (kNN) Imputation).",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
+    ]
+  },
+  {
+    "objectID": "Data_Treatment.html#treat-existent-variables",
+    "href": "Data_Treatment.html#treat-existent-variables",
+    "title": "5  Data treatment",
+    "section": "5.6 Treat existent variables",
+    "text": "5.6 Treat existent variables\n\nConvert the variable “Day” into a factor\n\n\n\nCode\ndf$Day &lt;- factor(df$Day, labels = c(\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"), ordered = TRUE)\n\nstr(df$Day)\n\n\n Ord.factor w/ 7 levels \"Sunday\"&lt;\"Monday\"&lt;..: 1 1 1 1 1 1 1 1 1 1 ...\n\n\nCheck how many automatic counters there are:\n\n\nCode\nunique(df$Location_code)\n\n\n[1] \"A004\" \"A003\" \"A002\" \"A001\"\n\n\n\n\nCode\nunique(df$Location_Name)\n\n\n[1] \"Park Street\"      \"Market Street\"    \"Elizabeth Street\" \"Bridge Street\"   \n\n\nThe location exact location of the automatic counters is not given in the dataset.\nWe need at least an approximation, to perform spatial analysis.\nCheck the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/\nGo to Google Maps and retrieve the locations:\n\nA001: -33.863518, 151.209968\nA002: -33.871667, 151.210080\nA003: -33.870783, 151.206607\nA004: -33.873041, 151.207565",
+    "crumbs": [
+      "**Day 1**",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#create-variable-with-latitude-and-longitude-of-dataset",
     "href": "Data_Treatment.html#create-variable-with-latitude-and-longitude-of-dataset",
-    "title": "4  Data treatment",
-    "section": "4.5 Create variable with latitude and longitude of dataset",
-    "text": "4.5 Create variable with latitude and longitude of dataset\n\n\nCode\ndf$Latitude[df$Location_code == \"A001\"] &lt;- -33.863518\ndf$Longitude[df$Location_code == \"A001\"] &lt;- 151.209968\n\ndf$Latitude[df$Location_code == \"A002\"] &lt;- -33.871667\ndf$Longitude[df$Location_code == \"A002\"] &lt;- 151.210080\n\ndf$Latitude[df$Location_code == \"A003\"] &lt;- -33.870783\ndf$Longitude[df$Location_code == \"A003\"] &lt;- 151.206607\n\ndf$Latitude[df$Location_code == \"A004\"] &lt;- -33.873041\ndf$Longitude[df$Location_code == \"A004\"] &lt;- 151.207565",
+    "title": "5  Data treatment",
+    "section": "5.7 Create variable with latitude and longitude of dataset",
+    "text": "5.7 Create variable with latitude and longitude of dataset\n\n\nCode\ndf$Latitude[df$Location_code == \"A001\"] &lt;- -33.863518\ndf$Longitude[df$Location_code == \"A001\"] &lt;- 151.209968\n\ndf$Latitude[df$Location_code == \"A002\"] &lt;- -33.871667\ndf$Longitude[df$Location_code == \"A002\"] &lt;- 151.210080\n\ndf$Latitude[df$Location_code == \"A003\"] &lt;- -33.870783\ndf$Longitude[df$Location_code == \"A003\"] &lt;- 151.206607\n\ndf$Latitude[df$Location_code == \"A004\"] &lt;- -33.873041\ndf$Longitude[df$Location_code == \"A004\"] &lt;- 151.207565",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#create-an-geometry-variable",
     "href": "Data_Treatment.html#create-an-geometry-variable",
-    "title": "4  Data treatment",
-    "section": "4.6 Create an Geometry variable",
-    "text": "4.6 Create an Geometry variable\n\n\nCode\nlibrary(sf)\n\n\nLinking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE\n\n\nCode\ndf_sf &lt;- st_as_sf(\n  df,\n  coords = c(\"Longitude\", \"Latitude\"),\n  crs = 4326\n)\n\n\n\nNote: Google Maps uses WGS84, which corresponds to EPSG = 4326\n\nCreate an iterative map\n\n\nCode\nlibrary(mapview)\n\ndf_map &lt;- unique(df_sf$geometry)\nmapview(df_map)",
+    "title": "5  Data treatment",
+    "section": "5.8 Create an Geometry variable",
+    "text": "5.8 Create an Geometry variable\n\n\nCode\nlibrary(sf)\n\ndf_sf &lt;- st_as_sf(\n  df,\n  coords = c(\"Longitude\", \"Latitude\"),\n  crs = 4326\n)\n\n\n\nNote: Google Maps uses WGS84, which corresponds to EPSG = 4326\n\nCreate an iterative map\n\n\nCode\nlibrary(mapview)\n\ndf_map &lt;- unique(df_sf$geometry)\nmapview(df_map)",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#have-date-and-time-in-separate-variables",
     "href": "Data_Treatment.html#have-date-and-time-in-separate-variables",
-    "title": "4  Data treatment",
-    "section": "4.7 Have date and time in separate variables",
-    "text": "4.7 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCheck the class of the variable ´Date´\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\nCreate new variables separating Date, Year, and Time\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")",
+    "title": "5  Data treatment",
+    "section": "5.9 Have date and time in separate variables",
+    "text": "5.9 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCheck the class of the variable ´Date´\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\nCreate new variables separating Date, Year, and Time\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "Data_Treatment.html#make-some-initial-plots",
     "href": "Data_Treatment.html#make-some-initial-plots",
-    "title": "4  Data treatment",
-    "section": "4.8 Make some initial plots",
-    "text": "4.8 Make some initial plots\n\nTotal pedestrian counts over time\n\n\n\nCode\nlibrary(ggplot2)\n\nggplot(df_sf, aes(x = Date, y = TotalCount)) +\n  geom_line(linewidth = 1) +\n    scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nTotal pedestrian counts per counter over time\n\n\n\nCode\nggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +\n  geom_line() +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_gray() +\n  theme(axis.text.x = element_text(angle = 90, size = 6)) +\n  scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians by Automatic Counter Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\nFacet_wrap divides the plots per automatic counter.\n\nTendency of total pedestrian counts per counter aggregated by year\n\n\n\nCode\nggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 4) +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 7)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))\n\n\n\n\n\n\n\n\n\n\nTotal number of pedestrians per time\n\n\n\nCode\nggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 1) +\n  facet_wrap(~ Location_code, scales =\"free_y\") +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))\n\n\n\n\n\n\n\n\n\nTry changing the themes for different appearances.\n\nNote: Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/",
+    "title": "5  Data treatment",
+    "section": "5.10 Make some initial plots",
+    "text": "5.10 Make some initial plots\n\nTotal pedestrian counts over time\n\n\n\nCode\nlibrary(ggplot2)\n\nggplot(df_sf, aes(x = Date, y = TotalCount)) +\n  geom_line(linewidth = 1) +\n    scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nTotal pedestrian counts per counter over time\n\n\n\nCode\nggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +\n  geom_line() +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_gray() +\n  theme(axis.text.x = element_text(angle = 90, size = 6)) +\n  scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians by Automatic Counter Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\nFacet_wrap divides the plots per automatic counter.\n\nTendency of total pedestrian counts per counter aggregated by year\n\n\n\nCode\nggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 4) +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 7)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))\n\n\n\n\n\n\n\n\n\n\nTotal number of pedestrians per time\n\n\n\nCode\nggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 1) +\n  facet_wrap(~ Location_code, scales =\"free_y\") +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))\n\n\n\n\n\n\n\n\n\nTry changing the themes for different appearances.\n\nNote: Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/",
     "crumbs": [
       "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
-    ]
-  },
-  {
-    "objectID": "Data_Treatment.html#create-a-combined-variables-to-analyze",
-    "href": "Data_Treatment.html#create-a-combined-variables-to-analyze",
-    "title": "4  Data treatment",
-    "section": "4.9 Create a combined variables to analyze:",
-    "text": "4.9 Create a combined variables to analyze:\n\nDay of Week + Year\n\n\n\nCode\nlibrary(dplyr)\n\n\n\ndf_sf &lt;- df_sf %&gt;%\n  mutate(\n    Year = format(Date, \"%Y\"),\n    DayYear = paste(Day, Year, sep = \"_\"),\n    DayYear = factor(DayYear, levels = unique(DayYear))  # preserve order\n  )\n\n\nPlot\n\n\nCode\nggplot(df_sf, aes(x = DayYear, y = TotalCount, colour = Day)) +\n  geom_line(size =3) +\n  # geom_point(size = 2) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(angle = 90, size = 7)\n  )\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\nCriar uma variavel de juntar por dia semana e por ano.\nmutate e um groupby e summarize para fazer a soma de total counts.\ngrafico para os 5 dias da semana.",
-    "crumbs": [
-      "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
-    ]
-  },
-  {
-    "objectID": "Data_Treatment.html#import-land-use-data-and-integrate-with-existing-data",
-    "href": "Data_Treatment.html#import-land-use-data-and-integrate-with-existing-data",
-    "title": "4  Data treatment",
-    "section": "4.10 Import land use data and integrate with existing data",
-    "text": "4.10 Import land use data and integrate with existing data\nhttps://data.cityofsydney.nsw.gov.au/pages/open-data#Categories\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed).",
-    "crumbs": [
-      "**Day 1**",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data treatment</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
   {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "5  References",
+    "title": "6  References",
     "section": "",
-    "text": "5.1 Reading materials",
+    "text": "6.1 Reading materials",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
     "objectID": "references.html#reading-materials",
     "href": "references.html#reading-materials",
-    "title": "5  References",
+    "title": "6  References",
     "section": "",
     "text": "xxxxx",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
     "objectID": "references.html#passive-urban-mobility-open-source-datasets",
     "href": "references.html#passive-urban-mobility-open-source-datasets",
-    "title": "5  References",
-    "section": "5.2 Passive urban mobility open source datasets",
-    "text": "5.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
+    "title": "6  References",
+    "section": "6.2 Passive urban mobility open source datasets",
+    "text": "6.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
