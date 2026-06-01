@@ -254,7 +254,11 @@ ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
   facet_wrap(~ Location_code) + # insert "scales = "free_y" to adapt the maximum of Y in each plot
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7)) +
-  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +
+  labs(
+    x = "Year",
+    y = "Total Nº of Pedestrians"
+  )
 ```
 * **Total number of pedestrians per time**
 
@@ -264,7 +268,11 @@ ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
   facet_wrap(~ Location_code, scales ="free_y") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +
-  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +
+  labs(
+    x = "Time",
+    y = "Total Nº of Pedestrians"
+  )
 ```
 
 Try changing the *themes* for different appearances.
