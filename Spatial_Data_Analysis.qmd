@@ -4,20 +4,92 @@ title: "Spatial Data Analysis"
 ## Import libraries
 
 ```{r}
-library(osmdata)
-library(sf)
+# library(osmdata)
+# library(sf)
 library(dplyr)
-library(terra)
+# library(terra)
+library(ggplot2)
 library(tidyverse)
+library(osmextract)
 ```
 
+We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway ). 
+
 ## Import OpenStreetMap data
+
+* **Check the available features in OpenStreetMap**
+
+```{r}
+cycleways_england = oe_get(
+  "Sydney",
+  quiet = FALSE,
+  query = "SELECT * FROM 'lines' WHERE highway = 'cycleway'"
+)
+par(mar = rep(0.1, 4))
+plot(sf::st_geometry(cycleways_england))
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 * **Define study area**
 
 ```{r}
-bbox <- getbb("Sydney, Australia")
+cycleways_england = oe_get(
+  "England",
+  quiet = FALSE,
+  query = "SELECT * FROM 'lines' WHERE highway = 'cycleway'"
+)
+par(mar = rep(0.1, 4))
+plot(sf::st_geometry(cycleways_england))
 ```
 
-* 
+```{r, eval=FALSE}
+road_osm = oe_get("Australia", 
+                    boundary = bbox, # crop the results only to the city limit
+                    provider = "geofabrik",
+                    stringsAsFactors = FALSE,
+                    quiet = FALSE,
+                    force_download = TRUE,
+                    force_vectortranslate = TRUE, # as shp
+                    download_directory = "database/"
+                    ) #845 MB! June2026
+```
+
+```{r}
+plot(sf::st_geometry(road_osm))
+```
+
+
+```{r}
+road_network = road_osm %>% 
+  dplyr::filter(highway %in% c('motorway',"motorway_link",'primary', "primary_link",
+                               'secondary',"secondary_link", "trunk", 'trunk_link',
+                               "tertiary", "tertiary_link", "pedestrian",
+                               "residential", "living_street", "unclassified", "service")
+                | man_made %in% c("bridge")) #remove: cycleway,
+```
+
+
+
+
+```{r}
+sydney_road <- bbox %>% 
+  opq(timeout = 120) %>%
+  add_osm_feature(key = "highway", 
+                  value = c("motorway", "primary", "secondary")) %>%
+  osmdata_sf()
+```
+
+
+* **Import Land-use Data** 
 
