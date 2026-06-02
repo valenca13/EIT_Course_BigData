@@ -152,7 +152,7 @@ df$Latitude[df$Location_code == "A004"] <- -33.873041
 df$Longitude[df$Location_code == "A004"] <- 151.207565
 ```
 
-## Create an *Geometry* variable
+## Create a *Geometry* variable
 
 ```{r}
 #| warning: false
