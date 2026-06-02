@@ -31,7 +31,7 @@ book:
       - r-basics.qmd
       - Data_Treatment.qmd
     - part: "**Day 2**"
-    - chapters: 
+      chapters: 
       - Spatial_Data_Analysis.qmd
     - references.qmd
     - about.qmd
