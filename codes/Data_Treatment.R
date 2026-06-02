@@ -1,4 +1,11 @@
- 
+#' ---
+#' title: "Data treatment"
+#' format: html
+#' editor: visual
+#' execute: 
+#'   cache: false
+#' ---
+#' 
 #' ## About the Data
 #' 
 #' Hourly pedestrian counts from automatic sensors in our local area.
@@ -33,7 +40,8 @@ data_csv <- read.csv("https://github.com/valenca13/EIT_Course_BigData/releases/d
 # unzip("Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip", junkpaths = TRUE)
 
 #' 
-library(sf)
+## ----eval= FALSE-----------------------------------------------
+# library(sf)
 # 
 # data_shapefile <- read_sf("Automatic_Hourly_Pedestrian_Count.shp")
 
@@ -42,7 +50,8 @@ library(sf)
 #' 
 #' It is good practice to: \* convert the database into dataframe, as many packages only work with dataframes. \* To not work on the raw dataset.
 #' 
-
+## --------------------------------------------------------------
+#| warning: false
 library(tidyverse)
 df <- data.frame(data_csv)
 
@@ -146,6 +155,7 @@ df$Longitude[df$Location_code == "A004"] <- 151.207565
 #' ## Create an *Geometry* variable
 #' 
 ## --------------------------------------------------------------
+#| warning: false
 library(sf)
 
 df_sf <- st_as_sf(
@@ -196,7 +206,7 @@ df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
 #' 
 #' ## Make some initial plots
 #' 
-#' * Total pedestrian counts over time
+#' * **Total pedestrian counts over time**
 #' 
 ## --------------------------------------------------------------
 library(ggplot2)
@@ -215,7 +225,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   theme_minimal()
 
 #' 
-#' * Total pedestrian counts per counter over time
+#' * **Total pedestrian counts per counter over time**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
@@ -236,7 +246,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
 #' 
 #' *Facet_wrap* divides the plots per automatic counter.
 #' 
-#' * Tendency of total pedestrian counts per counter aggregated by year
+#' * **Tendency of total pedestrian counts per counter aggregated by year**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
@@ -244,9 +254,13 @@ ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
   facet_wrap(~ Location_code) + # insert "scales = "free_y" to adapt the maximum of Y in each plot
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7)) +
-  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +
+  labs(
+    x = "Year",
+    y = "Total Nº of Pedestrians"
+  )
 
-#' * Total number of pedestrians per time
+#' * **Total number of pedestrians per time**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
@@ -254,41 +268,17 @@ ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
   facet_wrap(~ Location_code, scales ="free_y") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +
-  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2))
+  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +
+  labs(
+    x = "Time",
+    y = "Total Nº of Pedestrians"
+  )
 
 #' 
 #' Try changing the *themes* for different appearances.
 #' 
 #' > **Note:** Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/
 #' 
-#' ## Create a combined variables to analyze:
-#' 
-#' -   Day of Week + Year
-#' 
-## --------------------------------------------------------------
-library(dplyr)
-
-
-
-df_sf <- df_sf %>%
-  mutate(
-    Year = format(Date, "%Y"),
-    DayYear = paste(Day, Year, sep = "_"),
-    DayYear = factor(DayYear, levels = unique(DayYear))  # preserve order
-  )
-
-#' 
-#' Plot
-#' 
-## --------------------------------------------------------------
-ggplot(df_sf, aes(x = DayYear, y = TotalCount, colour = Day)) +
-  geom_line(size =3) +
-  # geom_point(size = 2) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 90, size = 7)
-  )
-
 #' 
 ## --------------------------------------------------------------
 #| include: false
@@ -296,25 +286,3 @@ ggplot(df_sf, aes(x = DayYear, y = TotalCount, colour = Day)) +
 # # this coverts this quarto to a plain r script
 # knitr::purl("Data_Treatment.qmd", "codes/Data_Treatment.R", documentation = 2)
 
-#' 
-#' 
-#' 
-#' 
-#' Criar uma variavel de juntar por dia semana e por ano.
-#' 
-#' mutate e um groupby e summarize para fazer a soma de total counts.
-#' 
-#' grafico para os 5 dias da semana.
-#' 
-#' ## Import land use data and integrate with existing data
-#' 
-#' https://data.cityofsydney.nsw.gov.au/pages/open-data#Categories
-#' 
-#' You can add options to executable code like this
-#' 
-## --------------------------------------------------------------
-#| echo: false
-2 * 2
-
-#' 
-#' The `echo: false` option disables the printing of code (only output is displayed).
