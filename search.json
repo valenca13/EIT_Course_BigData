@@ -299,33 +299,55 @@
     ]
   },
   {
+    "objectID": "Spatial_Data_Analysis.html",
+    "href": "Spatial_Data_Analysis.html",
+    "title": "6  Spatial Data Analysis",
+    "section": "",
+    "text": "6.1 Import libraries\nCode\nlibrary(osmdata)\n\n\nData (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright\n\n\nCode\nlibrary(sf)\n\n\nLinking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE\n\n\nCode\nlibrary(dplyr)\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\nlibrary(terra)\n\n\nterra 1.9.25\n\n\nCode\nlibrary(tidyverse)\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.1     ✔ readr     2.2.0\n✔ ggplot2   4.0.2     ✔ stringr   1.6.0\n✔ lubridate 1.9.5     ✔ tibble    3.3.1\n✔ purrr     1.2.2     ✔ tidyr     1.3.2\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ tidyr::extract() masks terra::extract()\n✖ dplyr::filter()  masks stats::filter()\n✖ dplyr::lag()     masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "crumbs": [
+      "**Day 2**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "Spatial_Data_Analysis.html#import-openstreetmap-data",
+    "href": "Spatial_Data_Analysis.html#import-openstreetmap-data",
+    "title": "6  Spatial Data Analysis",
+    "section": "6.2 Import OpenStreetMap data",
+    "text": "6.2 Import OpenStreetMap data\n\nDefine study area\n\n\n\nCode\nbbox &lt;- getbb(\"Sydney, Australia\")",
+    "crumbs": [
+      "**Day 2**",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "6  References",
+    "title": "7  References",
     "section": "",
-    "text": "6.1 Reading materials",
+    "text": "7.1 Reading materials",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
     "objectID": "references.html#reading-materials",
     "href": "references.html#reading-materials",
-    "title": "6  References",
+    "title": "7  References",
     "section": "",
     "text": "xxxxx",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
     "objectID": "references.html#passive-urban-mobility-open-source-datasets",
     "href": "references.html#passive-urban-mobility-open-source-datasets",
-    "title": "6  References",
-    "section": "6.2 Passive urban mobility open source datasets",
-    "text": "6.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
+    "title": "7  References",
+    "section": "7.2 Passive urban mobility open source datasets",
+    "text": "7.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>References</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
