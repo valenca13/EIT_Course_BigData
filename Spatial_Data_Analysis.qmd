@@ -188,6 +188,14 @@ library(tidygraph)
 graph <- as_tbl_graph(graph)
 ```
 
+Centrality
+
+```{r}
+graph <- graph %>%
+  activate(edges) %>%
+  mutate(length = st_length(geometry))
+```
+
 
 ```{r}
 graph <- graph %>%
@@ -197,8 +205,30 @@ graph <- graph %>%
   activate(edges) %>%
   mutate(betweenness = centrality_edge_betweenness(weights = length))
 
-graph
 ```
+
+```{r}
+ggplot() +
+  geom_sf(data = graph %>% activate(edges) %>% as_tibble() %>% st_as_sf(), col = 'grey50') + 
+  geom_sf(data = graph %>% activate(nodes) %>% as_tibble() %>% st_as_sf(), aes(col = betweenness, size = betweenness)) +
+  scale_colour_viridis_c(option = 'inferno') +
+  scale_size_continuous(range = c(0,4))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
