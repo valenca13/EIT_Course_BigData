@@ -41,10 +41,18 @@ table(is.na(OSM_Sydney$highway))
 unique(OSM_Sydney$highway)
 ```
 
+## Clean the dataset
 
-* Clean the dataset
+* **Filter the dataset only for the main 'Highway' classifications** 
 
-We do not need all the variables. Remove variables that are not useful. 
+```{r}
+Sydney_main_roads = OSM_Sydney %>% 
+  filter(highway %in% c("motorway", "trunk", "primary", "secondary", "tertiary", "residential"))
+```
+
+> **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway
+
+**Remove variables that are not useful** 
 
 Check the order of the variables
 
@@ -52,18 +60,19 @@ Check the order of the variables
 names(OSM_Sydney)
 ```
 ```{r}
-
+Sydney_main_roads <- Sydney_main_roads[,-c(4:12)]
 ```
 
-
-
+* **Plot the filtered network**
 
 ```{r}
-#| eval: false
-#| include: false
-Sydney_main_roads = OSM_Sydney %>% 
-  filter(highway %in% c("primary", "secondary", "tertiary", "trunk"))
+par(mar = rep(0.1, 4))
+plot(sf::st_geometry(Sydney_main_roads))
 ```
+## Centrality measures
+
+* Betweenness centrality
+
 
 
 
