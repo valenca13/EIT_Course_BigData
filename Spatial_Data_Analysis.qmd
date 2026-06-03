@@ -73,10 +73,196 @@ plot(sf::st_geometry(Sydney_main_roads))
 
 * Betweenness centrality
 
+```{r}
+library(igraph)
+library(sf)
+library(dplyr)
+```
+
+Give each edge an unique index
+
+```{r}
+edges <- Sydney_main_roads %>%
+  mutate(edgeID = c(1:n()))
+```
+
+Create nodes at the start and end point of each edge
+
+```{r}
+nodes <- edges %>%
+  st_coordinates() %>%
+  as_tibble() %>%
+  rename(edgeID = L1) %>%
+  group_by(edgeID) %>%
+  slice(c(1, n())) %>%
+  ungroup() %>%
+  mutate(start_end = rep(c('start', 'end'), times = n()/2))
+
+head(nodes) #show the first values
+```
+
+Give each node an unique index
+
+```{r}
+nodes <- nodes |>
+  mutate(
+    xy = paste(X, Y),
+    nodeID = as.integer(factor(xy))
+  ) |>
+  select(-xy)
+
+head(nodes)
+```
+
+Combine the node indices with the edges
+
+```{r}
+source_nodes <- nodes %>%
+  filter(start_end == 'start') %>%
+  pull(nodeID)
+
+target_nodes <- nodes %>%
+  filter(start_end == 'end') %>%
+  pull(nodeID)
+
+edges = edges %>%
+  mutate(from = source_nodes, to = target_nodes)
+
+edges
+```
+
+Remove duplicate nodes
+
+```{r}
+nodes <- nodes %>%
+  distinct(nodeID, .keep_all = TRUE) %>%
+  select(-c(edgeID, start_end)) %>%
+  st_as_sf(coords = c('X', 'Y')) %>%
+  st_set_crs(st_crs(edges))
+
+nodes
+```
+
+Convert to tbl_graph
+
+```{r}
+library(tidygraph)
+```
+
+
+```{r}
+graph = tbl_graph(nodes = nodes, edges = as_tibble(edges), directed = FALSE)
+
+graph
+```
+
+Putting it together
+
+```{r}
+
+
+# sf_to_tidygraph(Sydney_main_roads, directed = FALSE)
+```
+
+Plot with activate funciton
+
+```{r}
+library(tmap)
+```
+
+```{r}
+tmap_mode('view')
+
+tm_shape(graph %>% activate(edges) %>% as_tibble() %>% st_as_sf()) +
+  tm_lines() +
+tm_shape(graph %>% activate(nodes) %>% as_tibble() %>% st_as_sf()) +
+  tm_dots() +
+tmap_options(basemaps = 'OpenStreetMap')
+```
+
+Centrality measures
+
+```{r}
+library(tidygraph)
+
+graph <- as_tbl_graph(graph)
+```
+
+
+```{r}
+graph <- graph %>%
+  activate(nodes) %>%
+  mutate(degree = centrality_degree()) %>%
+  mutate(betweenness = centrality_betweenness(weights = length)) %>%
+  activate(edges) %>%
+  mutate(betweenness = centrality_edge_betweenness(weights = length))
+
+graph
+```
 
 
 
 
+
+
+The geometry is a "Linestring", convert it to edges
+
+```{r}
+sf_lines <- st_as_sf(Sydney_main_roads, wkt = "geometry")
+```
+
+
+```{r}
+edges <- sf_lines |>
+  st_coordinates() |>
+  as.data.frame() |>
+  group_by(L1) |>
+  mutate(next_x = lead(X),
+         next_y = lead(Y)) |>
+  filter(!is.na(next_x)) |>
+  transmute(
+    from = paste(X, Y, sep = ","),
+    to   = paste(next_x, next_y, sep = ",")
+  )
+```
+
+Build igraph object
+
+```{r}
+g <- graph_from_data_frame(edges, directed = FALSE)
+```
+
+Centrality measures
+
+```{r}
+degree <- degree(g)
+```
+
+```{r}
+closeness <- closeness(g)
+```
+
+```{r}
+betweenness <- betweenness(g)
+```
+
+```{r}
+centrality <- data.frame(
+  node = names(degree),
+  degree = degree,
+  betweenness = betweenness,
+  closeness = closeness
+)
+```
+
+```{r}
+plot(
+  g,
+  vertex.size = scales::rescale(degree, to = c(8, 30)),
+  vertex.label.cex = 0.8,
+  main = "Graph with Node Size = Degree"
+)
+```
 
 
 
