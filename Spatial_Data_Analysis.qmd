@@ -46,15 +46,11 @@ amenities_data <- osmdata_sf(amenities_query)
 
 * View the first few rows of the amenities data
 
-```{r}
-head(amenities_data$osm_points)
+```{r, eval = FALSE}
+View(amenities_data$osm_points)
 ```
 
 * Treat dataset
-
-```{r}
-names(amenities_data$osm_points)
-```
 
 ```{r}
 amenities_data_treated <- amenities_data$osm_points[,c(1,2,26,228)]
@@ -65,8 +61,6 @@ amenities_data_treated <- amenities_data$osm_points[,c(1,2,26,228)]
 ```{r}
 unique(amenities_data_treated$amenity)
 ```
-
-
 
 We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
 
@@ -139,6 +133,7 @@ ggplot() +
   labs(title = "Amenities in Sydney", color = "Amenity Type") +
   theme(legend.position = "bottom")
 ```
+
 ## Import pedestrian counting data (assuming it's in a CSV file with geometry)
 
 ```{r}
@@ -147,4 +142,190 @@ pedestrian_data <- read.csv("pedestrian_1.csv")
 
 ## Create a grid over the area of interest
 
+First, we define a bounding box around the pedestrian sensors (e.g., adding a buffer of about 500m/0.005 degrees) to focus our analysis on the active study area in the Sydney CBD.
 
+```{r}
+# Define bounding box around the 4 pedestrian counters with buffer
+bbox_cbd <- st_bbox(c(
+  xmin = 151.2016, ymin = -33.8780,
+  xmax = 151.2151, ymax = -35.8585 # Wait, let's make sure the coordinate sign is correct
+), crs = st_crs(4326))
+
+# Let's fix the ymax/ymin coordinate values: ymin is -33.8780 and ymax is -33.8585
+bbox_cbd <- st_bbox(c(
+  xmin = 151.2016, ymin = -33.8780,
+  xmax = 151.2151, ymax = -33.8585
+), crs = st_crs(4326))
+
+cbd_polygon <- st_as_sfc(bbox_cbd)
+
+# Create a 200x200 grid over the area of interest
+# grid <- st_make_grid(cbd_polygon, n = c(200, 200))
+grid <- st_make_grid(location, n = c(200, 200))
+grid_sf <- st_sf(grid_id = 1:length(grid), geometry = grid)
+```
+
+## Crop the road network and compute centrality measures
+
+To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).
+
+```{r}
+# Crop the road network to the study area
+osm_cbd <- st_intersection(OSM_Sydney, cbd_polygon)
+
+# Extract coordinates and build the graph topology (fixing the grouping bug)
+coords <- st_coordinates(osm_cbd)
+edges <- coords |>
+  as.data.frame() |>
+  mutate(
+    X = round(X, 7),
+    Y = round(Y, 7)
+  ) |>
+  group_by(L1) |>
+  mutate(
+    next_x = lead(X),
+    next_y = lead(Y)
+  ) |>
+  filter(!is.na(next_x)) |>
+  ungroup() |>
+  transmute(
+    from = paste(X, Y, sep = ","),
+    to   = paste(next_x, next_y, sep = ",")
+  )
+
+# Build igraph object
+library(igraph)
+g <- graph_from_data_frame(edges, directed = FALSE) |> simplify()
+
+# Compute centrality measures
+deg <- degree(g)
+bet <- betweenness(g, normalized = TRUE)
+clo <- closeness(g, normalized = TRUE)
+
+# Parse vertex coordinates and create nodes spatial features
+node_names <- V(g)$name
+node_coords <- do.call(rbind, lapply(strsplit(node_names, ","), as.numeric))
+nodes_df <- data.frame(
+  node = node_names,
+  X = node_coords[,1],
+  Y = node_coords[,2],
+  degree = deg,
+  betweenness = bet,
+  closeness = clo
+)
+nodes_sf <- st_as_sf(nodes_df, coords = c("X", "Y"), crs = 4326)
+```
+
+## Extract amenities in the study area
+
+We fetch the amenities (cafes, restaurants, bars, pubs, and banks) in the study area from OpenStreetMap using `osmdata`.
+
+```{r}
+library(osmdata)
+amenities_query <- opq(c(151.2016, -33.8780, 151.2151, -33.8585)) |> 
+  add_osm_feature(key = "amenity", value = c("restaurant", "bank", "bar", "cafe", "pub"))
+
+amenities_data <- osmdata_sf(amenities_query)
+amenities_points <- amenities_data$osm_points |> filter(!is.na(amenity))
+
+# Convert polygons to centroids if there are any and combine them
+if (!is.null(amenities_data$osm_polygons) && nrow(amenities_data$osm_polygons) > 0) {
+  amenities_poly_centroids <- st_centroid(amenities_data$osm_polygons) |> 
+    filter(!is.na(amenity)) |> 
+    select(osm_id, name, amenity, geometry)
+  
+  amenities_points_clean <- amenities_points |> select(osm_id, name, amenity, geometry)
+  amenities_sf <- rbind(amenities_points_clean, amenities_poly_centroids)
+} else {
+  amenities_sf <- amenities_points |> select(osm_id, name, amenity, geometry)
+}
+```
+
+## Spatial join and aggregate all data into the grid
+
+Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.
+
+```{r}
+# 1. Join centrality measures (average per grid cell)
+node_join <- st_join(nodes_sf, grid_sf) |>
+  as.data.frame() |>
+  group_by(grid_id) |>
+  summarize(
+    mean_degree = mean(degree, na.rm = TRUE),
+    mean_betweenness = mean(betweenness, na.rm = TRUE),
+    mean_closeness = mean(closeness, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# 2. Join amenities (count of total and per category per grid cell)
+amenity_join <- st_join(amenities_sf, grid_sf) |>
+  as.data.frame() |>
+  group_by(grid_id) |>
+  summarize(
+    amenities_total = n(),
+    amenities_restaurant = sum(amenity == "restaurant", na.rm = TRUE),
+    amenities_cafe = sum(amenity == "cafe", na.rm = TRUE),
+    amenities_bar = sum(amenity == "bar", na.rm = TRUE),
+    amenities_pub = sum(amenity == "pub", na.rm = TRUE),
+    amenities_bank = sum(amenity == "bank", na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# 3. Join total pedestrian counts (sum of TotalCount per grid cell)
+ped_sensors <- pedestrian_data |>
+  group_by(Location_code, Latitude, Longitude) |>
+  summarize(
+    total_pedestrians = sum(TotalCount, na.rm = TRUE),
+    .groups = "drop"
+  )
+ped_sensors_sf <- st_as_sf(ped_sensors, coords = c("Longitude", "Latitude"), crs = 4326)
+
+ped_join <- st_join(ped_sensors_sf, grid_sf) |>
+  as.data.frame() |>
+  group_by(grid_id) |>
+  summarize(
+    pedestrians = sum(total_pedestrians, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# 4. Merge all attributes back to the grid
+final_grid <- grid_sf |>
+  left_join(node_join, by = "grid_id") |>
+  left_join(amenity_join, by = "grid_id") |>
+  left_join(ped_join, by = "grid_id")
+
+# Fill NAs with 0 for counts
+final_grid <- final_grid |>
+  mutate(
+    pedestrians = ifelse(is.na(pedestrians), 0, pedestrians),
+    amenities_total = ifelse(is.na(amenities_total), 0, amenities_total),
+    amenities_restaurant = ifelse(is.na(amenities_restaurant), 0, amenities_restaurant),
+    amenities_cafe = ifelse(is.na(amenities_cafe), 0, amenities_cafe),
+    amenities_bar = ifelse(is.na(amenities_bar), 0, amenities_bar),
+    amenities_pub = ifelse(is.na(amenities_pub), 0, amenities_pub),
+    amenities_bank = ifelse(is.na(amenities_bank), 0, amenities_bank)
+  )
+```
+
+## Save joined grid data
+
+We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.
+
+```{r}
+# Save the grid as a GeoJSON file
+st_write(final_grid, "grid_joined.geojson", delete_dsn = TRUE)
+```
+
+## Visualize the results
+
+Below is a visualization of the grid cells colored by the average degree centrality of the road network, overlaid with the pedestrian sensors.
+
+```{r}
+ggplot() +
+  geom_sf(data = final_grid, aes(fill = mean_betweenness), color = NA) +
+  scale_fill_viridis_c(na.value = "transparent", name = "Mean Degree") +
+  geom_sf(data = ped_sensors_sf, color = "red", size = 3) +
+  theme_minimal() +
+  labs(title = "Grid Cells (200x200) by Mean Degree Centrality",
+       subtitle = "Pedestrian sensors shown in red")
+```

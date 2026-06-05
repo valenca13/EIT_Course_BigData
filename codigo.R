@@ -46,8 +46,7 @@ betweenness_centrality <- betweenness(road_graph)
 #closeness centrality
 closeness_centrality <- closeness(road_graph)
 
-# Import pedestrian counting data (assuming it's in a CSV file with geometry)
-pedestrian_data <- read.csv("pedestrian_1.csv")
+
 # Convert pedestrian data to an sf object (assuming it has longitude and latitude columns)
 pedestrian_sf <- st_as_sf(pedestrian_data, coords = c("longitude", "latitude"), crs = 4326)
 # Create a grid over the area of interest
