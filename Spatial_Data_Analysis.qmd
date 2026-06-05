@@ -1,9 +1,10 @@
 ---
 title: "Spatial Data Analysis"
 ---
+
 ## Import libraries
 
-```{r}
+```{r, eval = FALSE}
 #| warning: false
 # library(osmdata)
 # library(sf)
@@ -14,7 +15,7 @@ library(tidyverse)
 library(osmextract)
 ```
 
-We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway ). 
+We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
 
 ## Import OpenStreetMap data
 
@@ -22,20 +23,20 @@ We will work with **OpenStreetMap**. Check the available **features** and **tags
 OSM_Sydney = oe_get_network(place = "Sydney") # it will geocode the place
 ```
 
-* Plot the entire network
+-   Plot the entire network
 
 ```{r}
 par(mar = rep(0.1, 4))
 plot(sf::st_geometry(OSM_Sydney))
 ```
 
-* Check for missing data in 'Highway'
+-   Check for missing data in 'Highway'
 
 ```{r}
 table(is.na(OSM_Sydney$highway))
 ```
 
-* Check for the values in 'Highway'
+-   Check for the values in 'Highway'
 
 ```{r}
 unique(OSM_Sydney$highway)
@@ -43,35 +44,39 @@ unique(OSM_Sydney$highway)
 
 ## Clean the dataset
 
-* **Filter the dataset only for the main 'Highway' classifications** 
+-   **Filter the dataset only for the main 'Highway' classifications**
 
 ```{r}
 Sydney_main_roads = OSM_Sydney %>% 
-  filter(highway %in% c("motorway", "trunk", "primary", "secondary", "tertiary", "residential"))
+  filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link")) 
 ```
 
-> **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway
+Try adding the "tertiary", "residential" streets, and the network gets more complex
 
-**Remove variables that are not useful** 
+> **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)
+
+**Remove variables that are not useful**
 
 Check the order of the variables
 
 ```{r}
 names(OSM_Sydney)
 ```
+
 ```{r}
 Sydney_main_roads <- Sydney_main_roads[,-c(4:12)]
 ```
 
-* **Plot the filtered network**
+-   **Plot the filtered network**
 
 ```{r}
 par(mar = rep(0.1, 4))
 plot(sf::st_geometry(Sydney_main_roads))
 ```
+
 ## Centrality measures
 
-* Betweenness centrality
+-   Betweenness centrality
 
 ```{r}
 library(igraph)
@@ -149,7 +154,6 @@ Convert to tbl_graph
 library(tidygraph)
 ```
 
-
 ```{r}
 graph = tbl_graph(nodes = nodes, edges = as_tibble(edges), directed = FALSE)
 
@@ -196,7 +200,6 @@ graph <- graph %>%
   mutate(length = st_length(geometry))
 ```
 
-
 ```{r}
 graph <- graph %>%
   activate(nodes) %>%
@@ -215,32 +218,11 @@ ggplot() +
   scale_size_continuous(range = c(0,4))
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 The geometry is a "Linestring", convert it to edges
 
 ```{r}
 sf_lines <- st_as_sf(Sydney_main_roads, wkt = "geometry")
 ```
-
 
 ```{r}
 edges <- sf_lines |>
@@ -294,7 +276,4 @@ plot(
 )
 ```
 
-
-
-* **Import Land-use Data** 
-
+-   **Import Land-use Data**
