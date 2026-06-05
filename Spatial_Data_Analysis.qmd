@@ -2,17 +2,73 @@
 title: "Spatial Data Analysis"
 ---
 
+In this chapter we will learn how to extract and merge _OpenStreetMap_ data of amenities and road network to the pedestrian count data. 
+
+
 ## Import libraries
 
 ```{r, eval = FALSE}
 #| warning: false
-# library(osmdata)
-# library(sf)
+library(osmdata)
+library(sf)
 library(dplyr)
-# library(terra)
 library(ggplot2)
 library(tidyverse)
 library(osmextract)
+```
+
+## Extract land use amenities
+
+* **Define Location**
+
+```{r}
+location <- "Sydney, Australia"
+```
+
+* **Define the municipality boundary**
+
+```{r}
+# sydney_boundary <- opq(location) |>
+#   add_osm_feature(key = "admin_level", value = "8") |>   # municipalities
+#   osmdata_sf()
+```
+
+admin_level = 8 corresponds to local government areas (municipalities) in Australia.
+
+* **Extract the poligon**
+
+```{r}
+# # Extract the polygon
+# sydney_poly <- sydney_boundary$osm_polygons |> 
+#   st_union() |> 
+#   st_make_valid()
+```
+
+* Create an OSM query for extracting amenities data
+
+```{r}
+amenities_query <- opq(location) %>%
+  add_osm_feature(key = "amenity", value = c("restaurant", "supermarket")) 
+```
+
+> **Note:** We will use only two categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis. 
+
+* Extract the data
+
+```{r}
+amenities_data <- osmdata_sf(amenities_query)
+```
+
+* View the first few rows of the amenities data
+
+```{r}
+head(amenities_data$osm_points)
+```
+
+* **Save dataset** 
+
+```{r}
+st_write(amenities, "amenities.shp", delete_dsn = TRUE)
 ```
 
 We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
@@ -73,6 +129,35 @@ Sydney_main_roads <- Sydney_main_roads[,-c(4:12)]
 par(mar = rep(0.1, 4))
 plot(sf::st_geometry(Sydney_main_roads))
 ```
+
+* **Plot the amenities with the network**
+
+```{r}
+ggplot() +
+  geom_sf(data = Sydney_main_roads, color = "black", size = 0.4) +
+  geom_sf(data = amenities_data$osm_points, aes(color = amenity), size = 1) +
+  theme_minimal() +
+  labs(title = "Amenities in Sydney", color = "Amenity Type") +
+  theme(legend.position = "bottom")
+```
+## Import pedestrian counting data (assuming it's in a CSV file with geometry)
+
+```{r}
+pedestrian_data <- read.csv("pedestrian_1.csv")
+```
+
+## Create a grid over the area of interest
+
+
+
+* # Count the number of pedestrians in each grid cell
+
+
+
+
+
+
+
 
 ## Centrality measures
 
