@@ -47,8 +47,8 @@ admin_level = 8 corresponds to local government areas (municipalities) in Austra
 * Create an OSM query for extracting amenities data
 
 ```{r}
-amenities_query <- opq(location) %>%
-  add_osm_feature(key = "amenity", value = c("restaurant", "supermarket")) 
+amenities_query <- opq(location) |> 
+  add_osm_feature(key = "amenity", value = c("restaurant", "supermarket", "bar")) 
 ```
 
 > **Note:** We will use only two categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis. 
@@ -56,6 +56,9 @@ amenities_query <- opq(location) %>%
 * Extract the data
 
 ```{r}
+# Set an alternative Overpass server
+set_overpass_url("https://lambert.openstreetmap.de/api/interpreter")
+
 amenities_data <- osmdata_sf(amenities_query)
 ```
 
@@ -65,10 +68,26 @@ amenities_data <- osmdata_sf(amenities_query)
 head(amenities_data$osm_points)
 ```
 
+* Treat dataset
+
+```{r}
+names(amenities_data$osm_points)
+```
+
+```{r}
+amenities_data_treated <- amenities_data$osm_points[,c(1,2,26,228)]
+```
+
+* Explore dataset
+
+```{r}
+unique(amenities_data_treated$amenity)
+```
+
 * **Save dataset** 
 
 ```{r}
-st_write(amenities, "amenities.shp", delete_dsn = TRUE)
+# st_write(amenities_data_treated, "amenities.shp", delete_dsn = TRUE)
 ```
 
 We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
@@ -135,7 +154,7 @@ plot(sf::st_geometry(Sydney_main_roads))
 ```{r}
 ggplot() +
   geom_sf(data = Sydney_main_roads, color = "black", size = 0.4) +
-  geom_sf(data = amenities_data$osm_points, aes(color = amenity), size = 1) +
+  geom_sf(data = amenities_data_treated, aes(color = amenity), size = 1) +
   theme_minimal() +
   labs(title = "Amenities in Sydney", color = "Amenity Type") +
   theme(legend.position = "bottom")
