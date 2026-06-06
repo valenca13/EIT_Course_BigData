@@ -65,7 +65,7 @@ unique(amenities_data_treated$amenity)
 
 ```{r}
 amenities_data_treated <- amenities_data_treated |> 
-  dplyr::filter(!is.na(amenity), amenity != "loading_dock")
+ filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
 ## Import Road network data
