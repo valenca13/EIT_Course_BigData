@@ -64,6 +64,7 @@ unique(amenities_data_treated$amenity)
 * **Remove NA and loading_dock**
 
 ```{r}
+library(dplyr)
 amenities_data_treated <- amenities_data_treated |> 
  filter(!is.na(amenity), amenity != "loading_dock")
 ```
