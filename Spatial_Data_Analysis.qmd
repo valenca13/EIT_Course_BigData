@@ -64,9 +64,8 @@ unique(amenities_data_treated$amenity)
 * **Remove NA and loading_dock**
 
 ```{r}
-# library(dplyr)
-# amenities_data_treated <- amenities_data_treated |> 
-#   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
+amenities_data_treated <- amenities_data_treated |>
+  dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
 ## Import Road network data
@@ -336,5 +335,11 @@ ggplot(final_grid) +
   )
 ```
 
-
 **Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.** 
+
+```{r}
+#| include: false
+#| eval: false
+# this coverts this quarto to a plain r script
+knitr::purl("Spatial_Data_Analysis.qmd", "codes/Spatial_Data_Analysis.R", documentation = 2)
+```
