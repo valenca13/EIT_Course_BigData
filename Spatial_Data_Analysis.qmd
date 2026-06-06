@@ -43,20 +43,27 @@ set_overpass_url("https://overpass-api.de/api/interpreter")
 amenities_data <- osmdata_sf(amenities_query)
 ```
 
--   **Select only the relevant variables**
-
-```{r}
-amenities_data_treated <- amenities_data$osm_points[,c(1,2,26,228)]
-```
-
 -   **Check the amenities data**
 
 ```{r, eval = FALSE}
 View(amenities_data$osm_points)
 ```
 
+-   **Select only the relevant variables**
+
+```{r}
+amenities_data_treated <- amenities_data$osm_points |> 
+  dplyr::select("osm_id","name","amenity","geometry") 
+```
+
 ```{r}
 unique(amenities_data_treated$amenity)
+```
+* **Remove NA and loading_dock**
+
+```{r}
+amenities_data_treated <- amenities_data_treated |> 
+  dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
 ## Import Road network data
@@ -100,7 +107,7 @@ Try adding the "tertiary", "residential" streets, and the network gets more comp
 
 Check the order of the variables
 
-```{r}
+```{r, eval = FALSE}
 names(OSM_Sydney)
 ```
 
