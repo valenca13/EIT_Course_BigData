@@ -322,3 +322,4 @@ ggplot() +
   labs(title = "Grid Cells (200x200) by Mean Degree Centrality",
        subtitle = "Pedestrian sensors shown in red")
 ```
+
