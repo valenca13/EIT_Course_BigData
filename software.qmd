@@ -117,20 +117,17 @@ You can install them in RStudio by searching for them in the **Packages** tab:
 
 ```{r}
 install.packages("tidyverse")
-# install.packages("readxl")
-
 install.packages("sf")
 install.packages("mapview")
 install.packages("rmarkdown")
-install.packages("centr")
-install.packages("od")
 install.packages("skimr")
 install.packages("DataExplorer")
 install.packages("plotly")
-
-install.packages(c("remotes", "devtools", "usethis")) # optional
-install.packages("osmextract") # optional
-install.packages("stplanr") # optional
+install.packages("lubridate")
+install.packages("osmextract") 
+install.packages("osmdata")
+install.packages("ggplot2")
+install.packages("igraph")
 ```
 
 ### Java Development Kit
