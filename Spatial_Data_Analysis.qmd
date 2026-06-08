@@ -86,7 +86,7 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
-## Import Road network data
+## Import road network data
 
 ```{r}
 library(osmextract)
@@ -157,7 +157,7 @@ ggplot() +
 
 ```
 
-## Import pedestrian counting data (assuming it's in a CSV file with latitude and logitude)
+## Import pedestrian counting data 
 
 ```{r}
 pedestrian_data <- read.csv("pedestrian_1.csv")
