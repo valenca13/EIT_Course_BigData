@@ -2,7 +2,23 @@
 title: "Spatial Data Analysis"
 ---
 
-In this chapter we will learn how to extract and merge *OpenStreetMap* data of amenities and road network to the pedestrian count data. Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
+## Introduction
+
+Spatial data is **data that is associated with a geometry**. This geometry can be a *point*, a *line*, a *polygon*, or a *grid*.
+
+Spatial data can be represented in many ways, such as vector data and raster data.
+
+We will use the `sf` package to work with **vector data**, and the `dplyr` package to manipulate data.
+
+The `sf` package is a powerful package for working with spatial data in R.
+
+It includes hundreds of [functions](https://r-spatial.github.io/sf/reference/index.html) to deal with spatial data.
+
+## Objective
+
+In this chapter we will learn how to **extract and merge** *OpenStreetMap* data of amenities and road network to the pedestrian count data.
+
+Check the available **features** and **tags** through the following [link](https://wiki.openstreetmap.org/wiki/Map_features#Highway).
 
 ## Import libraries
 
@@ -16,7 +32,7 @@ library(tidyverse)
 library(osmextract)
 ```
 
-> **Note:** We are going to use two packages to deal with _OpenStreetMap_ data. 
+> **Note:** We are going to use two packages to deal with *OpenStreetMap* data.
 
 ## Extract land use amenities
 
@@ -61,10 +77,12 @@ amenities_data_treated <- amenities_data$osm_points |>
 ```{r}
 unique(amenities_data_treated$amenity)
 ```
-* **Remove NA and loading_dock**
+
+-   **Remove NA and loading_dock**
 
 ```{r}
-amenities_data_treated <- amenities_data_treated |>
+library(sf)
+amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
@@ -127,13 +145,16 @@ plot(sf::st_geometry(Sydney_main_roads))
 -   **Plot the amenities with the network**
 
 ```{r}
+
 library(ggplot2)
+
 ggplot() +
   geom_sf(data = Sydney_main_roads, color = "black", size = 0.4) +
   geom_sf(data = amenities_data_treated, aes(color = amenity), size = 1) +
   theme_minimal() +
   labs(title = "Amenities in Sydney", color = "Amenity Type") +
   theme(legend.position = "bottom")
+
 ```
 
 ## Import pedestrian counting data (assuming it's in a CSV file with latitude and logitude)
@@ -144,7 +165,7 @@ pedestrian_data <- read.csv("pedestrian_1.csv")
 
 ## Create a grid over the area of interest
 
-* **Define a bounding box and create a polygon around**
+-   **Define a bounding box and create a polygon around**
 
 ```{r}
 # Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process
@@ -157,7 +178,7 @@ bbox_cbd <- st_bbox(c(
 cbd_polygon <- st_as_sfc(bbox_cbd)
 ```
 
-> **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**. 
+> **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.
 
 ## Crop the road network and compute centrality measures
 
@@ -167,6 +188,7 @@ To prevent computational lag and calculate local CBD movement flow accurately, w
 # # Crop the road network to the study area
 osm_cbd <- st_intersection(Sydney_main_roads, cbd_polygon)
 
+library(dplyr)
 # Extract coordinates and build the graph topology 
 coords <- st_coordinates(osm_cbd) #Sydney_main_roads
 edges <- coords |>
@@ -188,14 +210,14 @@ edges <- coords |>
   )
 ```
 
-* **Build igraph object**
+-   **Build igraph object**
 
 ```{r}
 library(igraph)
 g <- graph_from_data_frame(edges, directed = FALSE) |> simplify()
 ```
 
-* **Compute centrality measures**
+-   **Compute centrality measures**
 
 ```{r}
 deg <- degree(g)
@@ -203,7 +225,7 @@ bet <- betweenness(g, normalized = TRUE)
 clo <- closeness(g, normalized = TRUE) 
 ```
 
-* **Parse vertex coordinates and create nodes spatial features**
+-   **Parse vertex coordinates and create nodes spatial features**
 
 ```{r}
 node_names <- V(g)$name
@@ -219,9 +241,10 @@ nodes_df <- data.frame(
 nodes_sf <- st_as_sf(nodes_df, coords = c("X", "Y"), crs = 4326)
 ```
 
-* Plot the degree centrality on a map
+-   Plot the degree centrality on a map
 
 ```{r}
+library(ggplot2)
 ggplot() +
   geom_sf(data = osm_cbd, color = "black", size = 0.3) +
   geom_sf(data = nodes_sf, aes(color = degree)) +
@@ -233,22 +256,24 @@ ggplot() +
     color = "Degree"
   )
 ```
-**Try plotting the other maps! :)** 
+
+**Try plotting the other maps! :)**
 
 ## Spatial join and aggregate all data into the grid
 
 Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.
 
-* **Create grids that over the area of interest (polygon)**
+-   **Create grids that over the area of interest (polygon)**
 
 ```{r}
 grid <- st_make_grid(cbd_polygon, n = c(10, 10), square = FALSE)# 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells
 grid_sf <- st_sf(grid_id = 1:length(grid), geometry = grid)
 ```
 
-> **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters. 
+> **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters.
 
-* **Join centrality measures (average per grid cell)** 
+-   **Join centrality measures (average per grid cell)**
+
 ```{r}
 node_join <- st_join(nodes_sf, grid_sf) |>
   as.data.frame() |>
@@ -261,7 +286,8 @@ node_join <- st_join(nodes_sf, grid_sf) |>
   )
 ```
 
-* **Join amenities (count of total and per category per grid cell)**
+-   **Join amenities (count of total and per category per grid cell)**
+
 ```{r}
 amenity_join <- st_join(amenities_data_treated, grid_sf) |>
   as.data.frame() |>
@@ -275,7 +301,7 @@ amenity_join <- st_join(amenities_data_treated, grid_sf) |>
   )
 ```
 
-* **Join total pedestrian counts (sum of TotalCount per grid cell)**
+-   **Join total pedestrian counts (sum of TotalCount per grid cell)**
 
 ```{r}
 ped_sensors <- pedestrian_data |>
@@ -335,7 +361,7 @@ ggplot(final_grid) +
   )
 ```
 
-**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.** 
+**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**
 
 ```{r}
 #| include: false
