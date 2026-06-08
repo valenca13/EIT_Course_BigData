@@ -7,31 +7,31 @@ format: html
 
 ## Detailed Schedule
 
-| Day 1 |   |
-|---------------|---------------------------------------------------------|
-| 9.00 | Introduction to the course |
-| 9.30 | Introduction to Big Data Technologies for Active Mobility |
-| 11.00 | *Coffee break* |
-| 11.20 | Interactive lecture: Understanding Passive Mobility Big Data in Practice |
-| 12.30 | *Lunch break* |
-| 14.00 | Installation and workshop on using R programming |
-| 15.30 | *Coffee break* |
-| 15.50 | Group work using other passive mobility datasets |
-| 17.00 | *End of day 1* |
+| Day 1 |                                                           |
+|-------|-----------------------------------------------------------|
+| 9.30  | Introduction to the course                                |
+| 9.45  | Introduction to Big Data Technologies for Active Mobility |
+| 11.15 | *Coffee break*                                            |
+| 11.30 | Installation and learning the basics of R programming     |
+| 13.00 | *Lunch break*                                             |
+| 14.30 | Exploratory Data Analysis in R programming                |
+| 16.00 | *Coffee break*                                            |
+| 16.30 | Exercises in R programming (Visualizations)               |
+| 17.15 | *End of day 1*                                            |
 
-| Day 2 |   |
-|---------------|---------------------------------------------------------|
-| 9.00 | Lecture: Analytical Techniques for Active Mobility Big Data |
-| 10.00 | *Coffee break* |
-| 10.20 | Workshop on merging spatial data in R programming |
-|  |  |
-| 12.00 | *Lunch break* |
-|  |  |
-| 14.00 |  Group work|
-| 16.15 | *Coffee break* |
-| 16.30 | Group Presentations
-| 17.15 | Survey and feedback from participants |
-| 17.30 | *End of day 2* |
+| Day 2 |                                                             |
+|-------|-------------------------------------------------------------|
+| 9.30  | Lecture: Analytical Techniques for Active Mobility Big Data |
+| 10.00 | *Coffee break*                                              |
+| 10.20 | Workshop on merging spatial data in R programming           |
+|       |                                                             |
+| 12.00 | *Lunch break*                                               |
+|       |                                                             |
+| 14.00 | Group work                                                  |
+| 16.15 | *Coffee break*                                              |
+| 16.30 | Group Presentations                                         |
+| 17.15 | Survey and feedback from participants                       |
+| 17.30 | *End of day 2*                                              |
 
 ## Location
 
@@ -82,14 +82,14 @@ mapview::mapview(Campus, map.types = "OpenStreetMap") # quick map view
 
 -   **Coffee break**
 
--   **Workshop on merging spatial data in R programming (60 min):** Students will learn how to work with OpenStreetMap data in R, including extracting land‑use and road‑network information, and integrating these layers with their own spatial datasets. This workshops aims to give them capabilities of treating and improving aggregated datasets. 
+-   **Workshop on merging spatial data in R programming (60 min):** Students will learn how to work with OpenStreetMap data in R, including extracting land‑use and road‑network information, and integrating these layers with their own spatial datasets. This workshops aims to give them capabilities of treating and improving aggregated datasets.
 
 #### Afternoon {.unnumbered}
 
-- **Group work (2h)**
+-   **Group work (2h)**
 
-- **Coffee break**
+-   **Coffee break**
 
-- **Group presentations and discussion (45 min)**
+-   **Group presentations and discussion (45 min)**
 
-- **Closing and students’ feedback (15 min)**
+-   **Closing and students’ feedback (15 min)**
