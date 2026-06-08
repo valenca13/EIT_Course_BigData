@@ -398,12 +398,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link active" data-scroll-target="#import-libraries"><span class="header-section-number">6.1</span> Import libraries</a></li>
-  <li><a href="#extract-land-use-amenities" id="toc-extract-land-use-amenities" class="nav-link" data-scroll-target="#extract-land-use-amenities"><span class="header-section-number">6.2</span> Extract land use amenities</a></li>
-  <li><a href="#import-openstreetmap-data" id="toc-import-openstreetmap-data" class="nav-link" data-scroll-target="#import-openstreetmap-data"><span class="header-section-number">6.3</span> Import OpenStreetMap data</a></li>
-  <li><a href="#clean-the-dataset" id="toc-clean-the-dataset" class="nav-link" data-scroll-target="#clean-the-dataset"><span class="header-section-number">6.4</span> Clean the dataset</a></li>
-  <li><a href="#import-pedestrian-counting-data-assuming-its-in-a-csv-file-with-geometry" id="toc-import-pedestrian-counting-data-assuming-its-in-a-csv-file-with-geometry" class="nav-link" data-scroll-target="#import-pedestrian-counting-data-assuming-its-in-a-csv-file-with-geometry"><span class="header-section-number">6.5</span> Import pedestrian counting data (assuming it’s in a CSV file with geometry)</a></li>
-  <li><a href="#create-a-grid-over-the-area-of-interest" id="toc-create-a-grid-over-the-area-of-interest" class="nav-link" data-scroll-target="#create-a-grid-over-the-area-of-interest"><span class="header-section-number">6.6</span> Create a grid over the area of interest</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective"><span class="header-section-number">6.2</span> Objective</a></li>
+  <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link" data-scroll-target="#import-libraries"><span class="header-section-number">6.3</span> Import libraries</a></li>
+  <li><a href="#extract-land-use-amenities" id="toc-extract-land-use-amenities" class="nav-link" data-scroll-target="#extract-land-use-amenities"><span class="header-section-number">6.4</span> Extract land use amenities</a></li>
+  <li><a href="#import-road-network-data" id="toc-import-road-network-data" class="nav-link" data-scroll-target="#import-road-network-data"><span class="header-section-number">6.5</span> Import road network data</a></li>
+  <li><a href="#import-pedestrian-counting-data" id="toc-import-pedestrian-counting-data" class="nav-link" data-scroll-target="#import-pedestrian-counting-data"><span class="header-section-number">6.6</span> Import pedestrian counting data</a></li>
+  <li><a href="#create-a-grid-over-the-area-of-interest" id="toc-create-a-grid-over-the-area-of-interest" class="nav-link" data-scroll-target="#create-a-grid-over-the-area-of-interest"><span class="header-section-number">6.7</span> Create a grid over the area of interest</a></li>
+  <li><a href="#crop-the-road-network-and-compute-centrality-measures" id="toc-crop-the-road-network-and-compute-centrality-measures" class="nav-link" data-scroll-target="#crop-the-road-network-and-compute-centrality-measures"><span class="header-section-number">6.8</span> Crop the road network and compute centrality measures</a></li>
+  <li><a href="#spatial-join-and-aggregate-all-data-into-the-grid" id="toc-spatial-join-and-aggregate-all-data-into-the-grid" class="nav-link" data-scroll-target="#spatial-join-and-aggregate-all-data-into-the-grid"><span class="header-section-number">6.9</span> Spatial join and aggregate all data into the grid</a></li>
+  <li><a href="#merge-all-attributes-back-to-the-grid" id="toc-merge-all-attributes-back-to-the-grid" class="nav-link" data-scroll-target="#merge-all-attributes-back-to-the-grid"><span class="header-section-number">6.10</span> Merge all attributes back to the grid</a></li>
+  <li><a href="#save-joined-grid-data" id="toc-save-joined-grid-data" class="nav-link" data-scroll-target="#save-joined-grid-data"><span class="header-section-number">6.11</span> Save joined grid data</a></li>
+  <li><a href="#visualize-the-results-in-a-map-e.g.-degree-centrality" id="toc-visualize-the-results-in-a-map-e.g.-degree-centrality" class="nav-link" data-scroll-target="#visualize-the-results-in-a-map-e.g.-degree-centrality"><span class="header-section-number">6.12</span> Visualize the results in a map (e.g., degree centrality)</a></li>
   </ul>
 </nav>
     </div>
@@ -430,9 +436,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this chapter we will learn how to extract and merge <em>OpenStreetMap</em> data of amenities and road network to the pedestrian count data.</p>
-<section id="import-libraries" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="import-libraries"><span class="header-section-number">6.1</span> Import libraries</h2>
+<section id="introduction" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
+<p>Spatial data is <strong>data that is associated with a geometry</strong>. This geometry can be a <em>point</em>, a <em>line</em>, a <em>polygon</em>, or a <em>grid</em>.</p>
+<p>Spatial data can be represented in many ways, such as vector data and raster data.</p>
+<p>We will use the <code>sf</code> package to work with <strong>vector data</strong>, and the <code>dplyr</code> package to manipulate data.</p>
+<p>The <code>sf</code> package is a powerful package for working with spatial data in R.</p>
+<p>It includes hundreds of <a href="https://r-spatial.github.io/sf/reference/index.html">functions</a> to deal with spatial data.</p>
+</section>
+<section id="objective" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="objective"><span class="header-section-number">6.2</span> Objective</h2>
+<p>In this chapter we will learn how to <strong>extract and merge</strong> <em>OpenStreetMap</em> data of amenities and road network to the pedestrian count data.</p>
+<p>Check the available <strong>features</strong> and <strong>tags</strong> through the following <a href="https://wiki.openstreetmap.org/wiki/Map_features#Highway">link</a>.</p>
+</section>
+<section id="import-libraries" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="import-libraries"><span class="header-section-number">6.3</span> Import libraries</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -444,9 +462,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> We are going to use two packages to deal with <em>OpenStreetMap</em> data.</p>
+</blockquote>
 </section>
-<section id="extract-land-use-amenities" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="extract-land-use-amenities"><span class="header-section-number">6.2</span> Extract land use amenities</h2>
+<section id="extract-land-use-amenities" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="extract-land-use-amenities"><span class="header-section-number">6.4</span> Extract land use amenities</h2>
 <ul>
 <li><strong>Define Location</strong></li>
 </ul>
@@ -457,12 +478,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <ul>
-<li>Create an OSM query for extracting amenities data</li>
+<li><strong>Create an OSM query for extracting amenities data</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright</code></pre>
@@ -474,641 +495,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <blockquote class="blockquote">
-<p><strong>Note:</strong> We will use only two categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis.</p>
+<p><strong>Note:</strong> We will use only three categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis.</p>
 </blockquote>
 <ul>
-<li>Extract the data</li>
+<li><strong>Extract the data</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set an alternative Overpass server</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set an alternative Overpass server (makes the process quicker)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_overpass_url</span>(<span class="st">"https://overpass-api.de/api/interpreter"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>amenities_data <span class="ot">&lt;-</span> <span class="fu">osmdata_sf</span>(amenities_query)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>amenities_data <span class="ot">&lt;-</span> <span class="fu">osmdata_sf</span>(amenities_query)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>amenities_data_points <span class="ot">&lt;-</span> amenities_data<span class="sc">$</span>osm_points </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ul>
-<li>View the first few rows of the amenities data</li>
+<li><strong>Check the amenities data</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(amenities_data<span class="sc">$</span>osm_points)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(amenities_data_points)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>           osm_id                          name abandoned access
-13757642 13757642     Singapore Famous BBQ Pork      &lt;NA&gt;   &lt;NA&gt;
-18323773 18323773          Centennial Homestead      &lt;NA&gt;   &lt;NA&gt;
-18469019 18469019 Randwick Golf Club Restaurant      &lt;NA&gt;   &lt;NA&gt;
-20827957 20827957             Commonwealth Bank      &lt;NA&gt;   &lt;NA&gt;
-20827958 20827958                      Citibank      &lt;NA&gt;   &lt;NA&gt;
-20930154 20930154               Basket Brothers      &lt;NA&gt;   &lt;NA&gt;
-         addr:block_number addr:country addr:district addr:floor addr:full
-13757642              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-18323773              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-18469019              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20827957              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20827958              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20930154              &lt;NA&gt;         &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-         addr:housename addr:housenumber addr:place addr:postcode addr:state
-13757642           &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-18323773           &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-18469019           &lt;NA&gt;                1       &lt;NA&gt;          2036        NSW
-20827957           &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-20827958           &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-20930154           &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-         addr:street addr:streetnumber addr:suburb addr:unit
-13757642        &lt;NA&gt;              &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;
-18323773        &lt;NA&gt;              &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;
-18469019 Howe Street              &lt;NA&gt;     Malabar      &lt;NA&gt;
-20827957        &lt;NA&gt;              &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;
-20827958        &lt;NA&gt;              &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;
-20930154        &lt;NA&gt;              &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;
-         addr:unit:designation air_conditioning al_fresco alcohol alt_name
-13757642                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-18323773                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-18469019                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-20827957                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-20827958                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-20930154                  &lt;NA&gt;             &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;
-         alt_name2 alt_name:zh    amenity  atm atm:cash_in atm:opening_hours
-13757642      &lt;NA&gt;        &lt;NA&gt; restaurant &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;
-18323773      &lt;NA&gt;        &lt;NA&gt; restaurant &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;
-18469019      &lt;NA&gt;        &lt;NA&gt; restaurant &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;
-20827957      &lt;NA&gt;        &lt;NA&gt;       bank  yes        &lt;NA&gt;              &lt;NA&gt;
-20827958      &lt;NA&gt;        &lt;NA&gt;       bank &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;
-20930154      &lt;NA&gt;        &lt;NA&gt; restaurant &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;
-          bar barrier  bic bottle branch branch:en branch:zh             brand
-13757642 &lt;NA&gt;    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;              &lt;NA&gt;
-18323773 &lt;NA&gt;    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;              &lt;NA&gt;
-18469019  yes    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;              &lt;NA&gt;
-20827957 &lt;NA&gt;    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; Commonwealth Bank
-20827958 &lt;NA&gt;    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;          Citibank
-20930154 &lt;NA&gt;    &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;              &lt;NA&gt;
-         brand:en brand:ja brand:wikidata      brand:wikipedia brand:zh
-13757642     &lt;NA&gt;     &lt;NA&gt;           &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;
-18323773     &lt;NA&gt;     &lt;NA&gt;           &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;
-18469019     &lt;NA&gt;     &lt;NA&gt;           &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;
-20827957     &lt;NA&gt;     &lt;NA&gt;        Q285328 en:Commonwealth Bank     &lt;NA&gt;
-20827958     &lt;NA&gt;     &lt;NA&gt;        Q857063          en:Citibank     &lt;NA&gt;
-20930154     &lt;NA&gt;     &lt;NA&gt;           &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;
-         breakfast brewery building building:levels  byo camera:mount
-13757642      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-18323773      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-18469019      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-20827957      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-20827958      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-20930154      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;         &lt;NA&gt;
-         camera:type capacity cash_in changing_table changing_table:location
-13757642        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-18323773        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-18469019        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-20827957        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-20827958        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-20930154        &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;                    &lt;NA&gt;
-         charge:conditional charge:credit_cards charge:eftpos check_date
-13757642               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-18323773               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-18469019               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-20827957               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt; 2025-02-20
-20827958               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-20930154               &lt;NA&gt;                &lt;NA&gt;          &lt;NA&gt;       &lt;NA&gt;
-         check_date:currency:XBT check_date:diet:vegan
-13757642                    &lt;NA&gt;                  &lt;NA&gt;
-18323773                    &lt;NA&gt;                  &lt;NA&gt;
-18469019                    &lt;NA&gt;                  &lt;NA&gt;
-20827957                    &lt;NA&gt;                  &lt;NA&gt;
-20827958                    &lt;NA&gt;                  &lt;NA&gt;
-20930154                    &lt;NA&gt;                  &lt;NA&gt;
-         check_date:diet:vegetarian check_date:opening_hours check_date:smoking
-13757642                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-18323773                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-18469019                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-20827957                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-20827958                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-20930154                       &lt;NA&gt;                     &lt;NA&gt;               &lt;NA&gt;
-         cocktails coffee colour comment contact:email contact:facebook
-13757642      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-18323773      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-18469019      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-20827957      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-20827958      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-20930154      &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;
-         contact:instagram contact:linkedin contact:phone contact:twitter
-13757642              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-18323773              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-18469019              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-20827957              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-20827958              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-20930154              &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt;
-         contact:website craft craft_beer created_by    cuisine currency:XBT
-13757642            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-18323773            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-18469019            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-20827957            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-20827958            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
-20930154            &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; australian         &lt;NA&gt;
-         delivery delivery:deliveroo delivery:partner description designation
-13757642     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-18323773     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-18469019     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-20827957     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-20827958     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-20930154     &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;        &lt;NA&gt;        &lt;NA&gt;
-         diet:beef diet:chicken diet:dairy_free diet:gluten_free diet:halal
-13757642      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-18323773      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-18469019      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-20827957      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-20827958      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-20930154      &lt;NA&gt;         &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;       &lt;NA&gt;
-         diet:kosher diet:lacto-ovo_vegetarian diet:lactose_free diet:meat
-13757642        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-18323773        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-18469019        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-20827957        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-20827958        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-20930154        &lt;NA&gt;                      &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;
-         diet:mediterranean diet:non-halal diet:pork diet:rice diet:seafood
-13757642               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-18323773               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-18469019               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-20827957               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-20827958               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-20930154               &lt;NA&gt;           &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;
-         diet:vegan diet:vegetarian dinner discount:cash disused:cuisine  dog
-13757642       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-18323773       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-18469019       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-20827957       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-20827958       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-20930154       &lt;NA&gt;            &lt;NA&gt;   &lt;NA&gt;          &lt;NA&gt;            &lt;NA&gt; &lt;NA&gt;
-         door drink:beer drink:coffee drink:gin drive_in drive_through email
-13757642 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-18323773 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-18469019 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-20827957 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-20827958 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-20930154 &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;  &lt;NA&gt;
-         entrance events_venue facebook  fax fixme food full_name highchair
-13757642     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-18323773     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-18469019     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-20827957     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-20827958     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-20930154     &lt;NA&gt;         &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;
-         historic:amenity image indoor indoor_seating indoor_seating:comfort
-13757642             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-18323773             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-18469019             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-20827957             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-20827958             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-20930154             &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;           &lt;NA&gt;                   &lt;NA&gt;
-         int_name internet_access internet_access:fee is_in kids_area layer
-13757642     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-18323773     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-18469019     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20827957     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20827958     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20930154     &lt;NA&gt;            &lt;NA&gt;                &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-         level level:ref lgbtq licensed live_music location long_name lunch
-13757642  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-18323773  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-18469019  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20827957     0      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20827958  &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-20930154     0      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;  &lt;NA&gt;
-         man_made microbrewery min_age mobile name:ar name:en name:etymology
-13757642     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-18323773     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-18469019     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-20827957     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-20827958     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-20930154     &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;           &lt;NA&gt;
-         name:etymology:wikidata name:fa name:fr name:ja name:ja-Hira name:ms
-13757642                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-18323773                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-18469019                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-20827957                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-20827958                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-20930154                    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;    &lt;NA&gt;
-         name:ps name:vi name:yue name:zh name:zh-Hans name:zh-Hant noname
-13757642    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-18323773    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-18469019    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-20827957    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-20827958    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-20930154    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;
-         not:brand:wikidata not:name note official_name old_name opening_hours
-13757642               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-18323773               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-18469019               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-20827957               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-20827958               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-20930154               &lt;NA&gt;     &lt;NA&gt; &lt;NA&gt;          &lt;NA&gt;     &lt;NA&gt;          &lt;NA&gt;
-         opening_hours:kitchen opening_hours:signed operator operator:ref:abn
-13757642                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-18323773                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-18469019                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-20827957                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-20827958                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-20930154                  &lt;NA&gt;                 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-         operator:type operator:wikidata operator:wikipedia organic
-13757642          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-18323773          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-18469019          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-20827957          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-20827958          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-20930154          &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;    &lt;NA&gt;
-         outdoor_seating outdoor_seating:comfort payment:american_express
-13757642            &lt;NA&gt;                    &lt;NA&gt;                     &lt;NA&gt;
-18323773            &lt;NA&gt;                    &lt;NA&gt;                     &lt;NA&gt;
-18469019            &lt;NA&gt;                    &lt;NA&gt;                     &lt;NA&gt;
-20827957            &lt;NA&gt;                    &lt;NA&gt;                     &lt;NA&gt;
-20827958            &lt;NA&gt;                    &lt;NA&gt;                     &lt;NA&gt;
-20930154             yes                    &lt;NA&gt;                     &lt;NA&gt;
-         payment:american_express_contactless payment:apple_pay payment:cards
-13757642                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-18323773                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-18469019                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-20827957                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-20827958                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-20930154                                 &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
-         payment:cash payment:coins payment:contactless payment:credit_cards
-13757642         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-18323773         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-18469019         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-20827957         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-20827958         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-20930154         &lt;NA&gt;          &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;
-         payment:debit_cards payment:eftpos payment:google_pay payment:jcb
-13757642                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-18323773                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-18469019                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-20827957                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-20827958                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-20930154                &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt;        &lt;NA&gt;
-         payment:lightning payment:lightning_contactless payment:mastercard
-13757642              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-18323773              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-18469019              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-20827957              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-20827958              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-20930154              &lt;NA&gt;                          &lt;NA&gt;               &lt;NA&gt;
-         payment:notes payment:onchain payment:surcharge payment:unionpay
-13757642          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-18323773          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-18469019          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-20827957          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-20827958          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-20930154          &lt;NA&gt;            &lt;NA&gt;              &lt;NA&gt;             &lt;NA&gt;
-         payment:visa payment:visa_debit           phone phone:AU power_supply
-13757642         &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
-18323773         &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
-18469019         &lt;NA&gt;               &lt;NA&gt; +61 2 8347 3744     &lt;NA&gt;         &lt;NA&gt;
-20827957         &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
-20827958         &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
-20930154         &lt;NA&gt;               &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;         &lt;NA&gt;
-         razed:name razed:shop razed:source:date  ref reservation restaurant
-13757642       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-18323773       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-18469019       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-20827957       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-20827958       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-20930154       &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt; &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;
-         self_service service_times shop short_name smoking source source:date
-13757642         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-18323773         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-18469019         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-20827957         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-20827958         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       Citi    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-20930154         &lt;NA&gt;          &lt;NA&gt; &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;
-         source:geometry source:location source:name source:opening_hours
-13757642            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-18323773            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-18469019            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-20827957            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-20827958            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-20930154            &lt;NA&gt;            &lt;NA&gt;        &lt;NA&gt;                 &lt;NA&gt;
-         source:position source_ref:name sport stars start_date strapline
-13757642            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-18323773            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-18469019            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20827957            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20827958            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-20930154            &lt;NA&gt;            &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;
-         surcharge:credit_cards surveillance surveillance:type
-13757642                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-18323773                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-18469019                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-20827957                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-20827958                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-20930154                   &lt;NA&gt;         &lt;NA&gt;              &lt;NA&gt;
-         surveillance:zone survey:date takeaway theme  tip toilets
-13757642              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;
-18323773              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;
-18469019              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;
-20827957              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;
-20827958              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;    &lt;NA&gt;
-20930154              &lt;NA&gt;        &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;     yes
-         toilets:access toilets:unisex toilets:wheelchair  url was:name
-13757642           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-18323773           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-18469019           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-20827957           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-20827958           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-20930154           &lt;NA&gt;           &lt;NA&gt;               &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-                                                     website website:menu
-13757642                                                &lt;NA&gt;         &lt;NA&gt;
-18323773             https://www.centennialhomestead.com.au/         &lt;NA&gt;
-18469019 https://www.randwickgolfclub.com.au/restaurant.html         &lt;NA&gt;
-20827957                                                &lt;NA&gt;         &lt;NA&gt;
-20827958                        https://www.citibank.com.au/         &lt;NA&gt;
-20930154                                                &lt;NA&gt;         &lt;NA&gt;
-         wheelchair wifi wikidata wikipedia             geometry
-13757642       &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.20391, -33.88078
-18323773       &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.23350, -33.89455
-18469019       &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.25363, -33.96886
-20827957       &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.20676, -33.87064
-20827958        yes &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.20726, -33.87283
-20930154       &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt; 151.20932, -33.87943</code></pre>
-</div>
 </div>
 <ul>
-<li>Treat dataset</li>
+<li><strong>Select only the relevant variables</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(amenities_data<span class="sc">$</span>osm_points)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> amenities_data_points <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"osm_id"</span>,<span class="st">"name"</span>,<span class="st">"amenity"</span>,<span class="st">"geometry"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] "osm_id"                              
-  [2] "name"                                
-  [3] "abandoned"                           
-  [4] "access"                              
-  [5] "addr:block_number"                   
-  [6] "addr:country"                        
-  [7] "addr:district"                       
-  [8] "addr:floor"                          
-  [9] "addr:full"                           
- [10] "addr:housename"                      
- [11] "addr:housenumber"                    
- [12] "addr:place"                          
- [13] "addr:postcode"                       
- [14] "addr:state"                          
- [15] "addr:street"                         
- [16] "addr:streetnumber"                   
- [17] "addr:suburb"                         
- [18] "addr:unit"                           
- [19] "addr:unit:designation"               
- [20] "air_conditioning"                    
- [21] "al_fresco"                           
- [22] "alcohol"                             
- [23] "alt_name"                            
- [24] "alt_name2"                           
- [25] "alt_name:zh"                         
- [26] "amenity"                             
- [27] "atm"                                 
- [28] "atm:cash_in"                         
- [29] "atm:opening_hours"                   
- [30] "bar"                                 
- [31] "barrier"                             
- [32] "bic"                                 
- [33] "bottle"                              
- [34] "branch"                              
- [35] "branch:en"                           
- [36] "branch:zh"                           
- [37] "brand"                               
- [38] "brand:en"                            
- [39] "brand:ja"                            
- [40] "brand:wikidata"                      
- [41] "brand:wikipedia"                     
- [42] "brand:zh"                            
- [43] "breakfast"                           
- [44] "brewery"                             
- [45] "building"                            
- [46] "building:levels"                     
- [47] "byo"                                 
- [48] "camera:mount"                        
- [49] "camera:type"                         
- [50] "capacity"                            
- [51] "cash_in"                             
- [52] "changing_table"                      
- [53] "changing_table:location"             
- [54] "charge:conditional"                  
- [55] "charge:credit_cards"                 
- [56] "charge:eftpos"                       
- [57] "check_date"                          
- [58] "check_date:currency:XBT"             
- [59] "check_date:diet:vegan"               
- [60] "check_date:diet:vegetarian"          
- [61] "check_date:opening_hours"            
- [62] "check_date:smoking"                  
- [63] "cocktails"                           
- [64] "coffee"                              
- [65] "colour"                              
- [66] "comment"                             
- [67] "contact:email"                       
- [68] "contact:facebook"                    
- [69] "contact:instagram"                   
- [70] "contact:linkedin"                    
- [71] "contact:phone"                       
- [72] "contact:twitter"                     
- [73] "contact:website"                     
- [74] "craft"                               
- [75] "craft_beer"                          
- [76] "created_by"                          
- [77] "cuisine"                             
- [78] "currency:XBT"                        
- [79] "delivery"                            
- [80] "delivery:deliveroo"                  
- [81] "delivery:partner"                    
- [82] "description"                         
- [83] "designation"                         
- [84] "diet:beef"                           
- [85] "diet:chicken"                        
- [86] "diet:dairy_free"                     
- [87] "diet:gluten_free"                    
- [88] "diet:halal"                          
- [89] "diet:kosher"                         
- [90] "diet:lacto-ovo_vegetarian"           
- [91] "diet:lactose_free"                   
- [92] "diet:meat"                           
- [93] "diet:mediterranean"                  
- [94] "diet:non-halal"                      
- [95] "diet:pork"                           
- [96] "diet:rice"                           
- [97] "diet:seafood"                        
- [98] "diet:vegan"                          
- [99] "diet:vegetarian"                     
-[100] "dinner"                              
-[101] "discount:cash"                       
-[102] "disused:cuisine"                     
-[103] "dog"                                 
-[104] "door"                                
-[105] "drink:beer"                          
-[106] "drink:coffee"                        
-[107] "drink:gin"                           
-[108] "drive_in"                            
-[109] "drive_through"                       
-[110] "email"                               
-[111] "entrance"                            
-[112] "events_venue"                        
-[113] "facebook"                            
-[114] "fax"                                 
-[115] "fixme"                               
-[116] "food"                                
-[117] "full_name"                           
-[118] "highchair"                           
-[119] "historic:amenity"                    
-[120] "image"                               
-[121] "indoor"                              
-[122] "indoor_seating"                      
-[123] "indoor_seating:comfort"              
-[124] "int_name"                            
-[125] "internet_access"                     
-[126] "internet_access:fee"                 
-[127] "is_in"                               
-[128] "kids_area"                           
-[129] "layer"                               
-[130] "level"                               
-[131] "level:ref"                           
-[132] "lgbtq"                               
-[133] "licensed"                            
-[134] "live_music"                          
-[135] "location"                            
-[136] "long_name"                           
-[137] "lunch"                               
-[138] "man_made"                            
-[139] "microbrewery"                        
-[140] "min_age"                             
-[141] "mobile"                              
-[142] "name:ar"                             
-[143] "name:en"                             
-[144] "name:etymology"                      
-[145] "name:etymology:wikidata"             
-[146] "name:fa"                             
-[147] "name:fr"                             
-[148] "name:ja"                             
-[149] "name:ja-Hira"                        
-[150] "name:ms"                             
-[151] "name:ps"                             
-[152] "name:vi"                             
-[153] "name:yue"                            
-[154] "name:zh"                             
-[155] "name:zh-Hans"                        
-[156] "name:zh-Hant"                        
-[157] "noname"                              
-[158] "not:brand:wikidata"                  
-[159] "not:name"                            
-[160] "note"                                
-[161] "official_name"                       
-[162] "old_name"                            
-[163] "opening_hours"                       
-[164] "opening_hours:kitchen"               
-[165] "opening_hours:signed"                
-[166] "operator"                            
-[167] "operator:ref:abn"                    
-[168] "operator:type"                       
-[169] "operator:wikidata"                   
-[170] "operator:wikipedia"                  
-[171] "organic"                             
-[172] "outdoor_seating"                     
-[173] "outdoor_seating:comfort"             
-[174] "payment:american_express"            
-[175] "payment:american_express_contactless"
-[176] "payment:apple_pay"                   
-[177] "payment:cards"                       
-[178] "payment:cash"                        
-[179] "payment:coins"                       
-[180] "payment:contactless"                 
-[181] "payment:credit_cards"                
-[182] "payment:debit_cards"                 
-[183] "payment:eftpos"                      
-[184] "payment:google_pay"                  
-[185] "payment:jcb"                         
-[186] "payment:lightning"                   
-[187] "payment:lightning_contactless"       
-[188] "payment:mastercard"                  
-[189] "payment:notes"                       
-[190] "payment:onchain"                     
-[191] "payment:surcharge"                   
-[192] "payment:unionpay"                    
-[193] "payment:visa"                        
-[194] "payment:visa_debit"                  
-[195] "phone"                               
-[196] "phone:AU"                            
-[197] "power_supply"                        
-[198] "razed:name"                          
-[199] "razed:shop"                          
-[200] "razed:source:date"                   
-[201] "ref"                                 
-[202] "reservation"                         
-[203] "restaurant"                          
-[204] "self_service"                        
-[205] "service_times"                       
-[206] "shop"                                
-[207] "short_name"                          
-[208] "smoking"                             
-[209] "source"                              
-[210] "source:date"                         
-[211] "source:geometry"                     
-[212] "source:location"                     
-[213] "source:name"                         
-[214] "source:opening_hours"                
-[215] "source:position"                     
-[216] "source_ref:name"                     
-[217] "sport"                               
-[218] "stars"                               
-[219] "start_date"                          
-[220] "strapline"                           
-[221] "surcharge:credit_cards"              
-[222] "surveillance"                        
-[223] "surveillance:type"                   
-[224] "surveillance:zone"                   
-[225] "survey:date"                         
-[226] "takeaway"                            
-[227] "theme"                               
-[228] "tip"                                 
-[229] "toilets"                             
-[230] "toilets:access"                      
-[231] "toilets:unisex"                      
-[232] "toilets:wheelchair"                  
-[233] "url"                                 
-[234] "was:name"                            
-[235] "website"                             
-[236] "website:menu"                        
-[237] "wheelchair"                          
-[238] "wifi"                                
-[239] "wikidata"                            
-[240] "wikipedia"                           
-[241] "geometry"                            </code></pre>
-</div>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> amenities_data<span class="sc">$</span>osm_points[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">26</span>,<span class="dv">228</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ul>
-<li>Explore dataset</li>
-</ul>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(amenities_data_treated<span class="sc">$</span>amenity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(amenities_data_treated<span class="sc">$</span>amenity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "restaurant"   "bank"         "bar"          NA             "loading_dock"</code></pre>
 </div>
 </div>
-<p>We will work with <strong>OpenStreetMap</strong>. Check the available <strong>features</strong> and <strong>tags</strong> through the following <a href="https://wiki.openstreetmap.org/wiki/Map_features#Highway">link</a>.</p>
+<ul>
+<li><strong>Remove NA and loading_dock</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(amenities_data_treated) <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(amenity), amenity <span class="sc">!=</span> <span class="st">"loading_dock"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </section>
-<section id="import-openstreetmap-data" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="import-openstreetmap-data"><span class="header-section-number">6.3</span> Import OpenStreetMap data</h2>
+<section id="import-road-network-data" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="import-road-network-data"><span class="header-section-number">6.5</span> Import road network data</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -1120,7 +569,7 @@ Check the package website, https://docs.ropensci.org/osmextract/, for more detai
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) <span class="co"># it will geocode the place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>No exact match found for place = Sydney and provider = geofabrik. Best match is Surrey. 
@@ -1153,7 +602,7 @@ Geodetic CRS:  WGS 84</code></pre>
 </div>
 </div>
 <ul>
-<li>Plot the entire network</li>
+<li><strong>Plot the entire network</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
@@ -1164,13 +613,13 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li>Check for missing data in ‘Highway’</li>
+<li><strong>Check for missing data in ‘Highway’</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
@@ -1184,7 +633,7 @@ Geodetic CRS:  WGS 84</code></pre>
 </div>
 </div>
 <ul>
-<li>Check for the values in ‘Highway’</li>
+<li><strong>Check for the values in ‘Highway’</strong></li>
 </ul>
 <div class="cell">
 <details open="" class="code-fold">
@@ -1201,9 +650,6 @@ Geodetic CRS:  WGS 84</code></pre>
 [25] "street_lamp"    "emergency_bay"  "driveway"      </code></pre>
 </div>
 </div>
-</section>
-<section id="clean-the-dataset" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="clean-the-dataset"><span class="header-section-number">6.4</span> Clean the dataset</h2>
 <ul>
 <li><strong>Filter the dataset only for the main ‘Highway’ classifications</strong></li>
 </ul>
@@ -1211,10 +657,10 @@ Geodetic CRS:  WGS 84</code></pre>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">=</span> OSM_Sydney <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>,<span class="st">"tertiary"</span>, <span class="st">"residential"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>Try adding the “tertiary”, “residential” streets, and the network gets more complex</p>
+<p>Try adding the “tertiary”, “residential” streets, and the network gets more complex.</p>
 <blockquote class="blockquote">
 <p><strong>Note:</strong> In order to check what are the main categories in OSM, check the <a href="https://wiki.openstreetmap.org/wiki/Key:highway#Highway">link</a></p>
 </blockquote>
@@ -1225,16 +671,11 @@ Geodetic CRS:  WGS 84</code></pre>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OSM_Sydney)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "osm_id"     "name"       "highway"    "waterway"   "aerialway" 
- [6] "barrier"    "man_made"   "railway"    "access"     "bicycle"   
-[11] "service"    "z_order"    "other_tags" "geometry"  </code></pre>
-</div>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ul>
@@ -1243,13 +684,13 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1257,9 +698,29 @@ Geodetic CRS:  WGS 84</code></pre>
 <ul>
 <li><strong>Plot the amenities with the network</strong></li>
 </ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Sydney_main_roads, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> amenities_data_treated, <span class="fu">aes</span>(<span class="at">color =</span> amenity), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Amenities in Sydney"</span>, <span class="at">color =</span> <span class="st">"Amenity Type"</span>) <span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="import-pedestrian-counting-data-assuming-its-in-a-csv-file-with-geometry" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="import-pedestrian-counting-data-assuming-its-in-a-csv-file-with-geometry"><span class="header-section-number">6.5</span> Import pedestrian counting data (assuming it’s in a CSV file with geometry)</h2>
+<section id="import-pedestrian-counting-data" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="import-pedestrian-counting-data"><span class="header-section-number">6.6</span> Import pedestrian counting data</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -1267,8 +728,303 @@ Geodetic CRS:  WGS 84</code></pre>
 </details>
 </div>
 </section>
-<section id="create-a-grid-over-the-area-of-interest" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="create-a-grid-over-the-area-of-interest"><span class="header-section-number">6.6</span> Create a grid over the area of interest</h2>
+<section id="create-a-grid-over-the-area-of-interest" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="create-a-grid-over-the-area-of-interest"><span class="header-section-number">6.7</span> Create a grid over the area of interest</h2>
+<ul>
+<li><strong>Define a bounding box and create a polygon around</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>bbox_cbd <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="fl">151.2016</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="fl">33.8780</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="fl">151.2151</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">33.8585</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>cbd_polygon <span class="ot">&lt;-</span> <span class="fu">st_as_sfc</span>(bbox_cbd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to <strong>combine different datasets and extract meaningful, rather than producing excellent results</strong>.</p>
+</blockquote>
+</section>
+<section id="crop-the-road-network-and-compute-centrality-measures" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="crop-the-road-network-and-compute-centrality-measures"><span class="header-section-number">6.8</span> Crop the road network and compute centrality measures</h2>
+<p>To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Crop the road network to the study area</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>osm_cbd <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(Sydney_main_roads, cbd_polygon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: attribute variables are assumed to be spatially constant throughout
+all geometries</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coordinates and build the graph topology </span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(osm_cbd) <span class="co">#Sydney_main_roads</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> coords <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">round</span>(X, <span class="dv">7</span>),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">round</span>(Y, <span class="dv">7</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(L1) <span class="sc">|&gt;</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_x =</span> <span class="fu">lead</span>(X),</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_y =</span> <span class="fu">lead</span>(Y)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(next_x)) <span class="sc">|&gt;</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">paste</span>(X, Y, <span class="at">sep =</span> <span class="st">","</span>),</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">to   =</span> <span class="fu">paste</span>(next_x, next_y, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li><strong>Build igraph object</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'igraph'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    as_data_frame, groups, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    decompose, spectrum</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:base':
+
+    union</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="fu">simplify</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li><strong>Compute centrality measures</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">degree</span>(g)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>bet <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>clo <span class="ot">&lt;-</span> <span class="fu">closeness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li><strong>Parse vertex coordinates and create nodes spatial features</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>node_names <span class="ot">&lt;-</span> <span class="fu">V</span>(g)<span class="sc">$</span>name</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>node_coords <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">strsplit</span>(node_names, <span class="st">","</span>), as.numeric))</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>nodes_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">node =</span> node_names,</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> node_coords[,<span class="dv">1</span>],</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> node_coords[,<span class="dv">2</span>],</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree =</span> deg,</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">betweenness =</span> bet,</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">closeness =</span> clo</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>nodes_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(nodes_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li>Plot the degree centrality on a map</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> osm_cbd, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nodes_sf, <span class="fu">aes</span>(<span class="at">color =</span> degree)) <span class="sc">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality"</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Degree"</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Try plotting the other maps! :)</strong></p>
+</section>
+<section id="spatial-join-and-aggregate-all-data-into-the-grid" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="spatial-join-and-aggregate-all-data-into-the-grid"><span class="header-section-number">6.9</span> Spatial join and aggregate all data into the grid</h2>
+<p>Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.</p>
+<ul>
+<li><strong>Create grids that over the area of interest (polygon)</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">st_make_grid</span>(cbd_polygon, <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="at">square =</span> <span class="cn">FALSE</span>)<span class="co"># 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>grid_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">grid_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grid), <span class="at">geometry =</span> grid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> We are creating grids only inside the CBD. If you do not project to EPSG the ‘cellsize’ unit will be degree instead of meters.</p>
+</blockquote>
+<ul>
+<li><strong>Join centrality measures (average per grid cell)</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>node_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(nodes_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(degree, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_betweenness =</span> <span class="fu">mean</span>(betweenness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_closeness =</span> <span class="fu">mean</span>(closeness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li><strong>Join amenities (count of total and per category per grid cell)</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>amenity_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(amenities_data_treated, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_total =</span> <span class="fu">sum</span>(amenity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bar"</span>, <span class="st">"bank"</span>)),</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_restaurant =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"restaurant"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_cafe =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"cafe"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_bank =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"bank"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li><strong>Join total pedestrian counts (sum of TotalCount per grid cell)</strong></li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>ped_sensors <span class="ot">&lt;-</span> pedestrian_data <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location_code, Latitude, Longitude) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pedestrians =</span> <span class="fu">sum</span>(TotalCount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>ped_sensors_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ped_sensors, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>ped_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(ped_sensors_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">pedestrians =</span> <span class="fu">sum</span>(total_pedestrians, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..</p>
+</blockquote>
+</section>
+<section id="merge-all-attributes-back-to-the-grid" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="merge-all-attributes-back-to-the-grid"><span class="header-section-number">6.10</span> Merge all attributes back to the grid</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>final_grid <span class="ot">&lt;-</span> grid_sf <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(node_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(amenity_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ped_join, <span class="at">by =</span> <span class="st">"grid_id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="save-joined-grid-data" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="save-joined-grid-data"><span class="header-section-number">6.11</span> Save joined grid data</h2>
+<p>We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the grid as a GeoJSON file</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(final_grid, <span class="st">"grid_joined.geojson"</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="visualize-the-results-in-a-map-e.g.-degree-centrality" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="visualize-the-results-in-a-map-e.g.-degree-centrality"><span class="header-section-number">6.12</span> Visualize the results in a map (e.g., degree centrality)</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(final_grid) <span class="sc">+</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> mean_degree), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality (Grid Aggregation)"</span>,</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Degree"</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.</strong></p>
 
 
 <!-- -->
@@ -1752,157 +1508,383 @@ Geodetic CRS:  WGS 84</code></pre>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Spatial Data Analysis"</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>In this chapter we will learn how to extract and merge _OpenStreetMap_ data of amenities and road network to the pedestrian count data. </span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import libraries</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extract land use amenities</span></span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Define Location**</span>
-<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>location <span class="ot">&lt;-</span> <span class="st">"Sydney, Australia"</span></span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Create an OSM query for extracting amenities data</span>
-<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
-<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>amenities_query <span class="ot">&lt;-</span> <span class="fu">opq</span>(location) <span class="sc">|&gt;</span> </span>
-<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"amenity"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bank"</span>, <span class="st">"bar"</span>)) </span>
-<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We will use only two categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis. </span></span>
-<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Extract the data</span>
-<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Set an alternative Overpass server</span></span>
-<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a><span class="fu">set_overpass_url</span>(<span class="st">"https://overpass-api.de/api/interpreter"</span>)</span>
-<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a>amenities_data <span class="ot">&lt;-</span> <span class="fu">osmdata_sf</span>(amenities_query)</span>
-<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>View the first few rows of the amenities data</span>
-<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-58"><a href="#cb35-58" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(amenities_data<span class="sc">$</span>osm_points)</span>
-<span id="cb35-59"><a href="#cb35-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Treat dataset</span>
-<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-65"><a href="#cb35-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-66"><a href="#cb35-66" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(amenities_data<span class="sc">$</span>osm_points)</span>
-<span id="cb35-67"><a href="#cb35-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-68"><a href="#cb35-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-71"><a href="#cb35-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-72"><a href="#cb35-72" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> amenities_data<span class="sc">$</span>osm_points[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">26</span>,<span class="dv">228</span>)]</span>
-<span id="cb35-73"><a href="#cb35-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-74"><a href="#cb35-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-75"><a href="#cb35-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Explore dataset</span>
-<span id="cb35-76"><a href="#cb35-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-79"><a href="#cb35-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-80"><a href="#cb35-80" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(amenities_data_treated<span class="sc">$</span>amenity)</span>
-<span id="cb35-81"><a href="#cb35-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-82"><a href="#cb35-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-83"><a href="#cb35-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-84"><a href="#cb35-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-85"><a href="#cb35-85" aria-hidden="true" tabindex="-1"></a>We will work with **OpenStreetMap**. Check the available **features** and **tags** through the following <span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Map_features#Highway)</span>.</span>
-<span id="cb35-86"><a href="#cb35-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-87"><a href="#cb35-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import OpenStreetMap data</span></span>
-<span id="cb35-88"><a href="#cb35-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-91"><a href="#cb35-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-92"><a href="#cb35-92" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
-<span id="cb35-93"><a href="#cb35-93" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) <span class="co"># it will geocode the place</span></span>
-<span id="cb35-94"><a href="#cb35-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-95"><a href="#cb35-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-96"><a href="#cb35-96" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Plot the entire network</span>
-<span id="cb35-97"><a href="#cb35-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-100"><a href="#cb35-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-101"><a href="#cb35-101" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
-<span id="cb35-102"><a href="#cb35-102" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(OSM_Sydney))</span>
-<span id="cb35-103"><a href="#cb35-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-104"><a href="#cb35-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-105"><a href="#cb35-105" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Check for missing data in 'Highway'</span>
-<span id="cb35-106"><a href="#cb35-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-109"><a href="#cb35-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-110"><a href="#cb35-110" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(OSM_Sydney<span class="sc">$</span>highway))</span>
-<span id="cb35-111"><a href="#cb35-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-112"><a href="#cb35-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-113"><a href="#cb35-113" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Check for the values in 'Highway'</span>
-<span id="cb35-114"><a href="#cb35-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-117"><a href="#cb35-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-118"><a href="#cb35-118" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OSM_Sydney<span class="sc">$</span>highway)</span>
-<span id="cb35-119"><a href="#cb35-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-120"><a href="#cb35-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-121"><a href="#cb35-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clean the dataset</span></span>
-<span id="cb35-122"><a href="#cb35-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-123"><a href="#cb35-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Filter the dataset only for the main 'Highway' classifications**</span>
-<span id="cb35-124"><a href="#cb35-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-127"><a href="#cb35-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-128"><a href="#cb35-128" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">=</span> OSM_Sydney <span class="sc">|&gt;</span> </span>
-<span id="cb35-129"><a href="#cb35-129" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>)) </span>
-<span id="cb35-130"><a href="#cb35-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-132"><a href="#cb35-132" aria-hidden="true" tabindex="-1"></a>Try adding the "tertiary", "residential" streets, and the network gets more complex</span>
-<span id="cb35-133"><a href="#cb35-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-134"><a href="#cb35-134" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** In order to check what are the main categories in OSM, check the </span><span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)</span></span>
-<span id="cb35-135"><a href="#cb35-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-136"><a href="#cb35-136" aria-hidden="true" tabindex="-1"></a>**Remove variables that are not useful**</span>
-<span id="cb35-137"><a href="#cb35-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-138"><a href="#cb35-138" aria-hidden="true" tabindex="-1"></a>Check the order of the variables</span>
-<span id="cb35-139"><a href="#cb35-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-142"><a href="#cb35-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-143"><a href="#cb35-143" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OSM_Sydney)</span>
-<span id="cb35-144"><a href="#cb35-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span>
-<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-152"><a href="#cb35-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the filtered network**</span>
-<span id="cb35-153"><a href="#cb35-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-156"><a href="#cb35-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-157"><a href="#cb35-157" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
-<span id="cb35-158"><a href="#cb35-158" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span>
-<span id="cb35-159"><a href="#cb35-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-160"><a href="#cb35-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-161"><a href="#cb35-161" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Plot the amenities with the network**</span>
-<span id="cb35-162"><a href="#cb35-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-165"><a href="#cb35-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-166"><a href="#cb35-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb35-167"><a href="#cb35-167" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb35-168"><a href="#cb35-168" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb35-169"><a href="#cb35-169" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb35-170"><a href="#cb35-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Sydney_main_roads, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb35-171"><a href="#cb35-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> amenities_data_treated, <span class="fu">aes</span>(<span class="at">color =</span> amenity), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb35-172"><a href="#cb35-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb35-173"><a href="#cb35-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Amenities in Sydney"</span>, <span class="at">color =</span> <span class="st">"Amenity Type"</span>) <span class="sc">+</span></span>
-<span id="cb35-174"><a href="#cb35-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb35-175"><a href="#cb35-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-176"><a href="#cb35-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import pedestrian counting data (assuming it's in a CSV file with geometry)</span></span>
-<span id="cb35-177"><a href="#cb35-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-180"><a href="#cb35-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-181"><a href="#cb35-181" aria-hidden="true" tabindex="-1"></a>pedestrian_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"pedestrian_1.csv"</span>)</span>
-<span id="cb35-182"><a href="#cb35-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb35-183"><a href="#cb35-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-184"><a href="#cb35-184" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a grid over the area of interest</span></span>
-<span id="cb35-185"><a href="#cb35-185" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Spatial Data Analysis"</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>Spatial data is **data that is associated with a geometry**. This geometry can be a *point*, a *line*, a *polygon*, or a *grid*.</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>Spatial data can be represented in many ways, such as vector data and raster data.</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>We will use the <span class="in">`sf`</span> package to work with **vector data**, and the <span class="in">`dplyr`</span> package to manipulate data.</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>The <span class="in">`sf`</span> package is a powerful package for working with spatial data in R.</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>It includes hundreds of <span class="co">[</span><span class="ot">functions</span><span class="co">](https://r-spatial.github.io/sf/reference/index.html)</span> to deal with spatial data.</span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objective</span></span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>In this chapter we will learn how to **extract and merge** *OpenStreetMap* data of amenities and road network to the pedestrian count data.</span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>Check the available **features** and **tags** through the following <span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Map_features#Highway)</span>.</span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import libraries</span></span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
+<span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-34"><a href="#cb59-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-35"><a href="#cb59-35" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are going to use two packages to deal with *OpenStreetMap* data.</span></span>
+<span id="cb59-36"><a href="#cb59-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-37"><a href="#cb59-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extract land use amenities</span></span>
+<span id="cb59-38"><a href="#cb59-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-39"><a href="#cb59-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Define Location**</span>
+<span id="cb59-40"><a href="#cb59-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-43"><a href="#cb59-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-44"><a href="#cb59-44" aria-hidden="true" tabindex="-1"></a>location <span class="ot">&lt;-</span> <span class="st">"Sydney, Australia"</span></span>
+<span id="cb59-45"><a href="#cb59-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-46"><a href="#cb59-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-47"><a href="#cb59-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Create an OSM query for extracting amenities data**</span>
+<span id="cb59-48"><a href="#cb59-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-51"><a href="#cb59-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-52"><a href="#cb59-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata) </span>
+<span id="cb59-53"><a href="#cb59-53" aria-hidden="true" tabindex="-1"></a>amenities_query <span class="ot">&lt;-</span> <span class="fu">opq</span>(location) <span class="sc">|&gt;</span> </span>
+<span id="cb59-54"><a href="#cb59-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"amenity"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bank"</span>, <span class="st">"bar"</span>)) </span>
+<span id="cb59-55"><a href="#cb59-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-56"><a href="#cb59-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-57"><a href="#cb59-57" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We will use only three categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis.</span></span>
+<span id="cb59-58"><a href="#cb59-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-59"><a href="#cb59-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Extract the data**</span>
+<span id="cb59-60"><a href="#cb59-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-61"><a href="#cb59-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval=FALSE}</span></span>
+<span id="cb59-62"><a href="#cb59-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Set an alternative Overpass server (makes the process quicker)</span></span>
+<span id="cb59-63"><a href="#cb59-63" aria-hidden="true" tabindex="-1"></a><span class="fu">set_overpass_url</span>(<span class="st">"https://overpass-api.de/api/interpreter"</span>)</span>
+<span id="cb59-64"><a href="#cb59-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-65"><a href="#cb59-65" aria-hidden="true" tabindex="-1"></a>amenities_data <span class="ot">&lt;-</span> <span class="fu">osmdata_sf</span>(amenities_query)</span>
+<span id="cb59-66"><a href="#cb59-66" aria-hidden="true" tabindex="-1"></a>amenities_data_points <span class="ot">&lt;-</span> amenities_data<span class="sc">$</span>osm_points </span>
+<span id="cb59-67"><a href="#cb59-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-68"><a href="#cb59-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-69"><a href="#cb59-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb59-70"><a href="#cb59-70" aria-hidden="true" tabindex="-1"></a>amenities_data_points <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/osm_amenities_points.gpkg"</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">geometry=</span>geom)</span>
+<span id="cb59-71"><a href="#cb59-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-72"><a href="#cb59-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-73"><a href="#cb59-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-74"><a href="#cb59-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-75"><a href="#cb59-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check the amenities data**</span>
+<span id="cb59-76"><a href="#cb59-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-77"><a href="#cb59-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb59-78"><a href="#cb59-78" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(amenities_data_points)</span>
+<span id="cb59-79"><a href="#cb59-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-80"><a href="#cb59-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-81"><a href="#cb59-81" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Select only the relevant variables**</span>
+<span id="cb59-82"><a href="#cb59-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-85"><a href="#cb59-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-86"><a href="#cb59-86" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> amenities_data_points <span class="sc">|&gt;</span> </span>
+<span id="cb59-87"><a href="#cb59-87" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"osm_id"</span>,<span class="st">"name"</span>,<span class="st">"amenity"</span>,<span class="st">"geometry"</span>) </span>
+<span id="cb59-88"><a href="#cb59-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-89"><a href="#cb59-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-92"><a href="#cb59-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-93"><a href="#cb59-93" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(amenities_data_treated<span class="sc">$</span>amenity)</span>
+<span id="cb59-94"><a href="#cb59-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-95"><a href="#cb59-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-96"><a href="#cb59-96" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Remove NA and loading_dock**</span>
+<span id="cb59-97"><a href="#cb59-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-100"><a href="#cb59-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-101"><a href="#cb59-101" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb59-102"><a href="#cb59-102" aria-hidden="true" tabindex="-1"></a>amenities_data_treated <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(amenities_data_treated) <span class="sc">|&gt;</span></span>
+<span id="cb59-103"><a href="#cb59-103" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(amenity), amenity <span class="sc">!=</span> <span class="st">"loading_dock"</span>)</span>
+<span id="cb59-104"><a href="#cb59-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-105"><a href="#cb59-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-106"><a href="#cb59-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import road network data</span></span>
+<span id="cb59-107"><a href="#cb59-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-110"><a href="#cb59-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-111"><a href="#cb59-111" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
+<span id="cb59-112"><a href="#cb59-112" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) </span>
+<span id="cb59-113"><a href="#cb59-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-114"><a href="#cb59-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-115"><a href="#cb59-115" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the entire network**</span>
+<span id="cb59-116"><a href="#cb59-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-119"><a href="#cb59-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-120"><a href="#cb59-120" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
+<span id="cb59-121"><a href="#cb59-121" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(OSM_Sydney))</span>
+<span id="cb59-122"><a href="#cb59-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-123"><a href="#cb59-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-124"><a href="#cb59-124" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for missing data in 'Highway'**</span>
+<span id="cb59-125"><a href="#cb59-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-128"><a href="#cb59-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-129"><a href="#cb59-129" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(OSM_Sydney<span class="sc">$</span>highway))</span>
+<span id="cb59-130"><a href="#cb59-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-131"><a href="#cb59-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-132"><a href="#cb59-132" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for the values in 'Highway'**</span>
+<span id="cb59-133"><a href="#cb59-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-136"><a href="#cb59-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-137"><a href="#cb59-137" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OSM_Sydney<span class="sc">$</span>highway)</span>
+<span id="cb59-138"><a href="#cb59-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-139"><a href="#cb59-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-140"><a href="#cb59-140" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Filter the dataset only for the main 'Highway' classifications**</span>
+<span id="cb59-141"><a href="#cb59-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-144"><a href="#cb59-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-145"><a href="#cb59-145" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">=</span> OSM_Sydney <span class="sc">|&gt;</span> </span>
+<span id="cb59-146"><a href="#cb59-146" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>,<span class="st">"tertiary"</span>, <span class="st">"residential"</span>)) </span>
+<span id="cb59-147"><a href="#cb59-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-148"><a href="#cb59-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-149"><a href="#cb59-149" aria-hidden="true" tabindex="-1"></a>Try adding the "tertiary", "residential" streets, and the network gets more complex.</span>
+<span id="cb59-150"><a href="#cb59-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-151"><a href="#cb59-151" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** In order to check what are the main categories in OSM, check the </span><span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)</span></span>
+<span id="cb59-152"><a href="#cb59-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-153"><a href="#cb59-153" aria-hidden="true" tabindex="-1"></a>**Remove variables that are not useful**</span>
+<span id="cb59-154"><a href="#cb59-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-155"><a href="#cb59-155" aria-hidden="true" tabindex="-1"></a>Check the order of the variables</span>
+<span id="cb59-156"><a href="#cb59-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-157"><a href="#cb59-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb59-158"><a href="#cb59-158" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OSM_Sydney)</span>
+<span id="cb59-159"><a href="#cb59-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-160"><a href="#cb59-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-163"><a href="#cb59-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-164"><a href="#cb59-164" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span>
+<span id="cb59-165"><a href="#cb59-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-166"><a href="#cb59-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-167"><a href="#cb59-167" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the filtered network**</span>
+<span id="cb59-168"><a href="#cb59-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-171"><a href="#cb59-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-172"><a href="#cb59-172" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
+<span id="cb59-173"><a href="#cb59-173" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span>
+<span id="cb59-174"><a href="#cb59-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-175"><a href="#cb59-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-176"><a href="#cb59-176" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the amenities with the network**</span>
+<span id="cb59-177"><a href="#cb59-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-180"><a href="#cb59-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-181"><a href="#cb59-181" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-182"><a href="#cb59-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-183"><a href="#cb59-183" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb59-184"><a href="#cb59-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Sydney_main_roads, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb59-185"><a href="#cb59-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> amenities_data_treated, <span class="fu">aes</span>(<span class="at">color =</span> amenity), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb59-186"><a href="#cb59-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb59-187"><a href="#cb59-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Amenities in Sydney"</span>, <span class="at">color =</span> <span class="st">"Amenity Type"</span>) <span class="sc">+</span></span>
+<span id="cb59-188"><a href="#cb59-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb59-189"><a href="#cb59-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-190"><a href="#cb59-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-191"><a href="#cb59-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-192"><a href="#cb59-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import pedestrian counting data </span></span>
+<span id="cb59-193"><a href="#cb59-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-196"><a href="#cb59-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-197"><a href="#cb59-197" aria-hidden="true" tabindex="-1"></a>pedestrian_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"pedestrian_1.csv"</span>)</span>
+<span id="cb59-198"><a href="#cb59-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-199"><a href="#cb59-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-200"><a href="#cb59-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a grid over the area of interest</span></span>
+<span id="cb59-201"><a href="#cb59-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-202"><a href="#cb59-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Define a bounding box and create a polygon around**</span>
+<span id="cb59-203"><a href="#cb59-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-206"><a href="#cb59-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-207"><a href="#cb59-207" aria-hidden="true" tabindex="-1"></a><span class="co"># Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process</span></span>
+<span id="cb59-208"><a href="#cb59-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-209"><a href="#cb59-209" aria-hidden="true" tabindex="-1"></a>bbox_cbd <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(</span>
+<span id="cb59-210"><a href="#cb59-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="fl">151.2016</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="fl">33.8780</span>,</span>
+<span id="cb59-211"><a href="#cb59-211" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="fl">151.2151</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">33.8585</span></span>
+<span id="cb59-212"><a href="#cb59-212" aria-hidden="true" tabindex="-1"></a>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb59-213"><a href="#cb59-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-214"><a href="#cb59-214" aria-hidden="true" tabindex="-1"></a>cbd_polygon <span class="ot">&lt;-</span> <span class="fu">st_as_sfc</span>(bbox_cbd)</span>
+<span id="cb59-215"><a href="#cb59-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-216"><a href="#cb59-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-217"><a href="#cb59-217" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.</span></span>
+<span id="cb59-218"><a href="#cb59-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-219"><a href="#cb59-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crop the road network and compute centrality measures</span></span>
+<span id="cb59-220"><a href="#cb59-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-221"><a href="#cb59-221" aria-hidden="true" tabindex="-1"></a>To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).</span>
+<span id="cb59-222"><a href="#cb59-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-225"><a href="#cb59-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-226"><a href="#cb59-226" aria-hidden="true" tabindex="-1"></a><span class="co"># # Crop the road network to the study area</span></span>
+<span id="cb59-227"><a href="#cb59-227" aria-hidden="true" tabindex="-1"></a>osm_cbd <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(Sydney_main_roads, cbd_polygon)</span>
+<span id="cb59-228"><a href="#cb59-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-229"><a href="#cb59-229" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb59-230"><a href="#cb59-230" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coordinates and build the graph topology </span></span>
+<span id="cb59-231"><a href="#cb59-231" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(osm_cbd) <span class="co">#Sydney_main_roads</span></span>
+<span id="cb59-232"><a href="#cb59-232" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> coords <span class="sc">|&gt;</span></span>
+<span id="cb59-233"><a href="#cb59-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb59-234"><a href="#cb59-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb59-235"><a href="#cb59-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">round</span>(X, <span class="dv">7</span>),</span>
+<span id="cb59-236"><a href="#cb59-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">round</span>(Y, <span class="dv">7</span>)</span>
+<span id="cb59-237"><a href="#cb59-237" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb59-238"><a href="#cb59-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(L1) <span class="sc">|&gt;</span></span>
+<span id="cb59-239"><a href="#cb59-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb59-240"><a href="#cb59-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_x =</span> <span class="fu">lead</span>(X),</span>
+<span id="cb59-241"><a href="#cb59-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_y =</span> <span class="fu">lead</span>(Y)</span>
+<span id="cb59-242"><a href="#cb59-242" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb59-243"><a href="#cb59-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(next_x)) <span class="sc">|&gt;</span></span>
+<span id="cb59-244"><a href="#cb59-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb59-245"><a href="#cb59-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb59-246"><a href="#cb59-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">paste</span>(X, Y, <span class="at">sep =</span> <span class="st">","</span>),</span>
+<span id="cb59-247"><a href="#cb59-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">to   =</span> <span class="fu">paste</span>(next_x, next_y, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb59-248"><a href="#cb59-248" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-249"><a href="#cb59-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-250"><a href="#cb59-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-251"><a href="#cb59-251" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Build igraph object**</span>
+<span id="cb59-252"><a href="#cb59-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-255"><a href="#cb59-255" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-256"><a href="#cb59-256" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb59-257"><a href="#cb59-257" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="fu">simplify</span>()</span>
+<span id="cb59-258"><a href="#cb59-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-259"><a href="#cb59-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-260"><a href="#cb59-260" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Compute centrality measures**</span>
+<span id="cb59-261"><a href="#cb59-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-264"><a href="#cb59-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-265"><a href="#cb59-265" aria-hidden="true" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">degree</span>(g)</span>
+<span id="cb59-266"><a href="#cb59-266" aria-hidden="true" tabindex="-1"></a>bet <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-267"><a href="#cb59-267" aria-hidden="true" tabindex="-1"></a>clo <span class="ot">&lt;-</span> <span class="fu">closeness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb59-268"><a href="#cb59-268" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-269"><a href="#cb59-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-270"><a href="#cb59-270" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Parse vertex coordinates and create nodes spatial features**</span>
+<span id="cb59-271"><a href="#cb59-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-274"><a href="#cb59-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-275"><a href="#cb59-275" aria-hidden="true" tabindex="-1"></a>node_names <span class="ot">&lt;-</span> <span class="fu">V</span>(g)<span class="sc">$</span>name</span>
+<span id="cb59-276"><a href="#cb59-276" aria-hidden="true" tabindex="-1"></a>node_coords <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">strsplit</span>(node_names, <span class="st">","</span>), as.numeric))</span>
+<span id="cb59-277"><a href="#cb59-277" aria-hidden="true" tabindex="-1"></a>nodes_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb59-278"><a href="#cb59-278" aria-hidden="true" tabindex="-1"></a>  <span class="at">node =</span> node_names,</span>
+<span id="cb59-279"><a href="#cb59-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> node_coords[,<span class="dv">1</span>],</span>
+<span id="cb59-280"><a href="#cb59-280" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> node_coords[,<span class="dv">2</span>],</span>
+<span id="cb59-281"><a href="#cb59-281" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree =</span> deg,</span>
+<span id="cb59-282"><a href="#cb59-282" aria-hidden="true" tabindex="-1"></a>  <span class="at">betweenness =</span> bet,</span>
+<span id="cb59-283"><a href="#cb59-283" aria-hidden="true" tabindex="-1"></a>  <span class="at">closeness =</span> clo</span>
+<span id="cb59-284"><a href="#cb59-284" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb59-285"><a href="#cb59-285" aria-hidden="true" tabindex="-1"></a>nodes_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(nodes_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb59-286"><a href="#cb59-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-287"><a href="#cb59-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-288"><a href="#cb59-288" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Plot the degree centrality on a map</span>
+<span id="cb59-289"><a href="#cb59-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-292"><a href="#cb59-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-293"><a href="#cb59-293" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-294"><a href="#cb59-294" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb59-295"><a href="#cb59-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> osm_cbd, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb59-296"><a href="#cb59-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nodes_sf, <span class="fu">aes</span>(<span class="at">color =</span> degree)) <span class="sc">+</span></span>
+<span id="cb59-297"><a href="#cb59-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb59-298"><a href="#cb59-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb59-299"><a href="#cb59-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb59-300"><a href="#cb59-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb59-301"><a href="#cb59-301" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality"</span>,</span>
+<span id="cb59-302"><a href="#cb59-302" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Degree"</span></span>
+<span id="cb59-303"><a href="#cb59-303" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-304"><a href="#cb59-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-305"><a href="#cb59-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-306"><a href="#cb59-306" aria-hidden="true" tabindex="-1"></a>**Try plotting the other maps! :)**</span>
+<span id="cb59-307"><a href="#cb59-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-308"><a href="#cb59-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spatial join and aggregate all data into the grid</span></span>
+<span id="cb59-309"><a href="#cb59-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-310"><a href="#cb59-310" aria-hidden="true" tabindex="-1"></a>Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.</span>
+<span id="cb59-311"><a href="#cb59-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-312"><a href="#cb59-312" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Create grids that over the area of interest (polygon)**</span>
+<span id="cb59-313"><a href="#cb59-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-316"><a href="#cb59-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-317"><a href="#cb59-317" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">st_make_grid</span>(cbd_polygon, <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="at">square =</span> <span class="cn">FALSE</span>)<span class="co"># 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells</span></span>
+<span id="cb59-318"><a href="#cb59-318" aria-hidden="true" tabindex="-1"></a>grid_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">grid_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grid), <span class="at">geometry =</span> grid)</span>
+<span id="cb59-319"><a href="#cb59-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-320"><a href="#cb59-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-321"><a href="#cb59-321" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters.</span></span>
+<span id="cb59-322"><a href="#cb59-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-323"><a href="#cb59-323" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join centrality measures (average per grid cell)**</span>
+<span id="cb59-324"><a href="#cb59-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-327"><a href="#cb59-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-328"><a href="#cb59-328" aria-hidden="true" tabindex="-1"></a>node_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(nodes_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb59-329"><a href="#cb59-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb59-330"><a href="#cb59-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb59-331"><a href="#cb59-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb59-332"><a href="#cb59-332" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(degree, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-333"><a href="#cb59-333" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_betweenness =</span> <span class="fu">mean</span>(betweenness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-334"><a href="#cb59-334" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_closeness =</span> <span class="fu">mean</span>(closeness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-335"><a href="#cb59-335" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb59-336"><a href="#cb59-336" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-337"><a href="#cb59-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-338"><a href="#cb59-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-339"><a href="#cb59-339" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join amenities (count of total and per category per grid cell)**</span>
+<span id="cb59-340"><a href="#cb59-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-343"><a href="#cb59-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-344"><a href="#cb59-344" aria-hidden="true" tabindex="-1"></a>amenity_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(amenities_data_treated, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb59-345"><a href="#cb59-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb59-346"><a href="#cb59-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb59-347"><a href="#cb59-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb59-348"><a href="#cb59-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_total =</span> <span class="fu">sum</span>(amenity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bar"</span>, <span class="st">"bank"</span>)),</span>
+<span id="cb59-349"><a href="#cb59-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_restaurant =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"restaurant"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-350"><a href="#cb59-350" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_cafe =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"cafe"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-351"><a href="#cb59-351" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_bank =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"bank"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-352"><a href="#cb59-352" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb59-353"><a href="#cb59-353" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-354"><a href="#cb59-354" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-355"><a href="#cb59-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-356"><a href="#cb59-356" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join total pedestrian counts (sum of TotalCount per grid cell)**</span>
+<span id="cb59-357"><a href="#cb59-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-360"><a href="#cb59-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-361"><a href="#cb59-361" aria-hidden="true" tabindex="-1"></a>ped_sensors <span class="ot">&lt;-</span> pedestrian_data <span class="sc">|&gt;</span></span>
+<span id="cb59-362"><a href="#cb59-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location_code, Latitude, Longitude) <span class="sc">|&gt;</span></span>
+<span id="cb59-363"><a href="#cb59-363" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb59-364"><a href="#cb59-364" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pedestrians =</span> <span class="fu">sum</span>(TotalCount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-365"><a href="#cb59-365" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb59-366"><a href="#cb59-366" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-367"><a href="#cb59-367" aria-hidden="true" tabindex="-1"></a>ped_sensors_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ped_sensors, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb59-368"><a href="#cb59-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-369"><a href="#cb59-369" aria-hidden="true" tabindex="-1"></a>ped_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(ped_sensors_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb59-370"><a href="#cb59-370" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb59-371"><a href="#cb59-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb59-372"><a href="#cb59-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb59-373"><a href="#cb59-373" aria-hidden="true" tabindex="-1"></a>    <span class="at">pedestrians =</span> <span class="fu">sum</span>(total_pedestrians, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb59-374"><a href="#cb59-374" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb59-375"><a href="#cb59-375" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-376"><a href="#cb59-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-377"><a href="#cb59-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-378"><a href="#cb59-378" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..</span></span>
+<span id="cb59-379"><a href="#cb59-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-380"><a href="#cb59-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merge all attributes back to the grid</span></span>
+<span id="cb59-381"><a href="#cb59-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-384"><a href="#cb59-384" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-385"><a href="#cb59-385" aria-hidden="true" tabindex="-1"></a>final_grid <span class="ot">&lt;-</span> grid_sf <span class="sc">|&gt;</span></span>
+<span id="cb59-386"><a href="#cb59-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(node_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb59-387"><a href="#cb59-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(amenity_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb59-388"><a href="#cb59-388" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ped_join, <span class="at">by =</span> <span class="st">"grid_id"</span>)</span>
+<span id="cb59-389"><a href="#cb59-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-390"><a href="#cb59-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-391"><a href="#cb59-391" aria-hidden="true" tabindex="-1"></a><span class="fu">## Save joined grid data</span></span>
+<span id="cb59-392"><a href="#cb59-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-393"><a href="#cb59-393" aria-hidden="true" tabindex="-1"></a>We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.</span>
+<span id="cb59-394"><a href="#cb59-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-395"><a href="#cb59-395" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb59-396"><a href="#cb59-396" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the grid as a GeoJSON file</span></span>
+<span id="cb59-397"><a href="#cb59-397" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(final_grid, <span class="st">"grid_joined.geojson"</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-398"><a href="#cb59-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-399"><a href="#cb59-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-400"><a href="#cb59-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualize the results in a map (e.g., degree centrality)</span></span>
+<span id="cb59-401"><a href="#cb59-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-404"><a href="#cb59-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-405"><a href="#cb59-405" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-406"><a href="#cb59-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-407"><a href="#cb59-407" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(final_grid) <span class="sc">+</span></span>
+<span id="cb59-408"><a href="#cb59-408" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> mean_degree), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb59-409"><a href="#cb59-409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb59-410"><a href="#cb59-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb59-411"><a href="#cb59-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb59-412"><a href="#cb59-412" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-413"><a href="#cb59-413" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-414"><a href="#cb59-414" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb59-415"><a href="#cb59-415" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb59-416"><a href="#cb59-416" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb59-417"><a href="#cb59-417" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality (Grid Aggregation)"</span>,</span>
+<span id="cb59-418"><a href="#cb59-418" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Degree"</span></span>
+<span id="cb59-419"><a href="#cb59-419" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-420"><a href="#cb59-420" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb59-421"><a href="#cb59-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-422"><a href="#cb59-422" aria-hidden="true" tabindex="-1"></a>**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**</span>
+<span id="cb59-423"><a href="#cb59-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-426"><a href="#cb59-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-427"><a href="#cb59-427" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb59-428"><a href="#cb59-428" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb59-429"><a href="#cb59-429" aria-hidden="true" tabindex="-1"></a><span class="co"># this coverts this quarto to a plain r script</span></span>
+<span id="cb59-430"><a href="#cb59-430" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">purl</span>(<span class="st">"Spatial_Data_Analysis.qmd"</span>, <span class="st">"codes/Spatial_Data_Analysis.R"</span>, <span class="at">documentation =</span> <span class="dv">2</span>)</span>
+<span id="cb59-431"><a href="#cb59-431" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
