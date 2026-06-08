@@ -54,23 +54,30 @@ amenities_query <- opq(location) |>
 
 -   **Extract the data**
 
-```{r}
+```{r, eval=FALSE}
 # Set an alternative Overpass server (makes the process quicker)
 set_overpass_url("https://overpass-api.de/api/interpreter")
 
 amenities_data <- osmdata_sf(amenities_query)
+amenities_data_points <- amenities_data$osm_points 
 ```
+
+```{r, include=FALSE}
+amenities_data_points <- sf::st_read("https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/osm_amenities_points.gpkg") |> dplyr::rename(geometry=geom)
+```
+
+
 
 -   **Check the amenities data**
 
 ```{r, eval = FALSE}
-View(amenities_data$osm_points)
+View(amenities_data_points)
 ```
 
 -   **Select only the relevant variables**
 
 ```{r}
-amenities_data_treated <- amenities_data$osm_points |> 
+amenities_data_treated <- amenities_data_points |> 
   dplyr::select("osm_id","name","amenity","geometry") 
 ```
 
