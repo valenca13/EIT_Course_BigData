@@ -54,7 +54,7 @@
     "href": "structure.html#detailed-schedule",
     "title": "2  Schedule",
     "section": "",
-    "text": "Day 1\n\n\n\n\n\n9.00\nIntroduction to the course\n\n\n9.30\nIntroduction to Big Data Technologies for Active Mobility\n\n\n11.00\nCoffee break\n\n\n11.20\nInteractive lecture: Understanding Passive Mobility Big Data in Practice\n\n\n12.30\nLunch break\n\n\n14.00\nInstallation and workshop on using R programming\n\n\n15.30\nCoffee break\n\n\n15.50\nGroup work using other passive mobility datasets\n\n\n17.00\nEnd of day 1\n\n\n\n\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n9.00\nLecture: Analytical Techniques for Active Mobility Big Data\n\n\n10.00\nCoffee break\n\n\n10.20\nWorkshop on merging spatial data in R programming\n\n\n\n\n\n\n12.00\nLunch break\n\n\n\n\n\n\n14.00\nGroup work\n\n\n16.15\nCoffee break\n\n\n16.30\nGroup Presentations\n\n\n17.15\nSurvey and feedback from participants\n\n\n17.30\nEnd of day 2",
+    "text": "Day 1\n\n\n\n\n\n9.30\nIntroduction to the course\n\n\n9.45\nIntroduction to Big Data Technologies for Active Mobility\n\n\n11.15\nCoffee break\n\n\n11.30\nInstallation and learning the basics of R programming\n\n\n13.00\nLunch break\n\n\n14.30\nExploratory Data Analysis in R programming\n\n\n16.00\nCoffee break\n\n\n16.30\nExercises in R programming (Visualizations)\n\n\n17.15\nEnd of day 1\n\n\n\n\n\n\nDay 2\n\n\n\n\n\n9.30\nLecture: Analytical Techniques for Active Mobility Big Data\n\n\n10.00\nCoffee break\n\n\n10.20\nWorkshop on merging spatial data in R programming\n\n\n\n\n\n\n12.00\nLunch break\n\n\n\n\n\n\n14.00\nGroup work\n\n\n16.15\nCoffee break\n\n\n16.30\nGroup Presentations\n\n\n17.15\nSurvey and feedback from participants\n\n\n17.30\nEnd of day 2",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Schedule</span>"
     ]
@@ -96,7 +96,6 @@
     "section": "",
     "text": "3.1 R\nIn this chapter we will guide you through the installation of R, RStudio and the packages you will need for this course.\nR and RStudio1 are separate downloads.\nYou will need R installed on your computer. R stats (how it is also known) is a programming language and free software environment for statistical computing and graphics supported by the R Foundation for Statistical Computing.\nThe download links live at The Comprehensive R Archive Network (aka CRAN). The most recent version is 4.4.1, but you can use &gt;= 4.1.x if you already have it installed.\nAfter this installation, you don’t need to open R base. Please proceed to install RStudio.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
     ]
   },
@@ -107,7 +106,6 @@
     "section": "",
     "text": "WindowsMacUbuntu\n\n\nDownload R-4.4.1 for Windows and run the executable file.\n\n\n\n\n\n\nImportant\n\n\n\nYou will also need to install Rtools, which is a collection of tools necessary to build R packages in Windows.\n\n\n\n\nDownload R-4.4.1 for MacOX. You will have to choose between the arm64 or the x86-64 version.\nDownload the .pkg file and install it as usual.\n\n\n\nThese are instructions for Ubuntu. If you use other linux distribution, please follow the instructions on The Comprehensive R Archive Network - CRAN.\n\nYou can look for R in the Ubuntu Software Center or install it via the terminal:\n\n# sudo apt update && sudo apt upgrade -y\nsudo apt install r-base\n\nOr, if you prefer, you can install the latest version of R from CRAN:\n\n# update indices\nsudo apt update -qq\n# install two helper packages we need\nsudo apt install --no-install-recommends software-properties-common dirmngr\n# add the signing key (by Michael Rutter) for these repos\nwget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc\n# add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed\nsudo add-apt-repository \"deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/\"\n\nThen run:\n\nsudo apt install r-base r-base-core r-recommended r-base-dev\n\n[Optional] To keep up-to-date r version and packages, you can follow the instructions at r2u",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
     ]
   },
@@ -118,7 +116,6 @@
     "section": "3.2 RStudio",
     "text": "3.2 RStudio\nRStudio Desktop is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.\nRStudio is available for free download from Posit RStudio.\n\nWindows 10/11MacOSUbuntu\n\n\nDownload RStudio 2024.04 and run the executable file.\n\n\nDownload RStudio 2024.04 and install it as usual.\n\n\n\nThese are instructions for Ubuntu 22 / Debian 12. If you use other linux distribution, please follow the instructions on Posit RStudio.\n\nInstall it via the terminal:\n\nsudo apt install libssl-dev libclang-dev\nwget https://download1.rstudio.org/electron/jammy/amd64/rstudio-2024.04.2-764-amd64.deb\nsudo dpkg -i rstudio*\nrm -v rstudio*\n\nIf you already use Ubuntu 24, please check and replace the correct url from RStudio Dailies",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
     ]
   },
@@ -127,9 +124,8 @@
     "href": "software.html#r-packages",
     "title": "3  Software",
     "section": "3.3 R packages",
-    "text": "3.3 R packages\nYou will need to install some packages to work with the data and scripts in this course.\nYou can install them in RStudio by searching for them in the Packages tab:\n\nor by running the following code in the console:\n\ninstall.packages(\"tidyverse\")\n# install.packages(\"readxl\")\n\ninstall.packages(\"sf\")\ninstall.packages(\"mapview\")\ninstall.packages(\"rmarkdown\")\ninstall.packages(\"centr\")\ninstall.packages(\"od\")\ninstall.packages(\"skimr\")\ninstall.packages(\"DataExplorer\")\ninstall.packages(\"plotly\")\n\ninstall.packages(c(\"remotes\", \"devtools\", \"usethis\")) # optional\ninstall.packages(\"osmextract\") # optional\ninstall.packages(\"stplanr\") # optional\n\n\n3.3.1 Java Development Kit\nYou may need to have Java Development Kit (JDK) 21 installed on your computer to perform spatial analysis. There are numerous open-source JDK implementations. The easiest way to install JDK is using the new {rJavaEnv} package in R.\n\n# check version of Java currently installed (if any) \nrJavaEnv::java_check_version_rjava()\n\n## if this is the first time you use {rJavaEnv}, you might need to run this code\n## below to consent the installation of Java.\n# rJavaEnv::rje_consent(provided = TRUE)\n\n# install Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# check if Java was successfully installed\nrJavaEnv::java_check_version_rjava()\n\nAlternatively, you can manually download and install JDK 21.\n\nWindows and MacOSUbuntu\n\n\nGo to Java Development Kit 21, download the latest 21 build corresponding to your operating system and run the executable file.\n\n\nInstall it via the terminal:\n\nsudo apt install -y openjdk-21-jdk openjdk-21-jre\njava -version",
+    "text": "3.3 R packages\nYou will need to install some packages to work with the data and scripts in this course.\nYou can install them in RStudio by searching for them in the Packages tab:\n\nor by running the following code in the console:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"sf\")\ninstall.packages(\"mapview\")\ninstall.packages(\"rmarkdown\")\ninstall.packages(\"skimr\")\ninstall.packages(\"DataExplorer\")\ninstall.packages(\"plotly\")\ninstall.packages(\"lubridate\")\ninstall.packages(\"osmextract\") \ninstall.packages(\"osmdata\")\ninstall.packages(\"ggplot2\")\ninstall.packages(\"igraph\")\n\n\n3.3.1 Java Development Kit\nYou may need to have Java Development Kit (JDK) 21 installed on your computer to perform spatial analysis. There are numerous open-source JDK implementations. The easiest way to install JDK is using the new {rJavaEnv} package in R.\n\n# check version of Java currently installed (if any) \nrJavaEnv::java_check_version_rjava()\n\n## if this is the first time you use {rJavaEnv}, you might need to run this code\n## below to consent the installation of Java.\n# rJavaEnv::rje_consent(provided = TRUE)\n\n# install Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# check if Java was successfully installed\nrJavaEnv::java_check_version_rjava()\n\nAlternatively, you can manually download and install JDK 21.\n\nWindows and MacOSUbuntu\n\n\nGo to Java Development Kit 21, download the latest 21 build corresponding to your operating system and run the executable file.\n\n\nInstall it via the terminal:\n\nsudo apt install -y openjdk-21-jdk openjdk-21-jre\njava -version",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
     ]
   },
@@ -140,7 +136,6 @@
     "section": "",
     "text": "We will use RStudio, although if you already use other studio such as VScode, that’s also fine.↩︎",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Software</span>"
     ]
   },
@@ -151,7 +146,6 @@
     "section": "",
     "text": "4.1 Math operations\nIn this chapter we will introduce to the R basics and some exercises to get familiar to how R works.\nSum\n1+1\n\n[1] 2\nSubtraction\n5-2\n\n[1] 3\nMultiplication\n2*2\n\n[1] 4\nDivision\n8/2\n\n[1] 4\nRound the number\nround(3.14)\n\n[1] 3\n\nround(3.14, 1) # The \"1\" indicates to round it up to 1 decimal digit.\n\n[1] 3.1\nYou can use help ?round in the console to see the description of the function, and the default arguments.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
     ]
   },
@@ -162,7 +156,6 @@
     "section": "4.2 Basic shortpaths",
     "text": "4.2 Basic shortpaths\nPerform Combinations\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\nc(1:3) # The \":\" indicates a range between the first and second numbers. \n\n[1] 1 2 3\n\n\nCreate a comment with ctrl + shift + c \n\n# Comments help you organize your code. The software will not run the comment.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
     ]
   },
@@ -173,7 +166,6 @@
     "section": "4.3 Create a table",
     "text": "4.3 Create a table\nA simple table with the number of trips by car, PT, walking, and cycling in a hypothetical street segment at a certain period.\nDefine variables\n\n# Transport mode choice\nmodes &lt;- c(\"car\", \"PT\", \"walking\", \"cycling\") # you can use \"=\" or \"&lt;-\"\n\n# Number of trips\nTrips = c(200, 50, 300, 150) # Be careful with uppercase letters. \n\n# Trip Origin\norigin &lt;- c(\"Home\", \"Home\", \"School\", \"Grocery\")\n\n# Trip Destination\ndestination &lt;- c(\"Work\", \"University\", \"Park\", \"Home\")\n\nJoin the variables to create a table\n\ntable_example = data.frame(modes, Trips, origin, destination)\n\nTake a look at the table\nVisualize the table by clicking on the “table_example” in the “Environment” page or use:\n\nView(table_example)\n\nLook at the first row\n\ntable_example[1,] #rows and columns start from 1 in R, differently from Python which starts from 0.\n\n  modes Trips origin destination\n1   car   200   Home        Work\n\n\nLook at first row and column\n\ntable_example[1,1]\n\n[1] \"car\"\n\n\n\n\n\n\n\n\nAfter you type \" you can use tab to navigate between folders and files and enter to autocomplete.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
     ]
   },
@@ -184,7 +176,6 @@
     "section": "4.4 Explore the data",
     "text": "4.4 Explore the data\nCheck the total number of trips\nUse $ to select a variable of the data\n\nsum(table_example$Trips)\n\n[1] 700\n\n\nFilter by condition (create new tables)\nFilter trips only with origin from Home\n\ndata_Lisbon = table_example[table_example$origin == \"Home\",]\n\nFilter trips with origin different from Home\n\ndata_out_Lisbon = table_example[table_example$origin != \"Home\",]\n\nRemove the first column\n\ntable_example_2 = table_example[ ,-1] #first column\n\nCreate a table only with origin, destination\nThere are many ways to do the same operation.\n\nnames(table_example)\n\n[1] \"modes\"       \"Trips\"       \"origin\"      \"destination\"\n\n\n\ndata_OD = table_example[ ,c(3,4)]\n\n\ndata_OD2 = table_example[ ,-c(1:2)] #Or use a comma.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
     ]
   },
@@ -195,7 +186,6 @@
     "section": "",
     "text": "5.1 About the Data\nHourly pedestrian counts from automatic sensors in our local area.\nData is openly available at: https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count\nThis dataset contains hourly pedestrian counts by location in Sydney, Australia.\nAutomated counters were placed in busy areas of the CBD to assess performance.\nData collection began in February 2020 and ended in June 2025.",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -206,7 +196,6 @@
     "section": "5.2 Import Dataset",
     "text": "5.2 Import Dataset\nThe dataset can be downloaded in many formats.\nYou can also import the data in many formats. Choose the one you prefer\n\nCSV file\n\n\n\nCode\ndata_csv &lt;- read.csv(\"https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv\")\n\n\n\nShapefile\n\nFirst Unzip file and place them into the ´Data´ file.\n\n\nCode\n#Unzip file\n\nunzip(\"Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip\", junkpaths = TRUE)\n\n\n\n\nCode\nlibrary(sf)\n \ndata_shapefile &lt;- read_sf(\"Automatic_Hourly_Pedestrian_Count.shp\")",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -217,7 +206,6 @@
     "section": "5.3 Convert dataset into dataframe",
     "text": "5.3 Convert dataset into dataframe\nIt is good practice to: * convert the database into dataframe, as many packages only work with dataframes. * To not work on the raw dataset.\n\n\nCode\nlibrary(tidyverse)\ndf &lt;- data.frame(data_csv)",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -228,7 +216,6 @@
     "section": "5.4 Check the dataset",
     "text": "5.4 Check the dataset\n\nStructure of the dataset\n\n\n\nCode\nstr(df)\n\n\n'data.frame':   188720 obs. of  13 variables:\n $ Location_code       : chr  \"A004\" \"A003\" \"A002\" \"A001\" ...\n $ Location_Name       : chr  \"Park Street\" \"Market Street\" \"Elizabeth Street\" \"Bridge Street\" ...\n $ Date                : chr  \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" \"2025/07/04 13:00:00+00\" ...\n $ TotalCount          : int  3234 2454 596 870 3943 3161 978 1382 2887 1954 ...\n $ Hour                : int  13 13 13 13 12 12 12 12 11 11 ...\n $ Day                 : chr  \"Friday\" \"Friday\" \"Friday\" \"Friday\" ...\n $ DayNo               : int  5 5 5 5 5 5 5 5 5 5 ...\n $ Week                : num  2025 2025 2025 2025 2025 ...\n $ LastWeek            : int  4241 2788 785 990 3559 2967 732 1266 2823 1976 ...\n $ Previous4DayTimeAvg : int  3906 2676 725 954 3643 2930 822 1242 2777 1859 ...\n $ ObjectId            : int  1 2 3 4 5 6 7 8 9 10 ...\n $ LastYear            : int  3242 2679 800 1035 3100 2796 792 1295 2337 1850 ...\n $ Previous52DayTimeAvg: int  3735 2622 800 940 3423 2698 812 1119 2705 1830 ...\n\n\n\nSummary of the dataset\n\n\n\nCode\nlibrary(skimr)\nskim(df)\n\n\n\nData summary\n\n\nName\ndf\n\n\nNumber of rows\n188720\n\n\nNumber of columns\n13\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n9\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nLocation_code\n0\n1\n4\n4\n0\n4\n0\n\n\nLocation_Name\n0\n1\n11\n16\n0\n4\n0\n\n\nDate\n0\n1\n22\n22\n0\n47221\n0\n\n\nDay\n0\n1\n6\n9\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nTotalCount\n0\n1.00\n731.49\n911.69\n0.00\n85.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nHour\n0\n1.00\n11.50\n6.92\n0.00\n6.00\n11.00\n17.00\n23.00\n▇▇▆▇▇\n\n\nDayNo\n0\n1.00\n3.00\n2.00\n0.00\n1.00\n3.00\n5.00\n6.00\n▇▅▃▅▇\n\n\nWeek\n0\n1.00\n2022.59\n1.56\n2020.07\n2021.25\n2022.44\n2024.09\n2025.27\n▇▇▇▇▇\n\n\nLastWeek\n848\n1.00\n731.71\n911.50\n0.00\n86.00\n374.00\n1005.00\n8230.00\n▇▁▁▁▁\n\n\nPrevious4DayTimeAvg\n2016\n0.99\n728.48\n885.02\n0.00\n94.00\n388.00\n1008.00\n6271.00\n▇▂▁▁▁\n\n\nObjectId\n0\n1.00\n94360.50\n54478.92\n1.00\n47180.75\n94360.50\n141540.25\n188720.00\n▇▇▇▇▇\n\n\nLastYear\n36052\n0.81\n676.33\n838.84\n0.00\n83.00\n348.00\n938.00\n7129.00\n▇▁▁▁▁\n\n\nPrevious52DayTimeAvg\n34272\n0.82\n729.73\n832.10\n1.00\n118.00\n418.00\n1048.00\n5325.00\n▇▂▁▁▁",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -239,7 +226,6 @@
     "section": "5.5 Check Missing data",
     "text": "5.5 Check Missing data\n\n\nCode\ntable(is.na(df))\n\n\n\n  FALSE    TRUE \n2380172   73188 \n\n\n\nPlot missing data\n\n\n\nCode\nlibrary(DataExplorer)\n\nplot_missing(df)\n\n\n\n\n\n\n\n\n\n\nListwise deletion. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.\n\n\n\nCode\ndf_missingListwise = na.omit(df) #removes all rows with at least one NA in any variable\n\n\n\n\nCode\nplot_missing(df_missingListwise)\n\n\n\n\n\n\n\n\n\n\nPairwise deletion. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.\n\n\n\nCode\ndf_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable\n\n\nFor our case, which treatment would be better?\n\nNote: There are many methods for treating missing data, such as replacing the values by the mean, median or using more complex imputation methods (e.g. k‑Nearest Neighbors (kNN) Imputation).",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -250,7 +236,6 @@
     "section": "5.6 Treat existent variables",
     "text": "5.6 Treat existent variables\n\nConvert the variable “Day” into a factor\n\n\n\nCode\ndf$Day &lt;- factor(df$Day, labels = c(\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"), ordered = TRUE)\n\nstr(df$Day)\n\n\n Ord.factor w/ 7 levels \"Sunday\"&lt;\"Monday\"&lt;..: 1 1 1 1 1 1 1 1 1 1 ...\n\n\nCheck how many automatic counters there are:\n\n\nCode\nunique(df$Location_code)\n\n\n[1] \"A004\" \"A003\" \"A002\" \"A001\"\n\n\n\n\nCode\nunique(df$Location_Name)\n\n\n[1] \"Park Street\"      \"Market Street\"    \"Elizabeth Street\" \"Bridge Street\"   \n\n\nThe location exact location of the automatic counters is not given in the dataset.\nWe need at least an approximation, to perform spatial analysis.\nCheck the description in the dashboard: https://experience.arcgis.com/experience/a0abf612051a4cc79918e6ce5ee7295b/\nGo to Google Maps and retrieve the locations:\n\nA001: -33.863518, 151.209968\nA002: -33.871667, 151.210080\nA003: -33.870783, 151.206607\nA004: -33.873041, 151.207565",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -261,7 +246,6 @@
     "section": "5.7 Create variable with latitude and longitude of dataset",
     "text": "5.7 Create variable with latitude and longitude of dataset\n\n\nCode\ndf$Latitude[df$Location_code == \"A001\"] &lt;- -33.863518\ndf$Longitude[df$Location_code == \"A001\"] &lt;- 151.209968\n\ndf$Latitude[df$Location_code == \"A002\"] &lt;- -33.871667\ndf$Longitude[df$Location_code == \"A002\"] &lt;- 151.210080\n\ndf$Latitude[df$Location_code == \"A003\"] &lt;- -33.870783\ndf$Longitude[df$Location_code == \"A003\"] &lt;- 151.206607\n\ndf$Latitude[df$Location_code == \"A004\"] &lt;- -33.873041\ndf$Longitude[df$Location_code == \"A004\"] &lt;- 151.207565",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -272,7 +256,6 @@
     "section": "5.8 Create a Geometry variable",
     "text": "5.8 Create a Geometry variable\n\n\nCode\nlibrary(sf)\n\ndf_sf &lt;- st_as_sf(\n  df,\n  coords = c(\"Longitude\", \"Latitude\"),\n  crs = 4326\n)\n\n\n\nNote: Google Maps uses WGS84, which corresponds to EPSG = 4326\n\nCreate an iterative map\n\n\nCode\nlibrary(mapview)\n\ndf_map &lt;- unique(df_sf$geometry)\nmapview(df_map)",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -283,7 +266,6 @@
     "section": "5.9 Have date and time in separate variables",
     "text": "5.9 Have date and time in separate variables\nParse date-times with year, month, and day, hour, minute, and second components.\n\n\nCode\nlibrary(lubridate)\n\ndf_sf$Date &lt;- ymd_hms(df_sf$Date, tz = \"UTC\")\n\n\nCheck the class of the variable ´Date´\n\n\nCode\nclass(df$Date)\n\n\n[1] \"character\"\n\n\nCode\nclass(df_sf$Date)\n\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\nCreate new variables separating Date, Year, and Time\n\n\nCode\ndf_sf$Date_only &lt;- as.Date(df_sf$Date)\ndf_sf$Year &lt;- format(df_sf$Date, \"%Y\")\ndf_sf$Time_only &lt;- format(df_sf$Date, \"%H:%M:%S\")",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -294,7 +276,6 @@
     "section": "5.10 Make some initial plots",
     "text": "5.10 Make some initial plots\n\nTotal pedestrian counts over time\n\n\n\nCode\nlibrary(ggplot2)\n\nggplot(df_sf, aes(x = Date, y = TotalCount)) +\n  geom_line(linewidth = 1) +\n    scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nTotal pedestrian counts per counter over time\n\n\n\nCode\nggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +\n  geom_line() +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_gray() +\n  theme(axis.text.x = element_text(angle = 90, size = 6)) +\n  scale_x_date(\n    date_breaks = \"1 year\",\n    date_labels = \"%Y\"\n  ) +\n  labs(\n    title = \"Total Nº of Pedestrians by Automatic Counter Over Time\",\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\nFacet_wrap divides the plots per automatic counter.\n\nTendency of total pedestrian counts per counter aggregated by year\n\n\n\nCode\nggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 4) +\n  facet_wrap(~ Location_code) + # insert \"scales = \"free_y\" to adapt the maximum of Y in each plot\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 7)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +\n  labs(\n    x = \"Year\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\n\nTotal number of pedestrians per time\n\n\n\nCode\nggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +\n  geom_line(linewidth = 1) +\n  facet_wrap(~ Location_code, scales =\"free_y\") +\n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, size = 5, hjust = 1)) +\n  scale_y_continuous(limits = c(0, max(df_sf$TotalCount) * 1.2)) +\n  labs(\n    x = \"Time\",\n    y = \"Total Nº of Pedestrians\"\n  )\n\n\n\n\n\n\n\n\n\nTry changing the themes for different appearances.\n\nNote: Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/",
     "crumbs": [
-      "**Day 1**",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data treatment</span>"
     ]
   },
@@ -305,7 +286,6 @@
     "section": "",
     "text": "6.1 Introduction\nSpatial data is data that is associated with a geometry. This geometry can be a point, a line, a polygon, or a grid.\nSpatial data can be represented in many ways, such as vector data and raster data.\nWe will use the sf package to work with vector data, and the dplyr package to manipulate data.\nThe sf package is a powerful package for working with spatial data in R.\nIt includes hundreds of functions to deal with spatial data.",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -316,7 +296,6 @@
     "section": "6.2 Objective",
     "text": "6.2 Objective\nIn this chapter we will learn how to extract and merge OpenStreetMap data of amenities and road network to the pedestrian count data.\nCheck the available features and tags through the following link.",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -327,7 +306,6 @@
     "section": "6.3 Import libraries",
     "text": "6.3 Import libraries\n\n\nCode\nlibrary(osmdata)\nlibrary(sf)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(tidyverse)\nlibrary(osmextract)\n\n\n\nNote: We are going to use two packages to deal with OpenStreetMap data.",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -338,7 +316,6 @@
     "section": "6.4 Extract land use amenities",
     "text": "6.4 Extract land use amenities\n\nDefine Location\n\n\n\nCode\nlocation &lt;- \"Sydney, Australia\"\n\n\n\nCreate an OSM query for extracting amenities data\n\n\n\nCode\nlibrary(osmdata) \n\n\nData (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright\n\n\nCode\namenities_query &lt;- opq(location) |&gt; \n  add_osm_feature(key = \"amenity\", value = c(\"restaurant\", \"bank\", \"bar\")) \n\n\n\nNote: We will use only three categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis.\n\n\nExtract the data\n\n\n\nCode\n# Set an alternative Overpass server (makes the process quicker)\nset_overpass_url(\"https://overpass-api.de/api/interpreter\")\n\namenities_data &lt;- osmdata_sf(amenities_query)\namenities_data_points &lt;- amenities_data$osm_points \n\n\n\nCheck the amenities data\n\n\n\nCode\nView(amenities_data_points)\n\n\n\nSelect only the relevant variables\n\n\n\nCode\namenities_data_treated &lt;- amenities_data_points |&gt; \n  dplyr::select(\"osm_id\",\"name\",\"amenity\",\"geometry\") \n\n\n\n\nCode\nunique(amenities_data_treated$amenity)\n\n\n[1] \"restaurant\"   \"bank\"         \"bar\"          NA             \"loading_dock\"\n\n\n\nRemove NA and loading_dock\n\n\n\nCode\nlibrary(sf)\n\n\nLinking to GEOS 3.14.1, GDAL 3.12.1, PROJ 9.7.1; sf_use_s2() is TRUE\n\n\nCode\namenities_data_treated &lt;- st_as_sf(amenities_data_treated) |&gt;\n  dplyr::filter(!is.na(amenity), amenity != \"loading_dock\")",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -349,7 +326,6 @@
     "section": "6.5 Import road network data",
     "text": "6.5 Import road network data\n\n\nCode\nlibrary(osmextract)\n\n\nData (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright.\nCheck the package website, https://docs.ropensci.org/osmextract/, for more details.\n\n\nCode\nOSM_Sydney = oe_get_network(place = \"Sydney\") \n\n\nNo exact match found for place = Sydney and provider = geofabrik. Best match is Surrey. \nChecking the other providers.\n\n\nAn exact string match was found using provider = bbbike.\n\n\nThe chosen file was already detected in the download directory. Skip downloading.\n\n\nStarting with the vectortranslate operations on the input file!\n\n\n0...10...20...30...40...50...60...70...80...90...100 - done.\n\n\nFinished the vectortranslate operations on the input file!\n\n\nReading layer `lines' from data source \n  `C:\\Users\\Gabriel's\\AppData\\Roaming\\R\\data\\R\\osmextract\\bbbike_Sydney.gpkg' \n  using driver `GPKG'\nSimple feature collection with 167073 features and 13 fields\nGeometry type: LINESTRING\nDimension:     XY\nBounding box:  xmin: 150.8055 ymin: -34.07097 xmax: 151.3129 ymax: -33.66077\nGeodetic CRS:  WGS 84\n\n\n\nPlot the entire network\n\n\n\nCode\npar(mar = rep(0.1, 4))\nplot(sf::st_geometry(OSM_Sydney))\n\n\n\n\n\n\n\n\n\n\nCheck for missing data in ‘Highway’\n\n\n\nCode\ntable(is.na(OSM_Sydney$highway))\n\n\n\n FALSE \n167073 \n\n\n\nCheck for the values in ‘Highway’\n\n\n\nCode\nunique(OSM_Sydney$highway)\n\n\n [1] \"residential\"    \"tertiary\"       \"secondary\"      \"primary\"       \n [5] \"service\"        \"unclassified\"   \"tertiary_link\"  \"pedestrian\"    \n [9] \"footway\"        \"cycleway\"       \"trunk\"          \"path\"          \n[13] \"living_street\"  \"primary_link\"   \"secondary_link\" \"busway\"        \n[17] \"motorway\"       \"trunk_link\"     \"motorway_link\"  \"track\"         \n[21] \"bridleway\"      \"services\"       \"rest_area\"      \"escape\"        \n[25] \"street_lamp\"    \"emergency_bay\"  \"driveway\"      \n\n\n\nFilter the dataset only for the main ‘Highway’ classifications\n\n\n\nCode\nSydney_main_roads = OSM_Sydney |&gt; \n  dplyr::filter(highway %in% c(\"motorway\", \"motorway_link\", \"primary\", \"primary_link\", \"secondary\",\"secondary_link\", \"trunk\", \"trunk_link\",\"tertiary\", \"residential\")) \n\n\nTry adding the “tertiary”, “residential” streets, and the network gets more complex.\n\nNote: In order to check what are the main categories in OSM, check the link\n\nRemove variables that are not useful\nCheck the order of the variables\n\n\nCode\nnames(OSM_Sydney)\n\n\n\n\nCode\nSydney_main_roads &lt;- Sydney_main_roads[,-c(4:12)]\n\n\n\nPlot the filtered network\n\n\n\nCode\npar(mar = rep(0.1, 4))\nplot(sf::st_geometry(Sydney_main_roads))\n\n\n\n\n\n\n\n\n\n\nPlot the amenities with the network\n\n\n\nCode\nlibrary(ggplot2)\n\nggplot() +\n  geom_sf(data = Sydney_main_roads, color = \"black\", size = 0.4) +\n  geom_sf(data = amenities_data_treated, aes(color = amenity), size = 1) +\n  theme_minimal() +\n  labs(title = \"Amenities in Sydney\", color = \"Amenity Type\") +\n  theme(legend.position = \"bottom\")",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -360,7 +336,6 @@
     "section": "6.6 Import pedestrian counting data",
     "text": "6.6 Import pedestrian counting data\n\n\nCode\npedestrian_data &lt;- read.csv(\"pedestrian_1.csv\")",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -371,7 +346,6 @@
     "section": "6.7 Create a grid over the area of interest",
     "text": "6.7 Create a grid over the area of interest\n\nDefine a bounding box and create a polygon around\n\n\n\nCode\n# Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process\n\nbbox_cbd &lt;- st_bbox(c(\n  xmin = 151.2016, ymin = -33.8780,\n  xmax = 151.2151, ymax = -33.8585\n), crs = st_crs(4326))\n\ncbd_polygon &lt;- st_as_sfc(bbox_cbd)\n\n\n\nNote: Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to combine different datasets and extract meaningful, rather than producing excellent results.",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -382,7 +356,6 @@
     "section": "6.8 Crop the road network and compute centrality measures",
     "text": "6.8 Crop the road network and compute centrality measures\nTo prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).\n\n\nCode\n# # Crop the road network to the study area\nosm_cbd &lt;- st_intersection(Sydney_main_roads, cbd_polygon)\n\n\nWarning: attribute variables are assumed to be spatially constant throughout\nall geometries\n\n\nCode\nlibrary(dplyr)\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n# Extract coordinates and build the graph topology \ncoords &lt;- st_coordinates(osm_cbd) #Sydney_main_roads\nedges &lt;- coords |&gt;\n  as.data.frame() |&gt;\n  mutate(\n    X = round(X, 7),\n    Y = round(Y, 7)\n  ) |&gt;\n  group_by(L1) |&gt;\n  mutate(\n    next_x = lead(X),\n    next_y = lead(Y)\n  ) |&gt;\n  filter(!is.na(next_x)) |&gt;\n  ungroup() |&gt;\n  transmute(\n    from = paste(X, Y, sep = \",\"),\n    to   = paste(next_x, next_y, sep = \",\")\n  )\n\n\n\nBuild igraph object\n\n\n\nCode\nlibrary(igraph)\n\n\n\nAttaching package: 'igraph'\n\n\nThe following objects are masked from 'package:dplyr':\n\n    as_data_frame, groups, union\n\n\nThe following objects are masked from 'package:stats':\n\n    decompose, spectrum\n\n\nThe following object is masked from 'package:base':\n\n    union\n\n\nCode\ng &lt;- graph_from_data_frame(edges, directed = FALSE) |&gt; simplify()\n\n\n\nCompute centrality measures\n\n\n\nCode\ndeg &lt;- degree(g)\nbet &lt;- betweenness(g, normalized = TRUE)\nclo &lt;- closeness(g, normalized = TRUE) \n\n\n\nParse vertex coordinates and create nodes spatial features\n\n\n\nCode\nnode_names &lt;- V(g)$name\nnode_coords &lt;- do.call(rbind, lapply(strsplit(node_names, \",\"), as.numeric))\nnodes_df &lt;- data.frame(\n  node = node_names,\n  X = node_coords[,1],\n  Y = node_coords[,2],\n  degree = deg,\n  betweenness = bet,\n  closeness = clo\n)\nnodes_sf &lt;- st_as_sf(nodes_df, coords = c(\"X\", \"Y\"), crs = 4326)\n\n\n\nPlot the degree centrality on a map\n\n\n\nCode\nlibrary(ggplot2)\nggplot() +\n  geom_sf(data = osm_cbd, color = \"black\", size = 0.3) +\n  geom_sf(data = nodes_sf, aes(color = degree)) +\n  scale_color_viridis_c(option = \"magma\") +\n  theme_minimal() +\n  theme_void() +\n  labs(\n    title = \"Degree Centrality\",\n    color = \"Degree\"\n  )\n\n\n\n\n\n\n\n\n\nTry plotting the other maps! :)",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -393,7 +366,6 @@
     "section": "6.9 Spatial join and aggregate all data into the grid",
     "text": "6.9 Spatial join and aggregate all data into the grid\nFinally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.\n\nCreate grids that over the area of interest (polygon)\n\n\n\nCode\ngrid &lt;- st_make_grid(cbd_polygon, n = c(10, 10), square = FALSE)# 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells\ngrid_sf &lt;- st_sf(grid_id = 1:length(grid), geometry = grid)\n\n\n\nNote: We are creating grids only inside the CBD. If you do not project to EPSG the ‘cellsize’ unit will be degree instead of meters.\n\n\nJoin centrality measures (average per grid cell)\n\n\n\nCode\nnode_join &lt;- st_join(nodes_sf, grid_sf) |&gt;\n  as.data.frame() |&gt;\n  group_by(grid_id) |&gt;\n  summarize(\n    mean_degree = mean(degree, na.rm = TRUE),\n    mean_betweenness = mean(betweenness, na.rm = TRUE),\n    mean_closeness = mean(closeness, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n\n\nJoin amenities (count of total and per category per grid cell)\n\n\n\nCode\namenity_join &lt;- st_join(amenities_data_treated, grid_sf) |&gt;\n  as.data.frame() |&gt;\n  group_by(grid_id) |&gt;\n  summarize(\n    amenities_total = sum(amenity %in% c(\"restaurant\", \"bar\", \"bank\")),\n    amenities_restaurant = sum(amenity == \"restaurant\", na.rm = TRUE),\n    amenities_cafe = sum(amenity == \"cafe\", na.rm = TRUE),\n    amenities_bank = sum(amenity == \"bank\", na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n\n\nJoin total pedestrian counts (sum of TotalCount per grid cell)\n\n\n\nCode\nped_sensors &lt;- pedestrian_data |&gt;\n  group_by(Location_code, Latitude, Longitude) |&gt;\n  summarize(\n    total_pedestrians = sum(TotalCount, na.rm = TRUE),\n    .groups = \"drop\"\n  )\nped_sensors_sf &lt;- st_as_sf(ped_sensors, coords = c(\"Longitude\", \"Latitude\"), crs = 4326)\n\nped_join &lt;- st_join(ped_sensors_sf, grid_sf) |&gt;\n  as.data.frame() |&gt;\n  group_by(grid_id) |&gt;\n  summarize(\n    pedestrians = sum(total_pedestrians, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n\n\nNote: We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -404,7 +376,6 @@
     "section": "6.10 Merge all attributes back to the grid",
     "text": "6.10 Merge all attributes back to the grid\n\n\nCode\nfinal_grid &lt;- grid_sf |&gt;\n  left_join(node_join, by = \"grid_id\") |&gt;\n  left_join(amenity_join, by = \"grid_id\") |&gt;\n  left_join(ped_join, by = \"grid_id\")",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -415,7 +386,6 @@
     "section": "6.11 Save joined grid data",
     "text": "6.11 Save joined grid data\nWe write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.\n\n\nCode\n# Save the grid as a GeoJSON file\nst_write(final_grid, \"grid_joined.geojson\", delete_dsn = TRUE)",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -426,7 +396,6 @@
     "section": "6.12 Visualize the results in a map (e.g., degree centrality)",
     "text": "6.12 Visualize the results in a map (e.g., degree centrality)\n\n\nCode\nlibrary(ggplot2)\n\nggplot(final_grid) +\n  geom_sf(aes(fill = mean_degree), color = NA) +\n  scale_fill_viridis_c(option = \"magma\") +\n  theme_minimal() +\n  theme(\n    axis.text = element_blank(),\n    axis.ticks = element_blank(),\n    panel.grid = element_blank()\n  ) +\n  labs(\n    title = \"Degree Centrality (Grid Aggregation)\",\n    fill = \"Degree\"\n  )\n\n\n\n\n\n\n\n\n\nNow you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.",
     "crumbs": [
-      "**Day 2**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
   },
@@ -435,27 +404,17 @@
     "href": "references.html",
     "title": "7  References",
     "section": "",
-    "text": "7.1 Reading materials",
+    "text": "7.1 Recommendations of readings",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
   },
   {
-    "objectID": "references.html#reading-materials",
-    "href": "references.html#reading-materials",
+    "objectID": "references.html#recommendations-of-readings",
+    "href": "references.html#recommendations-of-readings",
     "title": "7  References",
     "section": "",
-    "text": "xxxxx",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
-    ]
-  },
-  {
-    "objectID": "references.html#passive-urban-mobility-open-source-datasets",
-    "href": "references.html#passive-urban-mobility-open-source-datasets",
-    "title": "7  References",
-    "section": "7.2 Passive urban mobility open source datasets",
-    "text": "7.2 Passive urban mobility open source datasets\n\nToulouse, France: Pedestrian counts (2006 / 2019). https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/\nSydney, Australia https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore\nMelbourne, Australia https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18\nNew York, United States https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf\nSomerville, United States https://catalog.data.gov/dataset/bicycle-pedestrian-counts\nZurich, Prague https://www.kaggle.com/datasets/marcelbigger/automated-pedestrian-and-bicycle-count-zurich\nDublin, Ireland https://data.smartdublin.ie/dataset/pedestrian-and-cycle-counter-api-for-dublin-region",
+    "text": "Angel, A.; Plaut, P. (2024). Tempo-spatial analysis of pedestrian movement in the built environment based on crowdsourced big data. Cities.\nLovelace, R.; Nowosad, J.; Muenchow, J. (2018). Geocomputation with R.The R Series. Chapman & Hall.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>References</span>"
     ]
