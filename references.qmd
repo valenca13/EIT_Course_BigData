@@ -10,7 +10,7 @@ title: "References"
 
 -   Lovelace, R.; Nowosad, J.; Muenchow, J. (2018). [Geocomputation with R](https://r.geocompx.org/).The R Series. Chapman & Hall.
 
--   Valença, G., Moura, F., Sá, A. [Where is it complex to reallocate road space?](https://journals.sagepub.com/doi/full/10.1177/23998083231217770). *Environment and Planning B: Urban Analytics and City Science*, 51(6), 1290-1307.
+-   Valença, G.; Moura, F.; Sá, A. [Where is it complex to reallocate road space?](https://journals.sagepub.com/doi/full/10.1177/23998083231217770). *Environment and Planning B: Urban Analytics and City Science*, 51(6), 1290-1307.
 
 ## Examples of open (big) data sources with pedestrian & cyclists counts
 
