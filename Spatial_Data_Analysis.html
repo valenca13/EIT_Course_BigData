@@ -536,18 +536,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>0...10...20...30...40...50...60...70...80...90...100 - done.</code></pre>
 </div>
+<ul>
+<li>Check the coordinate system</li>
+</ul>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(OSM_Sydney)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `lines' from data source 
-  `C:\Users\Gabriel's\AppData\Roaming\R\data\R\osmextract\bbbike_Sydney.gpkg' 
-  using driver `GPKG'
-Simple feature collection with 167073 features and 13 fields
-Geometry type: LINESTRING
-Dimension:     XY
-Bounding box:  xmin: 150.8055 ymin: -34.07097 xmax: 151.3129 ymax: -33.66077
-Geodetic CRS:  WGS 84</code></pre>
+<pre><code>Coordinate Reference System:
+  User input: WGS 84 
+  wkt:
+GEOGCRS["WGS 84",
+    ENSEMBLE["World Geodetic System 1984 ensemble",
+        MEMBER["World Geodetic System 1984 (Transit)"],
+        MEMBER["World Geodetic System 1984 (G730)"],
+        MEMBER["World Geodetic System 1984 (G873)"],
+        MEMBER["World Geodetic System 1984 (G1150)"],
+        MEMBER["World Geodetic System 1984 (G1674)"],
+        MEMBER["World Geodetic System 1984 (G1762)"],
+        MEMBER["World Geodetic System 1984 (G2139)"],
+        MEMBER["World Geodetic System 1984 (G2296)"],
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]],
+        ENSEMBLEACCURACY[2.0]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["Horizontal component of 3D system."],
+        AREA["World."],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]</code></pre>
 </div>
 </div>
 <ul>
@@ -562,7 +590,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -638,7 +666,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -661,7 +689,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -835,7 +863,7 @@ Attaching package: 'igraph'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -967,7 +995,7 @@ Attaching package: 'igraph'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Spatial_Data_Analysis_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1555,287 +1583,293 @@ Attaching package: 'igraph'</code></pre>
 <span id="cb50-107"><a href="#cb50-107" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-108"><a href="#cb50-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import road network data</span></span>
 <span id="cb50-109"><a href="#cb50-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-112"><a href="#cb50-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-113"><a href="#cb50-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb50-114"><a href="#cb50-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb50-115"><a href="#cb50-115" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
-<span id="cb50-116"><a href="#cb50-116" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) </span>
-<span id="cb50-117"><a href="#cb50-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-110"><a href="#cb50-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=TRUE, results='hide'}</span></span>
+<span id="cb50-111"><a href="#cb50-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb50-112"><a href="#cb50-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb50-113"><a href="#cb50-113" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmextract)</span>
+<span id="cb50-114"><a href="#cb50-114" aria-hidden="true" tabindex="-1"></a>OSM_Sydney <span class="ot">=</span> <span class="fu">oe_get_network</span>(<span class="at">place =</span> <span class="st">"Sydney"</span>) </span>
+<span id="cb50-115"><a href="#cb50-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-116"><a href="#cb50-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-117"><a href="#cb50-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Check the coordinate system</span>
 <span id="cb50-118"><a href="#cb50-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-119"><a href="#cb50-119" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the entire network**</span>
-<span id="cb50-120"><a href="#cb50-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-123"><a href="#cb50-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-124"><a href="#cb50-124" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
-<span id="cb50-125"><a href="#cb50-125" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(OSM_Sydney))</span>
-<span id="cb50-126"><a href="#cb50-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-127"><a href="#cb50-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-128"><a href="#cb50-128" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for missing data in 'Highway'**</span>
-<span id="cb50-129"><a href="#cb50-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-132"><a href="#cb50-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-133"><a href="#cb50-133" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(OSM_Sydney<span class="sc">$</span>highway))</span>
-<span id="cb50-134"><a href="#cb50-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-121"><a href="#cb50-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-122"><a href="#cb50-122" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(OSM_Sydney)</span>
+<span id="cb50-123"><a href="#cb50-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-124"><a href="#cb50-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-125"><a href="#cb50-125" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the entire network**</span>
+<span id="cb50-126"><a href="#cb50-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-129"><a href="#cb50-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-130"><a href="#cb50-130" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
+<span id="cb50-131"><a href="#cb50-131" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(OSM_Sydney))</span>
+<span id="cb50-132"><a href="#cb50-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-133"><a href="#cb50-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-134"><a href="#cb50-134" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for missing data in 'Highway'**</span>
 <span id="cb50-135"><a href="#cb50-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-136"><a href="#cb50-136" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for the values in 'Highway'**</span>
-<span id="cb50-137"><a href="#cb50-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-140"><a href="#cb50-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-141"><a href="#cb50-141" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OSM_Sydney<span class="sc">$</span>highway)</span>
-<span id="cb50-142"><a href="#cb50-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-138"><a href="#cb50-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-139"><a href="#cb50-139" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">is.na</span>(OSM_Sydney<span class="sc">$</span>highway))</span>
+<span id="cb50-140"><a href="#cb50-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-141"><a href="#cb50-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-142"><a href="#cb50-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Check for the values in 'Highway'**</span>
 <span id="cb50-143"><a href="#cb50-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-144"><a href="#cb50-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Filter the dataset only for the main 'Highway' classifications**</span>
-<span id="cb50-145"><a href="#cb50-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-148"><a href="#cb50-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-149"><a href="#cb50-149" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">=</span> OSM_Sydney <span class="sc">|&gt;</span> </span>
-<span id="cb50-150"><a href="#cb50-150" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>,<span class="st">"tertiary"</span>, <span class="st">"residential"</span>)) </span>
-<span id="cb50-151"><a href="#cb50-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-152"><a href="#cb50-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-153"><a href="#cb50-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-154"><a href="#cb50-154" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** In order to check what are the main categories in OSM, check the </span><span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)</span></span>
-<span id="cb50-155"><a href="#cb50-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-156"><a href="#cb50-156" aria-hidden="true" tabindex="-1"></a>**Remove variables that are not useful**</span>
-<span id="cb50-157"><a href="#cb50-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-158"><a href="#cb50-158" aria-hidden="true" tabindex="-1"></a>Check the order of the variables</span>
+<span id="cb50-146"><a href="#cb50-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-147"><a href="#cb50-147" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(OSM_Sydney<span class="sc">$</span>highway)</span>
+<span id="cb50-148"><a href="#cb50-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-149"><a href="#cb50-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-150"><a href="#cb50-150" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Filter the dataset only for the main 'Highway' classifications**</span>
+<span id="cb50-151"><a href="#cb50-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-154"><a href="#cb50-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-155"><a href="#cb50-155" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">=</span> OSM_Sydney <span class="sc">|&gt;</span> </span>
+<span id="cb50-156"><a href="#cb50-156" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(highway <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"motorway"</span>, <span class="st">"motorway_link"</span>, <span class="st">"primary"</span>, <span class="st">"primary_link"</span>, <span class="st">"secondary"</span>,<span class="st">"secondary_link"</span>, <span class="st">"trunk"</span>, <span class="st">"trunk_link"</span>,<span class="st">"tertiary"</span>, <span class="st">"residential"</span>)) </span>
+<span id="cb50-157"><a href="#cb50-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-158"><a href="#cb50-158" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-159"><a href="#cb50-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-160"><a href="#cb50-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
-<span id="cb50-161"><a href="#cb50-161" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OSM_Sydney)</span>
-<span id="cb50-162"><a href="#cb50-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-160"><a href="#cb50-160" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** In order to check what are the main categories in OSM, check the </span><span class="co">[</span><span class="ot">link</span><span class="co">](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)</span></span>
+<span id="cb50-161"><a href="#cb50-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-162"><a href="#cb50-162" aria-hidden="true" tabindex="-1"></a>**Remove variables that are not useful**</span>
 <span id="cb50-163"><a href="#cb50-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-166"><a href="#cb50-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-167"><a href="#cb50-167" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span>
+<span id="cb50-164"><a href="#cb50-164" aria-hidden="true" tabindex="-1"></a>Check the order of the variables</span>
+<span id="cb50-165"><a href="#cb50-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-166"><a href="#cb50-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb50-167"><a href="#cb50-167" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(OSM_Sydney)</span>
 <span id="cb50-168"><a href="#cb50-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb50-169"><a href="#cb50-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-170"><a href="#cb50-170" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the filtered network**</span>
-<span id="cb50-171"><a href="#cb50-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-174"><a href="#cb50-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-175"><a href="#cb50-175" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
-<span id="cb50-176"><a href="#cb50-176" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span>
-<span id="cb50-177"><a href="#cb50-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-178"><a href="#cb50-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-179"><a href="#cb50-179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the amenities with the network**</span>
-<span id="cb50-180"><a href="#cb50-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-183"><a href="#cb50-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-184"><a href="#cb50-184" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb50-185"><a href="#cb50-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-186"><a href="#cb50-186" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb50-187"><a href="#cb50-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Sydney_main_roads, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb50-188"><a href="#cb50-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> amenities_data_treated, <span class="fu">aes</span>(<span class="at">color =</span> amenity), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb50-189"><a href="#cb50-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb50-190"><a href="#cb50-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Amenities in Sydney"</span>, <span class="at">color =</span> <span class="st">"Amenity Type"</span>) <span class="sc">+</span></span>
-<span id="cb50-191"><a href="#cb50-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb50-192"><a href="#cb50-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-193"><a href="#cb50-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-194"><a href="#cb50-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-195"><a href="#cb50-195" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import pedestrian counting data </span></span>
-<span id="cb50-196"><a href="#cb50-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-199"><a href="#cb50-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-200"><a href="#cb50-200" aria-hidden="true" tabindex="-1"></a>pedestrian_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"pedestrian_1.csv"</span>)</span>
-<span id="cb50-201"><a href="#cb50-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-172"><a href="#cb50-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-173"><a href="#cb50-173" aria-hidden="true" tabindex="-1"></a>Sydney_main_roads <span class="ot">&lt;-</span> Sydney_main_roads[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>)]</span>
+<span id="cb50-174"><a href="#cb50-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-175"><a href="#cb50-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-176"><a href="#cb50-176" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the filtered network**</span>
+<span id="cb50-177"><a href="#cb50-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-180"><a href="#cb50-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-181"><a href="#cb50-181" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">4</span>))</span>
+<span id="cb50-182"><a href="#cb50-182" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(Sydney_main_roads))</span>
+<span id="cb50-183"><a href="#cb50-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-184"><a href="#cb50-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-185"><a href="#cb50-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Plot the amenities with the network**</span>
+<span id="cb50-186"><a href="#cb50-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-189"><a href="#cb50-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-190"><a href="#cb50-190" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-191"><a href="#cb50-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-192"><a href="#cb50-192" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb50-193"><a href="#cb50-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Sydney_main_roads, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb50-194"><a href="#cb50-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> amenities_data_treated, <span class="fu">aes</span>(<span class="at">color =</span> amenity), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb50-195"><a href="#cb50-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb50-196"><a href="#cb50-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Amenities in Sydney"</span>, <span class="at">color =</span> <span class="st">"Amenity Type"</span>) <span class="sc">+</span></span>
+<span id="cb50-197"><a href="#cb50-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb50-198"><a href="#cb50-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-199"><a href="#cb50-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-200"><a href="#cb50-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-201"><a href="#cb50-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Import pedestrian counting data </span></span>
 <span id="cb50-202"><a href="#cb50-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-203"><a href="#cb50-203" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a grid over the area of interest</span></span>
-<span id="cb50-204"><a href="#cb50-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-205"><a href="#cb50-205" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Define a bounding box and create a polygon around**</span>
-<span id="cb50-206"><a href="#cb50-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-209"><a href="#cb50-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-210"><a href="#cb50-210" aria-hidden="true" tabindex="-1"></a><span class="co"># Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process</span></span>
-<span id="cb50-211"><a href="#cb50-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-212"><a href="#cb50-212" aria-hidden="true" tabindex="-1"></a>bbox_cbd <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(</span>
-<span id="cb50-213"><a href="#cb50-213" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="fl">151.2016</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="fl">33.8780</span>,</span>
-<span id="cb50-214"><a href="#cb50-214" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="fl">151.2151</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">33.8585</span></span>
-<span id="cb50-215"><a href="#cb50-215" aria-hidden="true" tabindex="-1"></a>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
-<span id="cb50-216"><a href="#cb50-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-217"><a href="#cb50-217" aria-hidden="true" tabindex="-1"></a>cbd_polygon <span class="ot">&lt;-</span> <span class="fu">st_as_sfc</span>(bbox_cbd)</span>
-<span id="cb50-218"><a href="#cb50-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-219"><a href="#cb50-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-220"><a href="#cb50-220" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.</span></span>
-<span id="cb50-221"><a href="#cb50-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-222"><a href="#cb50-222" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crop the road network and compute centrality measures</span></span>
-<span id="cb50-223"><a href="#cb50-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-224"><a href="#cb50-224" aria-hidden="true" tabindex="-1"></a>To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).</span>
+<span id="cb50-205"><a href="#cb50-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-206"><a href="#cb50-206" aria-hidden="true" tabindex="-1"></a>pedestrian_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"pedestrian_1.csv"</span>)</span>
+<span id="cb50-207"><a href="#cb50-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-208"><a href="#cb50-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-209"><a href="#cb50-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create a grid over the area of interest</span></span>
+<span id="cb50-210"><a href="#cb50-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-211"><a href="#cb50-211" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Define a bounding box and create a polygon around**</span>
+<span id="cb50-212"><a href="#cb50-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-215"><a href="#cb50-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-216"><a href="#cb50-216" aria-hidden="true" tabindex="-1"></a><span class="co"># Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process</span></span>
+<span id="cb50-217"><a href="#cb50-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-218"><a href="#cb50-218" aria-hidden="true" tabindex="-1"></a>bbox_cbd <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(</span>
+<span id="cb50-219"><a href="#cb50-219" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="fl">151.2016</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="fl">33.8780</span>,</span>
+<span id="cb50-220"><a href="#cb50-220" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="fl">151.2151</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">33.8585</span></span>
+<span id="cb50-221"><a href="#cb50-221" aria-hidden="true" tabindex="-1"></a>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb50-222"><a href="#cb50-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-223"><a href="#cb50-223" aria-hidden="true" tabindex="-1"></a>cbd_polygon <span class="ot">&lt;-</span> <span class="fu">st_as_sfc</span>(bbox_cbd)</span>
+<span id="cb50-224"><a href="#cb50-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb50-225"><a href="#cb50-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-228"><a href="#cb50-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-229"><a href="#cb50-229" aria-hidden="true" tabindex="-1"></a><span class="co"># # Crop the road network to the study area</span></span>
-<span id="cb50-230"><a href="#cb50-230" aria-hidden="true" tabindex="-1"></a>osm_cbd <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(Sydney_main_roads, cbd_polygon)</span>
+<span id="cb50-226"><a href="#cb50-226" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.</span></span>
+<span id="cb50-227"><a href="#cb50-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-228"><a href="#cb50-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crop the road network and compute centrality measures</span></span>
+<span id="cb50-229"><a href="#cb50-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-230"><a href="#cb50-230" aria-hidden="true" tabindex="-1"></a>To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).</span>
 <span id="cb50-231"><a href="#cb50-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-232"><a href="#cb50-232" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb50-233"><a href="#cb50-233" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coordinates and build the graph topology </span></span>
-<span id="cb50-234"><a href="#cb50-234" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(osm_cbd) <span class="co">#Sydney_main_roads</span></span>
-<span id="cb50-235"><a href="#cb50-235" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> coords <span class="sc">|&gt;</span></span>
-<span id="cb50-236"><a href="#cb50-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-237"><a href="#cb50-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb50-238"><a href="#cb50-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">round</span>(X, <span class="dv">7</span>),</span>
-<span id="cb50-239"><a href="#cb50-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">round</span>(Y, <span class="dv">7</span>)</span>
-<span id="cb50-240"><a href="#cb50-240" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb50-241"><a href="#cb50-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(L1) <span class="sc">|&gt;</span></span>
-<span id="cb50-242"><a href="#cb50-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb50-243"><a href="#cb50-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_x =</span> <span class="fu">lead</span>(X),</span>
-<span id="cb50-244"><a href="#cb50-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_y =</span> <span class="fu">lead</span>(Y)</span>
-<span id="cb50-245"><a href="#cb50-245" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb50-246"><a href="#cb50-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(next_x)) <span class="sc">|&gt;</span></span>
-<span id="cb50-247"><a href="#cb50-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-248"><a href="#cb50-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
-<span id="cb50-249"><a href="#cb50-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">paste</span>(X, Y, <span class="at">sep =</span> <span class="st">","</span>),</span>
-<span id="cb50-250"><a href="#cb50-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">to   =</span> <span class="fu">paste</span>(next_x, next_y, <span class="at">sep =</span> <span class="st">","</span>)</span>
-<span id="cb50-251"><a href="#cb50-251" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-252"><a href="#cb50-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-253"><a href="#cb50-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-254"><a href="#cb50-254" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Build igraph object**</span>
-<span id="cb50-255"><a href="#cb50-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-258"><a href="#cb50-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-259"><a href="#cb50-259" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
-<span id="cb50-260"><a href="#cb50-260" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="fu">simplify</span>()</span>
-<span id="cb50-261"><a href="#cb50-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-262"><a href="#cb50-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-263"><a href="#cb50-263" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Compute centrality measures**</span>
-<span id="cb50-264"><a href="#cb50-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-267"><a href="#cb50-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-268"><a href="#cb50-268" aria-hidden="true" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">degree</span>(g)</span>
-<span id="cb50-269"><a href="#cb50-269" aria-hidden="true" tabindex="-1"></a>bet <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb50-270"><a href="#cb50-270" aria-hidden="true" tabindex="-1"></a>clo <span class="ot">&lt;-</span> <span class="fu">closeness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb50-271"><a href="#cb50-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-272"><a href="#cb50-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-273"><a href="#cb50-273" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Parse vertex coordinates and create nodes spatial features**</span>
-<span id="cb50-274"><a href="#cb50-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-277"><a href="#cb50-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-278"><a href="#cb50-278" aria-hidden="true" tabindex="-1"></a>node_names <span class="ot">&lt;-</span> <span class="fu">V</span>(g)<span class="sc">$</span>name</span>
-<span id="cb50-279"><a href="#cb50-279" aria-hidden="true" tabindex="-1"></a>node_coords <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">strsplit</span>(node_names, <span class="st">","</span>), as.numeric))</span>
-<span id="cb50-280"><a href="#cb50-280" aria-hidden="true" tabindex="-1"></a>nodes_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb50-281"><a href="#cb50-281" aria-hidden="true" tabindex="-1"></a>  <span class="at">node =</span> node_names,</span>
-<span id="cb50-282"><a href="#cb50-282" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> node_coords[,<span class="dv">1</span>],</span>
-<span id="cb50-283"><a href="#cb50-283" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> node_coords[,<span class="dv">2</span>],</span>
-<span id="cb50-284"><a href="#cb50-284" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree =</span> deg,</span>
-<span id="cb50-285"><a href="#cb50-285" aria-hidden="true" tabindex="-1"></a>  <span class="at">betweenness =</span> bet,</span>
-<span id="cb50-286"><a href="#cb50-286" aria-hidden="true" tabindex="-1"></a>  <span class="at">closeness =</span> clo</span>
-<span id="cb50-287"><a href="#cb50-287" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb50-288"><a href="#cb50-288" aria-hidden="true" tabindex="-1"></a>nodes_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(nodes_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb50-289"><a href="#cb50-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-290"><a href="#cb50-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-291"><a href="#cb50-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Plot the degree centrality on a map</span>
-<span id="cb50-292"><a href="#cb50-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-295"><a href="#cb50-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-296"><a href="#cb50-296" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb50-297"><a href="#cb50-297" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb50-298"><a href="#cb50-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> osm_cbd, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb50-299"><a href="#cb50-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nodes_sf, <span class="fu">aes</span>(<span class="at">color =</span> degree)) <span class="sc">+</span></span>
-<span id="cb50-300"><a href="#cb50-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
-<span id="cb50-301"><a href="#cb50-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb50-302"><a href="#cb50-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb50-303"><a href="#cb50-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb50-304"><a href="#cb50-304" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality"</span>,</span>
-<span id="cb50-305"><a href="#cb50-305" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Degree"</span></span>
-<span id="cb50-306"><a href="#cb50-306" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-307"><a href="#cb50-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-308"><a href="#cb50-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-309"><a href="#cb50-309" aria-hidden="true" tabindex="-1"></a>**Try plotting the other maps! :)**</span>
-<span id="cb50-310"><a href="#cb50-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-311"><a href="#cb50-311" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spatial join and aggregate all data into the grid</span></span>
-<span id="cb50-312"><a href="#cb50-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-313"><a href="#cb50-313" aria-hidden="true" tabindex="-1"></a>Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.</span>
+<span id="cb50-234"><a href="#cb50-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-235"><a href="#cb50-235" aria-hidden="true" tabindex="-1"></a><span class="co"># # Crop the road network to the study area</span></span>
+<span id="cb50-236"><a href="#cb50-236" aria-hidden="true" tabindex="-1"></a>osm_cbd <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(Sydney_main_roads, cbd_polygon)</span>
+<span id="cb50-237"><a href="#cb50-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-238"><a href="#cb50-238" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb50-239"><a href="#cb50-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coordinates and build the graph topology </span></span>
+<span id="cb50-240"><a href="#cb50-240" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(osm_cbd) <span class="co">#Sydney_main_roads</span></span>
+<span id="cb50-241"><a href="#cb50-241" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> coords <span class="sc">|&gt;</span></span>
+<span id="cb50-242"><a href="#cb50-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb50-243"><a href="#cb50-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-244"><a href="#cb50-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">round</span>(X, <span class="dv">7</span>),</span>
+<span id="cb50-245"><a href="#cb50-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> <span class="fu">round</span>(Y, <span class="dv">7</span>)</span>
+<span id="cb50-246"><a href="#cb50-246" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb50-247"><a href="#cb50-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(L1) <span class="sc">|&gt;</span></span>
+<span id="cb50-248"><a href="#cb50-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-249"><a href="#cb50-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_x =</span> <span class="fu">lead</span>(X),</span>
+<span id="cb50-250"><a href="#cb50-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">next_y =</span> <span class="fu">lead</span>(Y)</span>
+<span id="cb50-251"><a href="#cb50-251" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb50-252"><a href="#cb50-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(next_x)) <span class="sc">|&gt;</span></span>
+<span id="cb50-253"><a href="#cb50-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb50-254"><a href="#cb50-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb50-255"><a href="#cb50-255" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">paste</span>(X, Y, <span class="at">sep =</span> <span class="st">","</span>),</span>
+<span id="cb50-256"><a href="#cb50-256" aria-hidden="true" tabindex="-1"></a>    <span class="at">to   =</span> <span class="fu">paste</span>(next_x, next_y, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb50-257"><a href="#cb50-257" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-258"><a href="#cb50-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-259"><a href="#cb50-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-260"><a href="#cb50-260" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Build igraph object**</span>
+<span id="cb50-261"><a href="#cb50-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-264"><a href="#cb50-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-265"><a href="#cb50-265" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb50-266"><a href="#cb50-266" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="fu">simplify</span>()</span>
+<span id="cb50-267"><a href="#cb50-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-268"><a href="#cb50-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-269"><a href="#cb50-269" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Compute centrality measures**</span>
+<span id="cb50-270"><a href="#cb50-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-273"><a href="#cb50-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-274"><a href="#cb50-274" aria-hidden="true" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">degree</span>(g)</span>
+<span id="cb50-275"><a href="#cb50-275" aria-hidden="true" tabindex="-1"></a>bet <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-276"><a href="#cb50-276" aria-hidden="true" tabindex="-1"></a>clo <span class="ot">&lt;-</span> <span class="fu">closeness</span>(g, <span class="at">normalized =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb50-277"><a href="#cb50-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-278"><a href="#cb50-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-279"><a href="#cb50-279" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Parse vertex coordinates and create nodes spatial features**</span>
+<span id="cb50-280"><a href="#cb50-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-283"><a href="#cb50-283" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-284"><a href="#cb50-284" aria-hidden="true" tabindex="-1"></a>node_names <span class="ot">&lt;-</span> <span class="fu">V</span>(g)<span class="sc">$</span>name</span>
+<span id="cb50-285"><a href="#cb50-285" aria-hidden="true" tabindex="-1"></a>node_coords <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">strsplit</span>(node_names, <span class="st">","</span>), as.numeric))</span>
+<span id="cb50-286"><a href="#cb50-286" aria-hidden="true" tabindex="-1"></a>nodes_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb50-287"><a href="#cb50-287" aria-hidden="true" tabindex="-1"></a>  <span class="at">node =</span> node_names,</span>
+<span id="cb50-288"><a href="#cb50-288" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> node_coords[,<span class="dv">1</span>],</span>
+<span id="cb50-289"><a href="#cb50-289" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> node_coords[,<span class="dv">2</span>],</span>
+<span id="cb50-290"><a href="#cb50-290" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree =</span> deg,</span>
+<span id="cb50-291"><a href="#cb50-291" aria-hidden="true" tabindex="-1"></a>  <span class="at">betweenness =</span> bet,</span>
+<span id="cb50-292"><a href="#cb50-292" aria-hidden="true" tabindex="-1"></a>  <span class="at">closeness =</span> clo</span>
+<span id="cb50-293"><a href="#cb50-293" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb50-294"><a href="#cb50-294" aria-hidden="true" tabindex="-1"></a>nodes_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(nodes_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb50-295"><a href="#cb50-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-296"><a href="#cb50-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-297"><a href="#cb50-297" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Plot the degree centrality on a map</span>
+<span id="cb50-298"><a href="#cb50-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-301"><a href="#cb50-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-302"><a href="#cb50-302" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-303"><a href="#cb50-303" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb50-304"><a href="#cb50-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> osm_cbd, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb50-305"><a href="#cb50-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nodes_sf, <span class="fu">aes</span>(<span class="at">color =</span> degree)) <span class="sc">+</span></span>
+<span id="cb50-306"><a href="#cb50-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb50-307"><a href="#cb50-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb50-308"><a href="#cb50-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb50-309"><a href="#cb50-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb50-310"><a href="#cb50-310" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality"</span>,</span>
+<span id="cb50-311"><a href="#cb50-311" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Degree"</span></span>
+<span id="cb50-312"><a href="#cb50-312" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-313"><a href="#cb50-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb50-314"><a href="#cb50-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-315"><a href="#cb50-315" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Create grids that over the area of interest (polygon)**</span>
+<span id="cb50-315"><a href="#cb50-315" aria-hidden="true" tabindex="-1"></a>**Try plotting the other maps! :)**</span>
 <span id="cb50-316"><a href="#cb50-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-319"><a href="#cb50-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-320"><a href="#cb50-320" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">st_make_grid</span>(cbd_polygon, <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="at">square =</span> <span class="cn">FALSE</span>)<span class="co"># 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells</span></span>
-<span id="cb50-321"><a href="#cb50-321" aria-hidden="true" tabindex="-1"></a>grid_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">grid_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grid), <span class="at">geometry =</span> grid)</span>
-<span id="cb50-322"><a href="#cb50-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-323"><a href="#cb50-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-324"><a href="#cb50-324" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters.</span></span>
-<span id="cb50-325"><a href="#cb50-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-326"><a href="#cb50-326" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join centrality measures (average per grid cell)**</span>
-<span id="cb50-327"><a href="#cb50-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-330"><a href="#cb50-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-331"><a href="#cb50-331" aria-hidden="true" tabindex="-1"></a>node_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(nodes_sf, grid_sf) <span class="sc">|&gt;</span></span>
-<span id="cb50-332"><a href="#cb50-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-333"><a href="#cb50-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
-<span id="cb50-334"><a href="#cb50-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb50-335"><a href="#cb50-335" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(degree, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-336"><a href="#cb50-336" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_betweenness =</span> <span class="fu">mean</span>(betweenness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-337"><a href="#cb50-337" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_closeness =</span> <span class="fu">mean</span>(closeness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-338"><a href="#cb50-338" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb50-339"><a href="#cb50-339" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-340"><a href="#cb50-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-341"><a href="#cb50-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-342"><a href="#cb50-342" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join amenities (count of total and per category per grid cell)**</span>
-<span id="cb50-343"><a href="#cb50-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-346"><a href="#cb50-346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-347"><a href="#cb50-347" aria-hidden="true" tabindex="-1"></a>amenity_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(amenities_data_treated, grid_sf) <span class="sc">|&gt;</span></span>
-<span id="cb50-348"><a href="#cb50-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-349"><a href="#cb50-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
-<span id="cb50-350"><a href="#cb50-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb50-351"><a href="#cb50-351" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_total =</span> <span class="fu">sum</span>(amenity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bar"</span>, <span class="st">"bank"</span>)),</span>
-<span id="cb50-352"><a href="#cb50-352" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_restaurant =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"restaurant"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-353"><a href="#cb50-353" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_cafe =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"cafe"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-354"><a href="#cb50-354" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_bank =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"bank"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-355"><a href="#cb50-355" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb50-356"><a href="#cb50-356" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-357"><a href="#cb50-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-358"><a href="#cb50-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-359"><a href="#cb50-359" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join total pedestrian counts (sum of TotalCount per grid cell)**</span>
-<span id="cb50-360"><a href="#cb50-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-363"><a href="#cb50-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-364"><a href="#cb50-364" aria-hidden="true" tabindex="-1"></a>ped_sensors <span class="ot">&lt;-</span> pedestrian_data <span class="sc">|&gt;</span></span>
-<span id="cb50-365"><a href="#cb50-365" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location_code, Latitude, Longitude) <span class="sc">|&gt;</span></span>
-<span id="cb50-366"><a href="#cb50-366" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb50-367"><a href="#cb50-367" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pedestrians =</span> <span class="fu">sum</span>(TotalCount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-368"><a href="#cb50-368" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb50-369"><a href="#cb50-369" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-370"><a href="#cb50-370" aria-hidden="true" tabindex="-1"></a>ped_sensors_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ped_sensors, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb50-371"><a href="#cb50-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-372"><a href="#cb50-372" aria-hidden="true" tabindex="-1"></a>ped_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(ped_sensors_sf, grid_sf) <span class="sc">|&gt;</span></span>
-<span id="cb50-373"><a href="#cb50-373" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-374"><a href="#cb50-374" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
-<span id="cb50-375"><a href="#cb50-375" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb50-376"><a href="#cb50-376" aria-hidden="true" tabindex="-1"></a>    <span class="at">pedestrians =</span> <span class="fu">sum</span>(total_pedestrians, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb50-377"><a href="#cb50-377" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb50-378"><a href="#cb50-378" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-379"><a href="#cb50-379" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-380"><a href="#cb50-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-381"><a href="#cb50-381" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..</span></span>
-<span id="cb50-382"><a href="#cb50-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-383"><a href="#cb50-383" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merge all attributes back to the grid</span></span>
-<span id="cb50-384"><a href="#cb50-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-387"><a href="#cb50-387" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-388"><a href="#cb50-388" aria-hidden="true" tabindex="-1"></a>final_grid <span class="ot">&lt;-</span> grid_sf <span class="sc">|&gt;</span></span>
-<span id="cb50-389"><a href="#cb50-389" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(node_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb50-390"><a href="#cb50-390" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(amenity_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb50-391"><a href="#cb50-391" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ped_join, <span class="at">by =</span> <span class="st">"grid_id"</span>)</span>
-<span id="cb50-392"><a href="#cb50-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-393"><a href="#cb50-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-394"><a href="#cb50-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## Save joined grid data</span></span>
-<span id="cb50-395"><a href="#cb50-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-396"><a href="#cb50-396" aria-hidden="true" tabindex="-1"></a>We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.</span>
-<span id="cb50-397"><a href="#cb50-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-398"><a href="#cb50-398" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
-<span id="cb50-399"><a href="#cb50-399" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the grid as a GeoJSON file</span></span>
-<span id="cb50-400"><a href="#cb50-400" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(final_grid, <span class="st">"grid_joined.geojson"</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb50-401"><a href="#cb50-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-402"><a href="#cb50-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-403"><a href="#cb50-403" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualize the results in a map (e.g., degree centrality)</span></span>
-<span id="cb50-404"><a href="#cb50-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-407"><a href="#cb50-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-408"><a href="#cb50-408" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb50-409"><a href="#cb50-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-410"><a href="#cb50-410" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(final_grid) <span class="sc">+</span></span>
-<span id="cb50-411"><a href="#cb50-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> mean_degree), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb50-412"><a href="#cb50-412" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
-<span id="cb50-413"><a href="#cb50-413" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb50-414"><a href="#cb50-414" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb50-415"><a href="#cb50-415" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb50-416"><a href="#cb50-416" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb50-417"><a href="#cb50-417" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb50-418"><a href="#cb50-418" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb50-419"><a href="#cb50-419" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb50-420"><a href="#cb50-420" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality (Grid Aggregation)"</span>,</span>
-<span id="cb50-421"><a href="#cb50-421" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Degree"</span></span>
-<span id="cb50-422"><a href="#cb50-422" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-423"><a href="#cb50-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb50-424"><a href="#cb50-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-425"><a href="#cb50-425" aria-hidden="true" tabindex="-1"></a>**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**</span>
-<span id="cb50-426"><a href="#cb50-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-429"><a href="#cb50-429" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-430"><a href="#cb50-430" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb50-431"><a href="#cb50-431" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb50-432"><a href="#cb50-432" aria-hidden="true" tabindex="-1"></a><span class="co"># this coverts this quarto to a plain r script</span></span>
-<span id="cb50-433"><a href="#cb50-433" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">purl</span>(<span class="st">"Spatial_Data_Analysis.qmd"</span>, <span class="st">"codes/Spatial_Data_Analysis.R"</span>, <span class="at">documentation =</span> <span class="dv">2</span>)</span>
-<span id="cb50-434"><a href="#cb50-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-317"><a href="#cb50-317" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spatial join and aggregate all data into the grid</span></span>
+<span id="cb50-318"><a href="#cb50-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-319"><a href="#cb50-319" aria-hidden="true" tabindex="-1"></a>Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.</span>
+<span id="cb50-320"><a href="#cb50-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-321"><a href="#cb50-321" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Create grids that over the area of interest (polygon)**</span>
+<span id="cb50-322"><a href="#cb50-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-325"><a href="#cb50-325" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-326"><a href="#cb50-326" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">st_make_grid</span>(cbd_polygon, <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>), <span class="at">square =</span> <span class="cn">FALSE</span>)<span class="co"># 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells</span></span>
+<span id="cb50-327"><a href="#cb50-327" aria-hidden="true" tabindex="-1"></a>grid_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">grid_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grid), <span class="at">geometry =</span> grid)</span>
+<span id="cb50-328"><a href="#cb50-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-329"><a href="#cb50-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-330"><a href="#cb50-330" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters.</span></span>
+<span id="cb50-331"><a href="#cb50-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-332"><a href="#cb50-332" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join centrality measures (average per grid cell)**</span>
+<span id="cb50-333"><a href="#cb50-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-336"><a href="#cb50-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-337"><a href="#cb50-337" aria-hidden="true" tabindex="-1"></a>node_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(nodes_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb50-338"><a href="#cb50-338" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb50-339"><a href="#cb50-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb50-340"><a href="#cb50-340" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-341"><a href="#cb50-341" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_degree =</span> <span class="fu">mean</span>(degree, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-342"><a href="#cb50-342" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_betweenness =</span> <span class="fu">mean</span>(betweenness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-343"><a href="#cb50-343" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_closeness =</span> <span class="fu">mean</span>(closeness, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-344"><a href="#cb50-344" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb50-345"><a href="#cb50-345" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-346"><a href="#cb50-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-347"><a href="#cb50-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-348"><a href="#cb50-348" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join amenities (count of total and per category per grid cell)**</span>
+<span id="cb50-349"><a href="#cb50-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-352"><a href="#cb50-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-353"><a href="#cb50-353" aria-hidden="true" tabindex="-1"></a>amenity_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(amenities_data_treated, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb50-354"><a href="#cb50-354" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb50-355"><a href="#cb50-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb50-356"><a href="#cb50-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-357"><a href="#cb50-357" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_total =</span> <span class="fu">sum</span>(amenity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"restaurant"</span>, <span class="st">"bar"</span>, <span class="st">"bank"</span>)),</span>
+<span id="cb50-358"><a href="#cb50-358" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_restaurant =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"restaurant"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-359"><a href="#cb50-359" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_cafe =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"cafe"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-360"><a href="#cb50-360" aria-hidden="true" tabindex="-1"></a>    <span class="at">amenities_bank =</span> <span class="fu">sum</span>(amenity <span class="sc">==</span> <span class="st">"bank"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-361"><a href="#cb50-361" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb50-362"><a href="#cb50-362" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-363"><a href="#cb50-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-364"><a href="#cb50-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-365"><a href="#cb50-365" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Join total pedestrian counts (sum of TotalCount per grid cell)**</span>
+<span id="cb50-366"><a href="#cb50-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-369"><a href="#cb50-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-370"><a href="#cb50-370" aria-hidden="true" tabindex="-1"></a>ped_sensors <span class="ot">&lt;-</span> pedestrian_data <span class="sc">|&gt;</span></span>
+<span id="cb50-371"><a href="#cb50-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location_code, Latitude, Longitude) <span class="sc">|&gt;</span></span>
+<span id="cb50-372"><a href="#cb50-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-373"><a href="#cb50-373" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pedestrians =</span> <span class="fu">sum</span>(TotalCount, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-374"><a href="#cb50-374" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb50-375"><a href="#cb50-375" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-376"><a href="#cb50-376" aria-hidden="true" tabindex="-1"></a>ped_sensors_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ped_sensors, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb50-377"><a href="#cb50-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-378"><a href="#cb50-378" aria-hidden="true" tabindex="-1"></a>ped_join <span class="ot">&lt;-</span> <span class="fu">st_join</span>(ped_sensors_sf, grid_sf) <span class="sc">|&gt;</span></span>
+<span id="cb50-379"><a href="#cb50-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb50-380"><a href="#cb50-380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grid_id) <span class="sc">|&gt;</span></span>
+<span id="cb50-381"><a href="#cb50-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb50-382"><a href="#cb50-382" aria-hidden="true" tabindex="-1"></a>    <span class="at">pedestrians =</span> <span class="fu">sum</span>(total_pedestrians, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb50-383"><a href="#cb50-383" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb50-384"><a href="#cb50-384" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-385"><a href="#cb50-385" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-386"><a href="#cb50-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-387"><a href="#cb50-387" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Note:** We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..</span></span>
+<span id="cb50-388"><a href="#cb50-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-389"><a href="#cb50-389" aria-hidden="true" tabindex="-1"></a><span class="fu">## Merge all attributes back to the grid</span></span>
+<span id="cb50-390"><a href="#cb50-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-393"><a href="#cb50-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-394"><a href="#cb50-394" aria-hidden="true" tabindex="-1"></a>final_grid <span class="ot">&lt;-</span> grid_sf <span class="sc">|&gt;</span></span>
+<span id="cb50-395"><a href="#cb50-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(node_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-396"><a href="#cb50-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(amenity_join, <span class="at">by =</span> <span class="st">"grid_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-397"><a href="#cb50-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ped_join, <span class="at">by =</span> <span class="st">"grid_id"</span>)</span>
+<span id="cb50-398"><a href="#cb50-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-399"><a href="#cb50-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-400"><a href="#cb50-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## Save joined grid data</span></span>
+<span id="cb50-401"><a href="#cb50-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-402"><a href="#cb50-402" aria-hidden="true" tabindex="-1"></a>We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.</span>
+<span id="cb50-403"><a href="#cb50-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-404"><a href="#cb50-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb50-405"><a href="#cb50-405" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the grid as a GeoJSON file</span></span>
+<span id="cb50-406"><a href="#cb50-406" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(final_grid, <span class="st">"grid_joined.geojson"</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-407"><a href="#cb50-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-408"><a href="#cb50-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-409"><a href="#cb50-409" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualize the results in a map (e.g., degree centrality)</span></span>
+<span id="cb50-410"><a href="#cb50-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-413"><a href="#cb50-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-414"><a href="#cb50-414" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-415"><a href="#cb50-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-416"><a href="#cb50-416" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(final_grid) <span class="sc">+</span></span>
+<span id="cb50-417"><a href="#cb50-417" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> mean_degree), <span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb50-418"><a href="#cb50-418" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
+<span id="cb50-419"><a href="#cb50-419" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb50-420"><a href="#cb50-420" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb50-421"><a href="#cb50-421" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb50-422"><a href="#cb50-422" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb50-423"><a href="#cb50-423" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb50-424"><a href="#cb50-424" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb50-425"><a href="#cb50-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb50-426"><a href="#cb50-426" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Degree Centrality (Grid Aggregation)"</span>,</span>
+<span id="cb50-427"><a href="#cb50-427" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Degree"</span></span>
+<span id="cb50-428"><a href="#cb50-428" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-429"><a href="#cb50-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb50-430"><a href="#cb50-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-431"><a href="#cb50-431" aria-hidden="true" tabindex="-1"></a>**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**</span>
+<span id="cb50-432"><a href="#cb50-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-435"><a href="#cb50-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb50-436"><a href="#cb50-436" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb50-437"><a href="#cb50-437" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb50-438"><a href="#cb50-438" aria-hidden="true" tabindex="-1"></a><span class="co"># this coverts this quarto to a plain r script</span></span>
+<span id="cb50-439"><a href="#cb50-439" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">purl</span>(<span class="st">"Spatial_Data_Analysis.qmd"</span>, <span class="st">"codes/Spatial_Data_Analysis.R"</span>, <span class="at">documentation =</span> <span class="dv">2</span>)</span>
+<span id="cb50-440"><a href="#cb50-440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
