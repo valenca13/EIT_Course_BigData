@@ -66,7 +66,6 @@ amenities_data_points <- amenities_data$osm_points
 amenities_data_points <- sf::st_read("https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/osm_amenities_points.gpkg") |> dplyr::rename(geometry=geom)
 ```
 
-
 -   **Check the amenities data**
 
 ```{r, eval = FALSE}
@@ -94,16 +93,15 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
-* **Transform amenities into a projected crs**
+-   **Transform amenities into a projected crs**
 
 A **projected coordinate system** is a **flat representation of the Earth’s surface**. A **geographic coordinate system is a spherical** representation of the Earth’s surface.
 
-We will transform the geographical coordinate system (measured in **degrees**) to a projected coordinate system (measured in **meters**) in order to calculate the centrality measures (calculate distances). 
+We will transform the geographical coordinate system (measured in **degrees**) to a projected coordinate system (measured in **meters**) in order to calculate the centrality measures (calculate distances).
 
 ```{r}
 amenities_data_treated <- st_transform(amenities_data_treated, 7856)
 ```
-
 
 ## Import road network data
 
@@ -114,13 +112,13 @@ library(osmextract)
 OSM_Sydney = oe_get_network(place = "Sydney") 
 ```
 
-* **Check the coordinate system**
+-   **Check the coordinate system**
 
 ```{r}
 st_crs(OSM_Sydney)
 ```
 
-* **Project the road network** 
+-   **Project the road network**
 
 ```{r}
 OSM_Sydney_project <- st_transform(OSM_Sydney, 7856)
@@ -151,7 +149,6 @@ unique(OSM_Sydney_project$highway)
 Sydney_main_roads = OSM_Sydney_project |> 
   dplyr::filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link","tertiary", "residential")) 
 ```
-
 
 > **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)
 
@@ -189,7 +186,7 @@ ggplot() +
 
 ```
 
-## Import pedestrian counting data 
+## Import pedestrian counting data
 
 ```{r}
 pedestrian_data <- read.csv("pedestrian_1.csv")
@@ -220,7 +217,7 @@ cbd_polygon <- bbox_cbd |>
 
 To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).
 
-* **Convert an sf linestring network into a topological graph**
+-   **Convert an sf linestring network into a topological graph**
 
 ```{r}
 #| message: false
@@ -376,8 +373,6 @@ final_grid <- grid_sf |>
 
 ## Save joined grid data
 
-We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.
-
 ```{r, eval = FALSE}
 # Save the grid as a GeoJSON file
 st_write(final_grid, "grid_joined.geojson", delete_dsn = TRUE)
@@ -403,7 +398,7 @@ ggplot(final_grid) +
   )
 ```
 
-**Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**
+**Now you have all the data combined! Explore other analyses and check also the inconsistencies of this dataset.**
 
 ```{r}
 #| include: false
