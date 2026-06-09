@@ -22,14 +22,13 @@
 #' 
 #' ## Import libraries
 #' 
-## ----eval = FALSE----------------------------------------------
-#| warning: false
-# library(osmdata)
-# library(sf)
-# library(dplyr)
-# library(ggplot2)
-# library(tidyverse)
-# library(osmextract)
+
+library(osmdata)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(osmextract)
 
 #' 
 #' > **Note:** We are going to use two packages to deal with *OpenStreetMap* data.
@@ -37,63 +36,46 @@
 #' ## Extract land use amenities
 #' 
 #' -   **Define Location**
-#' 
-## --------------------------------------------------------------
+
 location <- "Sydney, Australia"
 
-#' 
 #' -   **Create an OSM query for extracting amenities data**
-#' 
-## --------------------------------------------------------------
+
 library(osmdata) 
 amenities_query <- opq(location) |> 
   add_osm_feature(key = "amenity", value = c("restaurant", "bank", "bar")) 
 
-#' 
 #' > **Note:** We will use only three categories for simplicity of the example. Ideally, more types of amenities should be considered for analysis.
-#' 
-#' -   **Extract the data**
-#' 
-## ----eval=FALSE------------------------------------------------
-# # Set an alternative Overpass server (makes the process quicker)
-# set_overpass_url("https://overpass-api.de/api/interpreter")
-# 
-# amenities_data <- osmdata_sf(amenities_query)
-# amenities_data_points <- amenities_data$osm_points
 
-#' 
-## ----include=FALSE---------------------------------------------
+#' -   **Extract the data**
+# # Set an alternative Overpass server (makes the process quicker)
+set_overpass_url("https://overpass-api.de/api/interpreter")
+
+amenities_data <- osmdata_sf(amenities_query)
+amenities_data_points <- amenities_data$osm_points
+
+# Or just import through here: 
 amenities_data_points <- sf::st_read("https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/osm_amenities_points.gpkg") |> dplyr::rename(geometry=geom)
 
-#' 
-#' 
-#' -   **Check the amenities data**
-#' 
-## ----eval = FALSE----------------------------------------------
-# View(amenities_data_points)
 
-#' 
+#' -   **Check the amenities data**
+
+View(amenities_data_points)
+
 #' -   **Select only the relevant variables**
-#' 
-## --------------------------------------------------------------
+
 amenities_data_treated <- amenities_data_points |> 
   dplyr::select("osm_id","name","amenity","geometry") 
 
-#' 
 ## --------------------------------------------------------------
 unique(amenities_data_treated$amenity)
 
-#' 
 #' -   **Remove NA and loading_dock**
-#' 
-## --------------------------------------------------------------
-#| message: false
-#| warning: false
+
 library(sf)
 amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 
-#' 
 #' * **Transform amenities into a projected crs**
 #' 
 #' A **projected coordinate system** is a **flat representation of the Earth’s surface**. A **geographic coordinate system is a spherical** representation of the Earth’s surface.
@@ -103,80 +85,56 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
 ## --------------------------------------------------------------
 amenities_data_treated <- st_transform(amenities_data_treated, 7856)
 
-#' 
-#' 
+
 #' ## Import road network data
-#' 
-## ----echo=TRUE, results='hide'---------------------------------
-#| message: false
-#| warning: false
+
 library(osmextract)
 OSM_Sydney = oe_get_network(place = "Sydney") 
 
-#' 
 #' * **Check the coordinate system**
-#' 
-## --------------------------------------------------------------
+
 st_crs(OSM_Sydney)
 
-#' 
+
 #' * **Project the road network** 
-#' 
-## --------------------------------------------------------------
+
 OSM_Sydney_project <- st_transform(OSM_Sydney, 7856)
 
-#' 
 #' -   **Plot the entire network**
 #' 
-## --------------------------------------------------------------
 par(mar = rep(0.1, 4))
 plot(sf::st_geometry(OSM_Sydney_project))
 
-#' 
 #' -   **Check for missing data in 'Highway'**
-#' 
-## --------------------------------------------------------------
+
 table(is.na(OSM_Sydney_project$highway))
 
-#' 
 #' -   **Check for the values in 'Highway'**
-#' 
-## --------------------------------------------------------------
+
 unique(OSM_Sydney_project$highway)
 
-#' 
 #' -   **Filter the dataset only for the main 'Highway' classifications**
-#' 
-## --------------------------------------------------------------
+
 Sydney_main_roads = OSM_Sydney_project |> 
   dplyr::filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link","tertiary", "residential")) 
 
-#' 
-#' 
-#' > **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)
-#' 
-#' **Remove variables that are not useful**
-#' 
-#' Check the order of the variables
-#' 
-## ----eval = FALSE----------------------------------------------
-# names(OSM_Sydney)
 
-#' 
-## --------------------------------------------------------------
+#' > **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)
+
+#' **Remove variables that are not useful**
+
+#' Check the order of the variables
+
+names(OSM_Sydney)
+
 Sydney_main_roads <- Sydney_main_roads[,-c(4:12)]
 
-#' 
 #' -   **Plot the filtered network**
 #' 
-## --------------------------------------------------------------
 par(mar = rep(0.1, 4))
 plot(sf::st_geometry(Sydney_main_roads))
 
-#' 
 #' -   **Plot the amenities with the network**
-#' 
-## --------------------------------------------------------------
 
 library(ggplot2)
 
@@ -187,14 +145,10 @@ ggplot() +
   labs(title = "Amenities in Sydney", color = "Amenity Type") +
   theme(legend.position = "bottom")
 
-
-#' 
 #' ## Import pedestrian counting data 
 #' 
-## --------------------------------------------------------------
 pedestrian_data <- read.csv("pedestrian_1.csv")
 
-#' 
 #' ## Create a grid over the area of interest
 #' 
 #' -   **Define a bounding box and create a polygon around**
@@ -213,7 +167,6 @@ cbd_polygon <- bbox_cbd |>
   st_as_sfc() |> 
   st_transform(7856)
 
-#' 
 #' > **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful information, rather than producing excellent results**.
 #' 
 #' ## Crop the road network and compute centrality measures
@@ -221,10 +174,7 @@ cbd_polygon <- bbox_cbd |>
 #' To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).
 #' 
 #' * **Convert an sf linestring network into a topological graph**
-#' 
-## --------------------------------------------------------------
-#| message: false
-#| warning: false
+
 # # Crop the road network to the study area
 osm_cbd <- st_intersection(Sydney_main_roads, cbd_polygon)
 
@@ -249,25 +199,19 @@ edges <- coords |>
     to   = paste(next_x, next_y, sep = ",")
   )
 
-#' 
 #' -   **Build igraph object**
-#' 
-## --------------------------------------------------------------
+
 library(igraph)
 g <- graph_from_data_frame(edges, directed = FALSE) |> simplify()
 
-#' 
 #' -   **Compute centrality measures**
-#' 
-## --------------------------------------------------------------
+
 deg <- degree(g)
 bet <- betweenness(g, normalized = TRUE)
 clo <- closeness(g, normalized = TRUE) 
 
-#' 
 #' -   **Attaching centrality measures to the nodes**
-#' 
-## --------------------------------------------------------------
+
 node_names <- V(g)$name #all vertices (nodes) in your graph
 node_coords <- do.call(rbind, lapply(strsplit(node_names, ","), as.numeric)) #gives the coordinates of each graph node
 nodes_df <- data.frame(
@@ -280,10 +224,9 @@ nodes_df <- data.frame(
 )
 nodes_sf <- st_as_sf(nodes_df, coords = c("X", "Y"), crs = 7856)
 
-#' 
+
 #' -   Plot the degree centrality on a map
-#' 
-## --------------------------------------------------------------
+
 library(ggplot2)
 ggplot() +
   geom_sf(data = osm_cbd, color = "black", size = 0.3) +
@@ -296,7 +239,6 @@ ggplot() +
     color = "Degree"
   )
 
-#' 
 #' **Try plotting the other maps! :)**
 #' 
 #' ## Spatial join and aggregate all data into the grid
@@ -304,17 +246,14 @@ ggplot() +
 #' Finally, we join the pedestrian counts, amenities by category, and average centrality values into the 200x200 grid.
 #' 
 #' -   **Create grids that over the area of interest (polygon)**
-#' 
-## --------------------------------------------------------------
+
 grid <- st_make_grid(cbd_polygon, n = c(10, 10), square = FALSE)# 10 columns and 10 rows/ total grid cells = 10 × 10 = 100 cells
 grid_sf <- st_sf(grid_id = 1:length(grid), geometry = grid)
 
-#' 
 #' > **Note:** We are creating grids only inside the CBD. If you do not project to EPSG the 'cellsize' unit will be degree instead of meters.
 #' 
 #' -   **Join centrality measures (average per grid cell)**
-#' 
-## --------------------------------------------------------------
+
 node_join <- st_join(nodes_sf, grid_sf) |>
   as.data.frame() |>
   group_by(grid_id) |>
@@ -325,10 +264,8 @@ node_join <- st_join(nodes_sf, grid_sf) |>
     .groups = "drop"
   )
 
-#' 
 #' -   **Join amenities (count of total and per category per grid cell)**
-#' 
-## --------------------------------------------------------------
+
 amenity_join <- st_join(amenities_data_treated, grid_sf) |>
   as.data.frame() |>
   group_by(grid_id) |>
@@ -340,10 +277,8 @@ amenity_join <- st_join(amenities_data_treated, grid_sf) |>
     .groups = "drop"
   )
 
-#' 
 #' -   **Join total pedestrian counts (sum of TotalCount per grid cell)**
-#' 
-## --------------------------------------------------------------
+
 ped_sensors <- pedestrian_data |>
   group_by(Location_code, Latitude, Longitude) |>
   summarize(
@@ -362,12 +297,10 @@ ped_join <- st_join(ped_sensors_sf, grid_sf) |>
     .groups = "drop"
   )
 
-#' 
 #' > **Note:** We are only considering the total number of pedestrians per counter. Try getting other important information: i) total nº pedestrians per hour/day/season, ii) total nº pedestrians during weekdays and weekends, iii) total nº pedestrians before and after the pandemic, etc..
 #' 
 #' ## Merge all attributes back to the grid
-#' 
-## --------------------------------------------------------------
+
 final_grid <- grid_sf |>
   left_join(node_join, by = "grid_id") |>
   left_join(amenity_join, by = "grid_id") |>
@@ -375,14 +308,10 @@ final_grid <- grid_sf |>
 
 #' 
 #' ## Save joined grid data
-#' 
-#' We write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.
-#' 
-## ----eval = FALSE----------------------------------------------
+
 # # Save the grid as a GeoJSON file
 # st_write(final_grid, "grid_joined.geojson", delete_dsn = TRUE)
 
-#' 
 #' ## Visualize the results in a map (e.g., degree centrality)
 #' 
 ## --------------------------------------------------------------
@@ -403,11 +332,5 @@ ggplot(final_grid) +
   )
 
 #' 
-#' **Now you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.**
-#' 
-## --------------------------------------------------------------
-#| include: false
-#| eval: false
-# # this coverts this quarto to a plain r script
-# knitr::purl("Spatial_Data_Analysis.qmd", "codes/Spatial_Data_Analysis.R", documentation = 2)
+#' **Now you have all the data combined! Explore other analyses and check also the inconsistencies of this dataset.**
 
