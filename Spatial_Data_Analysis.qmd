@@ -67,7 +67,6 @@ amenities_data_points <- sf::st_read("https://github.com/valenca13/EIT_Course_Bi
 ```
 
 
-
 -   **Check the amenities data**
 
 ```{r, eval = FALSE}
@@ -95,6 +94,13 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
+* **Transform amenities into project crs**
+
+```{r}
+amenities_data_treated <- st_transform(amenities_data_treated, 7856)
+```
+
+
 ## Import road network data
 
 ```{r, echo=TRUE, results='hide'}
@@ -104,35 +110,41 @@ library(osmextract)
 OSM_Sydney = oe_get_network(place = "Sydney") 
 ```
 
-* Check the coordinate system
+* **Check the coordinate system**
 
 ```{r}
 st_crs(OSM_Sydney)
+```
+
+* **Project the road network** 
+
+```{r}
+OSM_Sydney_project <- st_transform(OSM_Sydney, 7856)
 ```
 
 -   **Plot the entire network**
 
 ```{r}
 par(mar = rep(0.1, 4))
-plot(sf::st_geometry(OSM_Sydney))
+plot(sf::st_geometry(OSM_Sydney_project))
 ```
 
 -   **Check for missing data in 'Highway'**
 
 ```{r}
-table(is.na(OSM_Sydney$highway))
+table(is.na(OSM_Sydney_project$highway))
 ```
 
 -   **Check for the values in 'Highway'**
 
 ```{r}
-unique(OSM_Sydney$highway)
+unique(OSM_Sydney_project$highway)
 ```
 
 -   **Filter the dataset only for the main 'Highway' classifications**
 
 ```{r}
-Sydney_main_roads = OSM_Sydney |> 
+Sydney_main_roads = OSM_Sydney_project |> 
   dplyr::filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link","tertiary", "residential")) 
 ```
 
@@ -186,12 +198,16 @@ pedestrian_data <- read.csv("pedestrian_1.csv")
 ```{r}
 # Define bounding box around the 4 pedestrian counters with buffer in order to simpify the process
 
+#Define bouding box in EPSG:4326 (lat/long)
 bbox_cbd <- st_bbox(c(
   xmin = 151.2016, ymin = -33.8780,
   xmax = 151.2151, ymax = -33.8585
 ), crs = st_crs(4326))
 
-cbd_polygon <- st_as_sfc(bbox_cbd)
+# Convert bbox to polygon, then transform to EPSG:7856
+cbd_polygon <- bbox_cbd |> 
+  st_as_sfc() |> 
+  st_transform(7856)
 ```
 
 > **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.
@@ -201,6 +217,8 @@ cbd_polygon <- st_as_sfc(bbox_cbd)
 To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).
 
 ```{r}
+#| message: false
+#| warning: false
 # # Crop the road network to the study area
 osm_cbd <- st_intersection(Sydney_main_roads, cbd_polygon)
 
@@ -210,8 +228,8 @@ coords <- st_coordinates(osm_cbd) #Sydney_main_roads
 edges <- coords |>
   as.data.frame() |>
   mutate(
-    X = round(X, 7),
-    Y = round(Y, 7)
+    X = round(X, 3),
+    Y = round(Y, 3)
   ) |>
   group_by(L1) |>
   mutate(
@@ -254,7 +272,7 @@ nodes_df <- data.frame(
   betweenness = bet,
   closeness = clo
 )
-nodes_sf <- st_as_sf(nodes_df, coords = c("X", "Y"), crs = 4326)
+nodes_sf <- st_as_sf(nodes_df, coords = c("X", "Y"), crs = 7856)
 ```
 
 -   Plot the degree centrality on a map
@@ -327,6 +345,8 @@ ped_sensors <- pedestrian_data |>
     .groups = "drop"
   )
 ped_sensors_sf <- st_as_sf(ped_sensors, coords = c("Longitude", "Latitude"), crs = 4326)
+
+ped_sensors_sf <- st_transform(ped_sensors_sf, 7856)
 
 ped_join <- st_join(ped_sensors_sf, grid_sf) |>
   as.data.frame() |>
