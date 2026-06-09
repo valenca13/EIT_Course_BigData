@@ -411,3 +411,4 @@ ggplot(final_grid) +
 # this coverts this quarto to a plain r script
 knitr::purl("Spatial_Data_Analysis.qmd", "codes/Spatial_Data_Analysis.R", documentation = 2)
 ```
+
