@@ -384,7 +384,7 @@
     "href": "Spatial_Data_Analysis.html#save-joined-grid-data",
     "title": "6  Spatial Data Analysis",
     "section": "6.11 Save joined grid data",
-    "text": "6.11 Save joined grid data\nWe write the grid to a GeoJSON file for use in other mapping applications or subsequent steps.\n\n\nCode\n# Save the grid as a GeoJSON file\nst_write(final_grid, \"grid_joined.geojson\", delete_dsn = TRUE)",
+    "text": "6.11 Save joined grid data\n\n\nCode\n# Save the grid as a GeoJSON file\nst_write(final_grid, \"grid_joined.geojson\", delete_dsn = TRUE)",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
@@ -394,7 +394,7 @@
     "href": "Spatial_Data_Analysis.html#visualize-the-results-in-a-map-e.g.-degree-centrality",
     "title": "6  Spatial Data Analysis",
     "section": "6.12 Visualize the results in a map (e.g., degree centrality)",
-    "text": "6.12 Visualize the results in a map (e.g., degree centrality)\n\n\nCode\nlibrary(ggplot2)\n\nggplot(final_grid) +\n  geom_sf(aes(fill = mean_degree), color = NA) +\n  scale_fill_viridis_c(option = \"magma\") +\n  theme_minimal() +\n  theme(\n    axis.text = element_blank(),\n    axis.ticks = element_blank(),\n    panel.grid = element_blank()\n  ) +\n  labs(\n    title = \"Degree Centrality (Grid Aggregation)\",\n    fill = \"Degree\"\n  )\n\n\n\n\n\n\n\n\n\nNow you have all the data combined! Explore other analysis and check also the inconsistencies of this dataset.",
+    "text": "6.12 Visualize the results in a map (e.g., degree centrality)\n\n\nCode\nlibrary(ggplot2)\n\nggplot(final_grid) +\n  geom_sf(aes(fill = mean_degree), color = NA) +\n  scale_fill_viridis_c(option = \"magma\") +\n  theme_minimal() +\n  theme(\n    axis.text = element_blank(),\n    axis.ticks = element_blank(),\n    panel.grid = element_blank()\n  ) +\n  labs(\n    title = \"Degree Centrality (Grid Aggregation)\",\n    fill = \"Degree\"\n  )\n\n\n\n\n\n\n\n\n\nNow you have all the data combined! Explore other analyses and check also the inconsistencies of this dataset.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spatial Data Analysis</span>"
     ]
