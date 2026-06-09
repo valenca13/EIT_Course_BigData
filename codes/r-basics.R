@@ -1,10 +1,4 @@
-#' ---
-#' eval: true
-#' code-fold: false
-#' number-depth: 2
-#' engine: knitr
-#' ---
-#' 
+
 #' # R basics
 #' 
 #' In this chapter we will introduce to the R basics and some exercises to get familiar to how R works.
@@ -12,53 +6,41 @@
 #' ## Math operations
 #' 
 #' **Sum**
-#' 
-## --------------------------------------------------------------
+
 1+1
 
 #' 
 #' **Subtraction**
-#' 
-## --------------------------------------------------------------
+
 5-2
 
 #' 
 #' **Multiplication**
-#' 
-## --------------------------------------------------------------
+
 2*2
 
-#' 
 #' **Division**
-#' 
-## --------------------------------------------------------------
+
 8/2
 
-#' 
-#' **Round the number**
-#' 
-## --------------------------------------------------------------
+#' Round the number
+
 round(3.14)
 round(3.14, 1) # The "1" indicates to round it up to 1 decimal digit.
 
-#' 
 #' You can use help `?round` in the console to see the description of the function, and the default arguments.
 #' 
-#' ## Basic shortpaths
+#' Basic shortpaths
 #' 
-#' **Perform Combinations**
-#' 
-## --------------------------------------------------------------
+#' Perform Combinations
+
 c(1, 2, 3)
 c(1:3) # The ":" indicates a range between the first and second numbers. 
 
-#' 
 #' **Create a comment with `ctrl + shift + c`**
-#' 
-## --------------------------------------------------------------
+
 # Comments help you organize your code. The software will not run the comment. 
 
-#' 
 #' ## Create a table
 #' 
 #' A simple table with the number of trips by car, PT, walking, and cycling in a hypothetical street segment at a certain period.
@@ -78,37 +60,26 @@ origin <- c("Home", "Home", "School", "Grocery")
 # Trip Destination
 destination <- c("Work", "University", "Park", "Home")
 
-#' 
 #' **Join the variables to create a table**
-#' 
-## --------------------------------------------------------------
+
 table_example = data.frame(modes, Trips, origin, destination)
 
-#' 
 #' **Take a look at the table**
 #' 
 #' Visualize the table by clicking on the "table_example" in the "Environment" page or use:
-#' 
-## --------------------------------------------------------------
+
 View(table_example)
 
-#' 
 #' **Look at the first row**
-#' 
-## --------------------------------------------------------------
+
 table_example[1,] #rows and columns start from 1 in R, differently from Python which starts from 0.
 
-#' 
 #' **Look at first row and column**
-#' 
-## --------------------------------------------------------------
+
 table_example[1,1]
 
-#' 
-#' ::: {.callout-tip appearance="simple"}
 #' After you type `"` you can use `tab` to navigate between folders and files and `enter` to autocomplete.
-#' :::
-#' 
+
 #' ## Explore the data
 #' 
 #' **Check the total number of trips**
@@ -123,42 +94,24 @@ sum(table_example$Trips)
 #' 
 #' Filter trips only with origin from Home
 #' 
-## --------------------------------------------------------------
 data_Lisbon = table_example[table_example$origin == "Home",]
 
-#' 
 #' Filter trips with origin **different** from Home
 #' 
-## --------------------------------------------------------------
 data_out_Lisbon = table_example[table_example$origin != "Home",]
 
-#' 
 #' **Remove the first column**
-#' 
-## --------------------------------------------------------------
+
 table_example_2 = table_example[ ,-1] #first column
 
-#' 
 #' **Create a table only with origin, destination**
 #' 
 #' There are many ways to do the same operation.
-#' 
-## --------------------------------------------------------------
+
 names(table_example)
 
-#' 
 ## --------------------------------------------------------------
 data_OD = table_example[ ,c(3,4)]
 
-#' 
 ## --------------------------------------------------------------
 data_OD2 = table_example[ ,-c(1:2)] #Or use a comma. 
-
-#' 
-## --------------------------------------------------------------
-#| include: false
-#| eval: false
-# # this coverts this quarto to a plain r script
-# knitr::purl("r-basics.qmd", "codes/r-basics.R", documentation = 2)
-# 
-
