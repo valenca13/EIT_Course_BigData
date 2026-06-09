@@ -12,6 +12,8 @@ editor: visual
 
 This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in **Tartu, Estonia** (refer to <https://annualforum.ut.ee/>).
 
+All codes and datasets used for this course can be downloaded at the source [Github page](https://github.com/valenca13/EIT_Course_BigData).
+
 ## Objectives {.unnumbered}
 
 The primary objective of this course is to equip **doctoral candidates** with the **conceptual and methodological competencies** required to critically engage with **large-scale passive mobility datasets** and utilize them in **support of planning** and decision-making related to **active urban mobility** (walking and cycling).
