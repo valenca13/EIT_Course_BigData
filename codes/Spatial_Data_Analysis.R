@@ -214,11 +214,13 @@ cbd_polygon <- bbox_cbd |>
   st_transform(7856)
 
 #' 
-#' > **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful, rather than producing excellent results**.
+#' > **Note:** Ideally, it would be better to run for the whole network of Sydney to compute the centrality measures. However, this requires some computational power. For the sake of the example, we will simplify the process. The aim of this chapter is to teach how to **combine different datasets and extract meaningful information, rather than producing excellent results**.
 #' 
 #' ## Crop the road network and compute centrality measures
 #' 
 #' To prevent computational lag and calculate local CBD movement flow accurately, we crop the street network to our CBD bounding box and build the topology correctly. We then compute the degree, betweenness, and closeness centrality for the street intersections (nodes).
+#' 
+#' * **Convert an sf linestring network into a topological graph**
 #' 
 ## --------------------------------------------------------------
 #| message: false
@@ -228,19 +230,19 @@ osm_cbd <- st_intersection(Sydney_main_roads, cbd_polygon)
 
 library(dplyr)
 # Extract coordinates and build the graph topology 
-coords <- st_coordinates(osm_cbd) #Sydney_main_roads
+coords <- st_coordinates(osm_cbd) # Extracts all coordinates from your road network.
 edges <- coords |>
   as.data.frame() |>
   mutate(
-    X = round(X, 3),
-    Y = round(Y, 3)
+    X = round(X, 3), #coordinate X
+    Y = round(Y, 3)  #coordinate y
   ) |>
-  group_by(L1) |>
+  group_by(L1) |> #L1 = line ID
   mutate(
-    next_x = lead(X),
+    next_x = lead(X),#finds next coordinate along the same segment
     next_y = lead(Y)
   ) |>
-  filter(!is.na(next_x)) |>
+  filter(!is.na(next_x)) |> #The last coordinate pair has no “next” point, so it is removed.
   ungroup() |>
   transmute(
     from = paste(X, Y, sep = ","),
@@ -263,11 +265,11 @@ bet <- betweenness(g, normalized = TRUE)
 clo <- closeness(g, normalized = TRUE) 
 
 #' 
-#' -   **Parse vertex coordinates and create nodes spatial features**
+#' -   **Attaching centrality measures to the nodes**
 #' 
 ## --------------------------------------------------------------
-node_names <- V(g)$name
-node_coords <- do.call(rbind, lapply(strsplit(node_names, ","), as.numeric))
+node_names <- V(g)$name #all vertices (nodes) in your graph
+node_coords <- do.call(rbind, lapply(strsplit(node_names, ","), as.numeric)) #gives the coordinates of each graph node
 nodes_df <- data.frame(
   node = node_names,
   X = node_coords[,1],

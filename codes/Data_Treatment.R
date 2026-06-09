@@ -58,13 +58,13 @@ df <- data.frame(data_csv)
 #' 
 #' ## Check the dataset
 #' 
-#' * **Structure of the dataset**
+#' -   **Structure of the dataset**
 #' 
 ## --------------------------------------------------------------
 str(df)
 
 #' 
-#' * **Summary of the dataset**
+#' -   **Summary of the dataset**
 #' 
 ## --------------------------------------------------------------
 library(skimr)
@@ -76,15 +76,17 @@ skim(df)
 ## --------------------------------------------------------------
 table(is.na(df))
 
-#' * **Plot missing data**
+#' 
+#' -   **Plot missing data**
 #' 
 ## --------------------------------------------------------------
 library(DataExplorer)
 
 plot_missing(df)
 
-#' * **Listwise deletion**. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.
-#'     
+#' 
+#' -   **Listwise deletion**. Removes an entire row (case) if any variable in that row is missing. Only fully complete observations remain.
+#' 
 ## --------------------------------------------------------------
 df_missingListwise = na.omit(df) #removes all rows with at least one NA in any variable
 
@@ -93,25 +95,26 @@ df_missingListwise = na.omit(df) #removes all rows with at least one NA in any v
 plot_missing(df_missingListwise)
 
 #' 
-#' * **Pairwise deletion**. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.
-#'     
+#' -   **Pairwise deletion**. Delete the row of missing value to the presence in a the specific variable involved in a given calculation.
+#' 
 ## --------------------------------------------------------------
 df_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable
 
 #' 
-#' For our case, which treatment would be better? 
+#' For our case, which treatment would be better?
 #' 
-#' > **Note:** There are many methods for treating missing data, such as replacing the values by the mean, median or using more complex imputation methods (e.g. k‑Nearest Neighbors (kNN) Imputation). 
+#' > **Note:** There are many methods for treating missing data, such as replacing the values by the mean, median or using more complex imputation methods (e.g. k‑Nearest Neighbors (kNN) Imputation).
 #' 
 #' ## Treat existent variables
 #' 
-#' * **Convert the variable "Day" into a factor**
+#' -   **Convert the variable "Day" into a factor**
 #' 
 ## --------------------------------------------------------------
 df$Day <- factor(df$Day, labels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"), ordered = TRUE)
 
 str(df$Day)
 
+#' 
 #' **Check how many automatic counters there are:**
 #' 
 ## --------------------------------------------------------------
@@ -152,7 +155,7 @@ df$Latitude[df$Location_code == "A004"] <- -33.873041
 df$Longitude[df$Location_code == "A004"] <- 151.207565
 
 #' 
-#' ## Create an *Geometry* variable
+#' ## Create a *Geometry* variable
 #' 
 ## --------------------------------------------------------------
 #| warning: false
@@ -206,7 +209,7 @@ df_sf$Time_only <- format(df_sf$Date, "%H:%M:%S")
 #' 
 #' ## Make some initial plots
 #' 
-#' * **Total pedestrian counts over time**
+#' -   **Total pedestrian counts over time**
 #' 
 ## --------------------------------------------------------------
 library(ggplot2)
@@ -225,7 +228,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount)) +
   theme_minimal()
 
 #' 
-#' * **Total pedestrian counts per counter over time**
+#' -   **Total pedestrian counts per counter over time**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
@@ -246,7 +249,7 @@ ggplot(df_sf, aes(x = Date, y = TotalCount, colour = Location_Name)) +
 #' 
 #' *Facet_wrap* divides the plots per automatic counter.
 #' 
-#' * **Tendency of total pedestrian counts per counter aggregated by year**
+#' -   **Tendency of total pedestrian counts per counter aggregated by year**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
@@ -260,7 +263,8 @@ ggplot(df_sf, aes(x = Year, y = TotalCount, colour = Location_Name)) +
     y = "Total Nº of Pedestrians"
   )
 
-#' * **Total number of pedestrians per time**
+#' 
+#' -   **Total number of pedestrians per time**
 #' 
 ## --------------------------------------------------------------
 ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
@@ -278,7 +282,6 @@ ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
 #' Try changing the *themes* for different appearances.
 #' 
 #' > **Note:** Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/
-#' 
 #' 
 ## --------------------------------------------------------------
 #| include: false

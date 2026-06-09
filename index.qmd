@@ -29,5 +29,3 @@ The course was designed for PhD students with diverse background and competencie
 The course will be delivered in three main formats: i) **theoretical** lectures, **practical** lectures with basic lessons of **R programming** for data treatment and analysis, as well as **group work**.
 
 This webpage contains all the materials of the **practical** and **group work**.
-
-> Materials produced by Gabriel Valença
