@@ -10,9 +10,7 @@ editor: visual
 
 ## Course intro {.unnumbered}
 
-This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in **Tartu, Estonia** (refer to https://annualforum.ut.ee/).
-
-
+This course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the **14th and 15th June 2026** in **Tartu, Estonia** (refer to <https://annualforum.ut.ee/>).
 
 ## Objectives {.unnumbered}
 
