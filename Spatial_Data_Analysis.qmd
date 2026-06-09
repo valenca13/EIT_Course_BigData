@@ -97,11 +97,17 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
 
 ## Import road network data
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 #| message: false
 #| warning: false
 library(osmextract)
 OSM_Sydney = oe_get_network(place = "Sydney") 
+```
+
+* Check the coordinate system
+
+```{r}
+st_crs(OSM_Sydney)
 ```
 
 -   **Plot the entire network**
