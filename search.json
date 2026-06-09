@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "From Data to Design",
     "section": "",
-    "text": "Course intro\nThis course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the 14th and 15th June 2026 in Tartu, Estonia (refer to https://annualforum.ut.ee/).",
+    "text": "Course intro\nThis course consists of an in-person 2-day course, taking place during the EIT DTN Annual Meeting on the 14th and 15th June 2026 in Tartu, Estonia (refer to https://annualforum.ut.ee/).\nAll codes and datasets used for this course can be downloaded at the source Github page.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#format-and-materials",
     "title": "From Data to Design",
     "section": "Format and materials",
-    "text": "Format and materials\nThe course will be delivered in three main formats: i) theoretical lectures, practical lectures with basic lessons of R programming for data treatment and analysis, as well as group work.\nThis webpage contains all the materials of the practical and group work.\n\nMaterials produced by Gabriel Valença",
+    "text": "Format and materials\nThe course will be delivered in three main formats: i) theoretical lectures, practical lectures with basic lessons of R programming for data treatment and analysis, as well as group work.\nThis webpage contains all the materials of the practical and group work.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
     ]
@@ -154,7 +154,7 @@
     "href": "r-basics.html#basic-shortpaths",
     "title": "4  R basics",
     "section": "4.2 Basic shortpaths",
-    "text": "4.2 Basic shortpaths\nPerform Combinations\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\nc(1:3) # The \":\" indicates a range between the first and second numbers. \n\n[1] 1 2 3\n\n\nCreate a comment with ctrl + shift + c \n\n# Comments help you organize your code. The software will not run the comment.",
+    "text": "4.2 Basic shortpaths\nPerform Combinations\n\nc(1, 2, 3)\n\n[1] 1 2 3\n\nc(1:3) # The \":\" indicates a range between the first and second numbers. \n\n[1] 1 2 3\n\n\nCreate a comment with ctrl + shift + c\n\n# Comments help you organize your code. The software will not run the comment.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>R basics</span>"
     ]

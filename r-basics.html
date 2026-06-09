@@ -463,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 1 2 3</code></pre>
 </div>
 </div>
-<p><strong>Create a comment with <code>ctrl + shift + c</code> </strong></p>
+<p><strong>Create a comment with <code>ctrl + shift + c</code></strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comments help you organize your code. The software will not run the comment. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1095,7 +1095,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># The ":" indicates a range between the first and second numbers. </span></span>
 <span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>**Create a comment with <span class="in">`ctrl + shift + c`</span> **</span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>**Create a comment with `ctrl + shift + c`**</span>
 <span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Comments help you organize your code. The software will not run the comment. </span></span>
@@ -1160,49 +1160,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(table_example<span class="sc">$</span>Trips)</span>
 <span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a>**Filter by condition (create new tables)**</span>
-<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a>Filter trips only with origin from Home</span>
-<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a>data_Lisbon <span class="ot">=</span> table_example[table_example<span class="sc">$</span>origin <span class="sc">==</span> <span class="st">"Home"</span>,]</span>
-<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a>Filter trips with origin **different** from Home</span>
-<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-161"><a href="#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a>data_out_Lisbon <span class="ot">=</span> table_example[table_example<span class="sc">$</span>origin <span class="sc">!=</span> <span class="st">"Home"</span>,]</span>
-<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a>**Remove the first column**</span>
-<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a>table_example_2 <span class="ot">=</span> table_example[ ,<span class="sc">-</span><span class="dv">1</span>] <span class="co">#first column</span></span>
-<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a>**Create a table only with origin, destination**</span>
-<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a>There are many ways to do the same operation.</span>
-<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(table_example)</span>
-<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-185"><a href="#cb34-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-186"><a href="#cb34-186" aria-hidden="true" tabindex="-1"></a>data_OD <span class="ot">=</span> table_example[ ,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
-<span id="cb34-187"><a href="#cb34-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-188"><a href="#cb34-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-191"><a href="#cb34-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-192"><a href="#cb34-192" aria-hidden="true" tabindex="-1"></a>data_OD2 <span class="ot">=</span> table_example[ ,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)] <span class="co">#Or use a comma. </span></span>
-<span id="cb34-193"><a href="#cb34-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-194"><a href="#cb34-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-197"><a href="#cb34-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-198"><a href="#cb34-198" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb34-199"><a href="#cb34-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb34-200"><a href="#cb34-200" aria-hidden="true" tabindex="-1"></a><span class="co"># this coverts this quarto to a plain r script</span></span>
-<span id="cb34-201"><a href="#cb34-201" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">purl</span>(<span class="st">"r-basics.qmd"</span>, <span class="st">"codes/r-basics.R"</span>, <span class="at">documentation =</span> <span class="dv">2</span>)</span>
-<span id="cb34-202"><a href="#cb34-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-203"><a href="#cb34-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a>**Filter by condition (create new tables)**</span>
+<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a>Filter trips only with origin from Home</span>
+<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a>data_Lisbon <span class="ot">=</span> table_example[table_example<span class="sc">$</span>origin <span class="sc">==</span> <span class="st">"Home"</span>,]</span>
+<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a>Filter trips with origin **different** from Home</span>
+<span id="cb34-159"><a href="#cb34-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a>data_out_Lisbon <span class="ot">=</span> table_example[table_example<span class="sc">$</span>origin <span class="sc">!=</span> <span class="st">"Home"</span>,]</span>
+<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a>**Remove the first column**</span>
+<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a>table_example_2 <span class="ot">=</span> table_example[ ,<span class="sc">-</span><span class="dv">1</span>] <span class="co">#first column</span></span>
+<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a>**Create a table only with origin, destination**</span>
+<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a>There are many ways to do the same operation.</span>
+<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(table_example)</span>
+<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-183"><a href="#cb34-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-186"><a href="#cb34-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-187"><a href="#cb34-187" aria-hidden="true" tabindex="-1"></a>data_OD <span class="ot">=</span> table_example[ ,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb34-188"><a href="#cb34-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-189"><a href="#cb34-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-192"><a href="#cb34-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-193"><a href="#cb34-193" aria-hidden="true" tabindex="-1"></a>data_OD2 <span class="ot">=</span> table_example[ ,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)] <span class="co">#Or use a comma. </span></span>
+<span id="cb34-194"><a href="#cb34-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-195"><a href="#cb34-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-198"><a href="#cb34-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-199"><a href="#cb34-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb34-200"><a href="#cb34-200" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb34-201"><a href="#cb34-201" aria-hidden="true" tabindex="-1"></a><span class="co"># this coverts this quarto to a plain r script</span></span>
+<span id="cb34-202"><a href="#cb34-202" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">purl</span>(<span class="st">"r-basics.qmd"</span>, <span class="st">"codes/r-basics.R"</span>, <span class="at">documentation =</span> <span class="dv">2</span>)</span>
+<span id="cb34-203"><a href="#cb34-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-204"><a href="#cb34-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
