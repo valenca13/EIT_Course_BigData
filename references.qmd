@@ -12,7 +12,7 @@ title: "References"
 
 * [Toulouse, France](https://data.toulouse-metropole.fr/explore/dataset/comptages-pietons-2006-2019/information/)
 
-* [Sydney, Australia](https://data.cityofsydney.nsw.gov.au/datasets/318c979731e54cb187349d034e1defad_0/explore)
+* [Sydney, Australia](https://data.cityofsydney.nsw.gov.au/datasets/cityofsydney::automatic-hourly-pedestrian-count)
 
 * [Melbourne, Australia](https://www.pedestrian.melbourne.vic.gov.au/#date=12-12-2024&time=18)
 
