@@ -94,7 +94,11 @@ amenities_data_treated <- st_as_sf(amenities_data_treated) |>
   dplyr::filter(!is.na(amenity), amenity != "loading_dock")
 ```
 
-* **Transform amenities into project crs**
+* **Transform amenities into a projected crs**
+
+A **projected coordinate system** is a **flat representation of the Earth’s surface**. A **geographic coordinate system is a spherical** representation of the Earth’s surface.
+
+We will transform the geographical coordinate system (measured in **degrees**) to a projected coordinate system (measured in **meters**) in order to calculate the centrality measures (calculate distances). 
 
 ```{r}
 amenities_data_treated <- st_transform(amenities_data_treated, 7856)
