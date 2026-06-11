@@ -32,4 +32,4 @@ This webpage contains all the materials of the **practical** and **group work**.
 
 ## Acknowledgement {.unnumbered}
 
-The template and structure of this website were not developed from scratch. Although the content of this course is largely different, the website’s structure is based on the course *“Get your Dataset Ready: Using R and GIS”* taught at the 2024 DTN Annual Forum in Ghent by Rosa Félix, Gabriel Valença, and Rafael Pereira. The original Quarto template was primarily prepared by Rosa Félix and has been adapted here for this course. Licensed under Creative Commons, permission is not required, provided proper credit is given.
+The website’s structure is based on the course *“Get your Dataset Ready: Using R and GIS”* taught at the 2024 DTN Annual Forum in Ghent by Rosa Félix, Gabriel Valença, and Rafael Pereira. The original Quarto template was primarily prepared by Rosa Félix and has been adapted here for this course. Licensed under Creative Commons, permission is not required, provided proper credit is given.
