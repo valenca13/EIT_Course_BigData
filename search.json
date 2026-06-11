@@ -43,8 +43,8 @@
     "objectID": "index.html#acknowledgement",
     "href": "index.html#acknowledgement",
     "title": "From Data to Design",
-    "section": "0.1 Acknowledgement",
-    "text": "0.1 Acknowledgement\nThe template and structure of this website were not developed from scratch. Although the content of this course is largely different, the website’s structure is based on the course “Get your Dataset Ready: Using R and GIS” taught at the 2024 DTN Annual Forum in Ghent by Rosa Félix, Gabriel Valença, and Rafael Pereira. The original Quarto template was primarily prepared by Rosa Félix and has been adapted here for this course.",
+    "section": "Acknowledgement",
+    "text": "Acknowledgement\nThe template and structure of this website were not developed from scratch. Although the content of this course is largely different, the website’s structure is based on the course “Get your Dataset Ready: Using R and GIS” taught at the 2024 DTN Annual Forum in Ghent by Rosa Félix, Gabriel Valença, and Rafael Pereira. The original Quarto template was primarily prepared by Rosa Félix and has been adapted here for this course.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
     ]
