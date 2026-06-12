@@ -1,0 +1,17 @@
+---
+title: "Data to Design"
+output: github_document
+date: "2026-06-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This repository was created for the course Data to Design taught at the 2026 DTN Annual Forum given by Gabriel Valença and Avital Angel. Please find the materials below: 
+
+* **Codes:** 
+
+- [R Basics](Codes/r-basics.R) 
+- [Data treatment and descriptive statistics](Codes/Data_Treatment.R)
+- [Spatial Data Analysis](Codes/Spatial_Data_Analysis.R)
