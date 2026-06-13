@@ -4,7 +4,7 @@ Data to Design
 
 This repository was created for the course **From Data to Design: Using
 Big Data for Active Mobility Research** taught at the [2026 DTN Annual
-Forum](https://annualforum.ut.ee/) given by [Avital
+Forum](https://annualforum.ut.ee/) by [Avital
 Angel](https://www.mos.ed.tum.de/en/sv/about-us/team/dr-avital-angel/)
 and [Gabriel
 Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/) in
