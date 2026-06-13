@@ -12,7 +12,7 @@ Tartu, Estonia on June 14th and 15th of 2026.
 
 [<img src="Images/EIT_logo-EU1-horizontal_1.png" width="200" />](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
 
-<img src="Images/CERIS.jpg" width="100" />
+<img src="Images/CERIS.jpg" width="100" />  
 <img src="Images/IST_Logo.png" width="100" />
 <img src="Images/tum-1.jpg" width="100" />
 
