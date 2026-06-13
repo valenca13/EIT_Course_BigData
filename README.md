@@ -22,9 +22,9 @@ The two day course will have the following [content](Content.md)
 
 ## Install R and RStudio
 
-- First install the latest version of \[R\]
+- First install the latest version of [R](https://cloud.r-project.org/)
 
-- Install RStudio
+- Install [RStudio](https://rstudio.com/products/rstudio/download/)
 
 ## Materials of the course:
 
