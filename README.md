@@ -10,11 +10,11 @@ and [Gabriel
 Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/) in
 Tartu, Estonia on June 14th and 15th of 2026.
 
-[<img src="Images/EIT_logo-EU1-horizontal_1.png" width="473" />](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
+[<img src="Images/EIT_logo-EU1-horizontal_1.png" width="200" />](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
 
-<img src="Images/CERIS.jpg" data-fig-align="center" width="200" />
-<img src="Images/IST_Logo.png" data-fig-align="center" width="200" />
-<img src="Images/tum-1.jpg" data-fig-align="center" width="250" />
+<img src="Images/CERIS.jpg" data-fig-align="center" width="100" />
+<img src="Images/IST_Logo.png" data-fig-align="center" width="100" />
+<img src="Images/tum-1.jpg" data-fig-align="center" width="100" />
 
 ## Content
 
