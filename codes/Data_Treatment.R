@@ -114,7 +114,7 @@ df$Latitude[df$Location_code == "A004"] <- -33.873041
 df$Longitude[df$Location_code == "A004"] <- 151.207565
 
 #' ## Create a *Geometry* variable
-library(sf)
+library(sf) #simple features
 
 df_sf <- st_as_sf(
   df,
@@ -128,8 +128,11 @@ df_sf <- st_as_sf(
 #' 
 library(mapview)
 
-df_map <- unique(df_sf$geometry)
-mapview(df_map)
+df_map <- df_sf[!duplicated(df_sf$Location_code), ]
+
+mapview(df_map, 
+        zcol = "Location_code",
+        layer.name = "Automatic Pedestrian Counters")
 
 #' ## Have date and time in separate variables
 #' 
@@ -137,7 +140,7 @@ mapview(df_map)
 
 library(lubridate)
 
-df_sf$Date <- ymd_hms(df_sf$Date, tz = "UTC")
+df_sf$Date <- ymd_hms(df_sf$Date, tz = "UTC") # UTC = Coordinated Universal Time
 
 #' Check the class of the variable ´Date´
 
@@ -221,3 +224,5 @@ ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
 
  
 #' Exercise 1: Try substituting the missing values of one variable to the mean value. 
+
+#' Exercise 2: Try plotting pedestrian counts only during the weekends. Tip: filter first, then plot. 
