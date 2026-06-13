@@ -2,14 +2,19 @@ Data to Design
 ================
 2026-06-12
 
-This repository was created for the course Data to Design taught at the
-2026 DTN Annual Forum given by Gabriel Valença and Avital Angel. Please
-find the materials below:
+This repository was created for the course **From Data to Design: Using
+Big Data for Active Mobility Research** taught at the [2026 DTN Annual
+Forum](https://annualforum.ut.ee/) given by [Avital
+Angel](https://www.mos.ed.tum.de/en/sv/about-us/team/dr-avital-angel/)
+and [Gabriel
+Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/).
 
-- **Codes:**
+- [Content of the course](Schedule.Rmd)
 
-- [R Basics](Codes/r-basics.R)
+## Materials of the course:
 
-- [Data treatment and descriptive statistics](Codes/Data_Treatment.R)
+**Codes:**
 
-- [Spatial Data Analysis](Codes/Spatial_Data_Analysis.R)
+- [R Basics](codes/r-basics.R)
+- [Data treatment and descriptive statistics](codes/Data_Treatment.R)
+- [Spatial Data Analysis](codes/Spatial_Data_Analysis.R)
