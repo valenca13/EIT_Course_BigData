@@ -12,7 +12,13 @@ This repository was created for the course **From Data to Design: Using Big Data
 
 ## Content
 
-The two day course will have the following [content](Content.Rmd)
+The two day course will have the following [content](Content.md)
+
+## Install R and RStudio
+
+* First install the latest version of [R]
+
+* Install RStudio
 
 ## Materials of the course: 
 

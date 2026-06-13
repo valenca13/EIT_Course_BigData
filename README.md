@@ -7,9 +7,18 @@ Big Data for Active Mobility Research** taught at the [2026 DTN Annual
 Forum](https://annualforum.ut.ee/) given by [Avital
 Angel](https://www.mos.ed.tum.de/en/sv/about-us/team/dr-avital-angel/)
 and [Gabriel
-Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/).
+Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/) in
+Tartu, Estonia on June 14th and 15th of 2026.
 
-- [Content of the course](Schedule.Rmd)
+## Content
+
+The two day course will have the following [content](Content.md)
+
+## Install R and RStudio
+
+- First install the latest version of \[R\]
+
+- Install RStudio
 
 ## Materials of the course:
 
