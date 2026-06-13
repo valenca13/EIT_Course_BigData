@@ -1,6 +1,6 @@
 ---
-title: "Schedule"
-output: html_document
+title: "Content"
+output: github_document
 date: "2026-06-13"
 ---
 
