@@ -10,6 +10,12 @@ and [Gabriel
 Valença](https://ushift.tecnico.ulisboa.pt/team-gabriel-valenca/) in
 Tartu, Estonia on June 14th and 15th of 2026.
 
+[<img src="Images/EIT_logo-EU1-horizontal_1.png" width="473" />](https://www.eiturbanmobility.eu/academy/doctoral-training-network/)
+
+<img src="Images/CERIS.jpg" data-fig-align="center" width="200" />
+<img src="Images/IST_Logo.png" data-fig-align="center" width="200" />
+<img src="Images/tum-1.jpg" data-fig-align="center" width="250" />
+
 ## Content
 
 The two day course will have the following [content](Content.md)
@@ -27,3 +33,11 @@ The two day course will have the following [content](Content.md)
 - [R Basics](codes/r-basics.R)
 - [Data treatment and descriptive statistics](codes/Data_Treatment.R)
 - [Spatial Data Analysis](codes/Spatial_Data_Analysis.R)
+
+**Dataset**
+
+- Most dataset are in the releases, and will be retrived directly by a
+  link during the course.
+
+- Download only the [Treated Dataset](pedestrian_1.csv) that we will use
+  in Day 2.
