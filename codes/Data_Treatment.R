@@ -11,6 +11,10 @@
 #' 
 #' Data collection began in *February 2020* and ended in *June 2025*.
 #' 
+#' ## Install packages
+#' 
+install.packages(c("tidyverse","skimr","df","DataExplorer", "mapview", "lubridate", "ggplot2"))
+#' 
 #' ## Import Dataset
 #' 
 #' The dataset can be downloaded in many formats.
@@ -22,22 +26,11 @@
 ## --------------------------------------------------------------
 data_csv <- read.csv("https://github.com/valenca13/EIT_Course_BigData/releases/download/Datasets/Automatic_Hourly_Pedestrian_Count.csv")
 
-#' 
-#' -   **Shapefile**
-#' 
-#' First Unzip file and place them into the ´Data´ file.
-
-# #Unzip file
-
-# unzip("Data/Automatic_Hourly_Pedestrian_Count_Sydney.zip", junkpaths = TRUE)
-
-# library(sf)
-
-# data_shapefile <- read_sf("Automatic_Hourly_Pedestrian_Count.shp")
-
 #' ## Convert dataset into *dataframe*
 #' 
-#' It is good practice to: \* convert the database into dataframe, as many packages only work with dataframes. \* To not work on the raw dataset.
+#' It is good practice to: 
+#' i) convert the database into dataframe, as many packages only work with dataframes. 
+#' ii) To not work on the raw dataset.
 
 library(tidyverse)
 df <- data.frame(data_csv)
@@ -72,6 +65,7 @@ plot_missing(df_missingListwise)
 
 df_missingPairwise = df[!is.na(df$Previous52DayTimeAvg),] #removes all rows with NA in Previous52DayTimeAvg variable
 
+plot_missing(df_missingPairwise)
 #' For our case, which treatment would be better?
 #' 
 #' > **Note:** There are many methods for treating missing data, such as replacing the values by the mean, median or using more complex imputation methods (e.g. k‑Nearest Neighbors (kNN) Imputation).
@@ -224,3 +218,6 @@ ggplot(df_sf, aes(x = Time_only, y = TotalCount, colour = Location_Name)) +
 #' Try changing the *themes* for different appearances.
 
 #' > **Note:** Find here the documentation and ´cheatsheet´ of the ggplot2 package: https://ggplot2.tidyverse.org/
+
+ 
+#' Exercise 1: Try substituting the missing values of one variable to the mean value. 

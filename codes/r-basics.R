@@ -94,11 +94,19 @@ sum(table_example$Trips)
 #' 
 #' Filter trips only with origin from Home
 #' 
-data_Lisbon = table_example[table_example$origin == "Home",]
+data_home = table_example[table_example$origin == "Home",]
 
 #' Filter trips with origin **different** from Home
 #' 
-data_out_Lisbon = table_example[table_example$origin != "Home",]
+data_out_home = table_example[table_example$origin != "Home",]
+
+# Using pipes
+# Use the shortcut ctrl + shift + m
+
+library(dplyr)
+
+data_out_home_2 <- table_example |> 
+  filter(origin != "Home")
 
 #' **Remove the first column**
 
@@ -115,3 +123,10 @@ data_OD = table_example[ ,c(3,4)]
 
 ## --------------------------------------------------------------
 data_OD2 = table_example[ ,-c(1:2)] #Or use a comma. 
+
+# Exercise 1: Try to create your own dataset 
+# Variables: 
+# "Mode" with car, bus, bike
+# "Trips" with 300, 200, 100. 
+
+# Exercise 2: Get the total number of trips of bus and bike
