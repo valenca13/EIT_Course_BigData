@@ -22,6 +22,9 @@ The two day course will have the following [content](Content.md)
 
 - Install the latest version of [R](https://cloud.r-project.org/)
 
+- If you have Windows, please also install [R
+  Tools](https://cran.r-project.org/bin/windows/Rtools/rtools44/rtools.html)
+
 - Install [RStudio](https://rstudio.com/products/rstudio/download/)
 
 ## Materials of the course:
