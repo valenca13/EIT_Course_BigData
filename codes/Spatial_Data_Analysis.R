@@ -4,16 +4,6 @@
 #' 
 #' ## Introduction
 #' 
-#' Spatial data is **data that is associated with a geometry**. This geometry can be a *point*, a *line*, a *polygon*, or a *grid*.
-#' 
-#' Spatial data can be represented in many ways, such as vector data and raster data.
-#' 
-#' We will use the `sf` package to work with **vector data**, and the `dplyr` package to manipulate data.
-#' 
-#' The `sf` package is a powerful package for working with spatial data in R.
-#' 
-#' It includes hundreds of [functions](https://r-spatial.github.io/sf/reference/index.html) to deal with spatial data.
-#' 
 #' ## Objective
 #' 
 #' In this chapter we will learn how to **extract and merge** *OpenStreetMap* data of amenities and road network to the pedestrian count data.
@@ -41,7 +31,7 @@ location <- "Sydney, Australia"
 
 #' -   **Create an OSM query for extracting amenities data**
 
-library(osmdata) 
+# library(osmdata) 
 amenities_query <- opq(location) |> 
   add_osm_feature(key = "amenity", value = c("restaurant", "bank", "bar")) 
 
@@ -65,7 +55,7 @@ View(amenities_data_points)
 #' -   **Select only the relevant variables**
 
 amenities_data_treated <- amenities_data_points |> 
-  dplyr::select("osm_id","name","amenity","geometry") 
+  select("osm_id","name","amenity","geometry") 
 
 ## --------------------------------------------------------------
 unique(amenities_data_treated$amenity)
@@ -74,27 +64,26 @@ unique(amenities_data_treated$amenity)
 
 library(sf)
 amenities_data_treated <- st_as_sf(amenities_data_treated) |>
-  dplyr::filter(!is.na(amenity), amenity != "loading_dock")
+  filter(!is.na(amenity), amenity != "loading_dock")
 
 #' * **Transform amenities into a projected crs**
 #' 
-#' A **projected coordinate system** is a **flat representation of the Earth’s surface**. A **geographic coordinate system is a spherical** representation of the Earth’s surface.
+#' A **projected coordinate system** is a **flat representation of the Earth’s surface**. 
+#' 
+#' A **geographic coordinate system is a spherical** representation of the Earth’s surface.
 #' 
 #' We will transform the geographical coordinate system (measured in **degrees**) to a projected coordinate system (measured in **meters**) in order to calculate the centrality measures (calculate distances). 
 #' 
 ## --------------------------------------------------------------
 amenities_data_treated <- st_transform(amenities_data_treated, 7856)
 
-
 #' ## Import road network data
 
-library(osmextract)
 OSM_Sydney = oe_get_network(place = "Sydney") 
 
 #' * **Check the coordinate system**
 
 st_crs(OSM_Sydney)
-
 
 #' * **Project the road network** 
 
@@ -103,7 +92,7 @@ OSM_Sydney_project <- st_transform(OSM_Sydney, 7856)
 #' -   **Plot the entire network**
 #' 
 par(mar = rep(0.1, 4))
-plot(sf::st_geometry(OSM_Sydney_project))
+plot(st_geometry(OSM_Sydney_project))
 
 #' -   **Check for missing data in 'Highway'**
 
@@ -116,10 +105,10 @@ unique(OSM_Sydney_project$highway)
 #' -   **Filter the dataset only for the main 'Highway' classifications**
 
 Sydney_main_roads = OSM_Sydney_project |> 
-  dplyr::filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link","tertiary", "residential")) 
+  filter(highway %in% c("motorway", "motorway_link", "primary", "primary_link", "secondary","secondary_link", "trunk", "trunk_link","tertiary", "residential")) 
 
 
-#' > **Note:** In order to check what are the main categories in OSM, check the [link](https://wiki.openstreetmap.org/wiki/Key:highway#Highway)
+#' **Note:** In order to check what are the main categories in OSM, check: https://wiki.openstreetmap.org/wiki/Key:highway#Highway
 
 #' **Remove variables that are not useful**
 
@@ -132,7 +121,7 @@ Sydney_main_roads <- Sydney_main_roads[,-c(4:12)]
 #' -   **Plot the filtered network**
 #' 
 par(mar = rep(0.1, 4))
-plot(sf::st_geometry(Sydney_main_roads))
+plot(st_geometry(Sydney_main_roads))
 
 #' -   **Plot the amenities with the network**
 
@@ -178,7 +167,6 @@ cbd_polygon <- bbox_cbd |>
 # # Crop the road network to the study area
 osm_cbd <- st_intersection(Sydney_main_roads, cbd_polygon)
 
-library(dplyr)
 # Extract coordinates and build the graph topology 
 coords <- st_coordinates(osm_cbd) # Extracts all coordinates from your road network.
 edges <- coords |>
